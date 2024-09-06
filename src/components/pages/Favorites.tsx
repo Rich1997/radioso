@@ -20,7 +20,7 @@ export const Favorites: React.FC = () => {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-4">Favorites</h1>
+            <div className="font-bold text-2xl pb-6 pt-4 sm:px-0 px-6">Favorites</div>
 
             <Search onSearch={handleSearch} placeholder="Search favorites" />
 

@@ -1,34 +1,21 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import NowPlaying from "./NowPlaying";
+import Sidebar from "./Sidebar";
 
 export const Layout: React.FC = () => {
     return (
-        <div className="relative min-h-patch p-6 container mx-auto max-w-5xl">
-            <nav className="mb-4">
-                <ul className="flex space-x-4">
-                    <li>
-                        <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary" : "")}>
-                            Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/favorites" className={({ isActive }) => (isActive ? "text-primary" : "")}>
-                            Favorites
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/search" className={({ isActive }) => (isActive ? "text-primary" : "")}>
-                            Search
-                        </NavLink>
-                    </li>
-                </ul>
-            </nav>
-
-            <Outlet />
-
-            <footer className="mt-8">
-                <NowPlaying />
+        <div className="relative flex min-h-patch flex-col bg-background">
+            <div className="flex flex-1 container mx-auto">
+                <Sidebar />
+                <div className="flex-1">
+                    <Outlet />
+                </div>
+            </div>
+            <footer className="h-24 sticky bottom-0 bg-muted z-30 border-t w-full border-b-0">
+                <div className="sm:container h-[95px] sm:px-0 w-full bg-accent mx-auto">
+                    <NowPlaying />
+                </div>
             </footer>
         </div>
     );

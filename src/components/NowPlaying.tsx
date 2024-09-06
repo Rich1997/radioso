@@ -1,34 +1,32 @@
-import React from "react";
-import AudioPlayer from "react-h5-audio-player";
-import "react-h5-audio-player/lib/styles.css";
-import { FaPlay, FaStop } from "react-icons/fa"; // Import Play and Stop icons
+import React, { useEffect } from "react";
+import AudioPlayer from "./AudioPlayer";
 import { useRadioContext } from "../context/RadioContext";
-import RadioStation from "./RadioStation";
 
 export const NowPlaying: React.FC = () => {
-    const { currentStation, isPlaying, setIsPlaying, toggleFavorite, favorites } = useRadioContext();
+    const { currentStation, isPlaying, setIsPlaying } = useRadioContext();
+
+    // Automatically play the station when it's changed
+    useEffect(() => {
+        if (currentStation) {
+            setIsPlaying(true); // Auto-play when the station changes
+        }
+    }, [currentStation, setIsPlaying]);
 
     if (!currentStation) {
         return <div className="text-center py-4">No station currently playing</div>;
     }
 
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying); // Toggle play/pause state
+    };
+
     return (
-        <div className="bg-gray-100 p-4">
-            <RadioStation
-                station={currentStation}
-                isPlaying={isPlaying}
-                isFavorite={favorites.some((fav) => fav.id === currentStation.id)}
-                onTogglePlay={() => setIsPlaying(!isPlaying)}
-                onToggleFavorite={() => toggleFavorite(currentStation)}
-                playIcon={isPlaying ? <FaStop /> : <FaPlay />} // Show Stop icon if playing, else Play
-            />
+        <div className="text-muted-foreground h-full">
             <AudioPlayer
-                autoPlay
-                src={currentStation.url}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)}
-                showJumpControls={false}
-                customControlsSection={["MAIN_CONTROLS"]}
+                audioUrl={currentStation.url}
+                thumb={currentStation.favicon} // Assuming the station has a favicon
+                isPlaying={isPlaying}
+                onPlayPause={handlePlayPause}
             />
         </div>
     );

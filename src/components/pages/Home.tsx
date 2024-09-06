@@ -25,7 +25,7 @@ export const Home: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="h-full w-full">
             <h1 className="text-2xl font-bold mb-4">Radio Browser</h1>
 
             <Search />

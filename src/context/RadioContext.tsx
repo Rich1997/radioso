@@ -7,6 +7,7 @@ interface RadioContextType {
     favorites: Station[];
     recentlyPlayed: Station[];
     playStation: (station: Station) => void;
+    pauseStation: () => void;
     setIsPlaying: (isPlaying: boolean) => void;
     toggleFavorite: (station: Station) => void;
 }
@@ -58,6 +59,10 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setRecentlyPlayed(updatedRecentlyPlayed);
     };
 
+    const pauseStation = () => {
+        setIsPlaying(false); // Pause the current station
+    };
+
     const toggleFavorite = (station: Station) => {
         if (favorites.some((fav) => fav.id === station.id)) {
             setFavorites(favorites.filter((fav) => fav.id !== station.id));
@@ -74,6 +79,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 favorites,
                 recentlyPlayed,
                 playStation,
+                pauseStation,
                 setIsPlaying,
                 toggleFavorite,
             }}
