@@ -1,4 +1,4 @@
-@import url("https://fonts.cdnfonts.com/css/space-grotesk");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -26,7 +26,7 @@ html,
 body {
     margin: 0;
     padding: 0;
-    font-family: "space grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    font-family: "work sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     height: 100%;
     width: 100%;
@@ -88,48 +88,48 @@ code {
 
 @layer base {
     :root {
-        --background: 210 33.33% 97.65%;
-        --foreground: 225 18.18% 12.94%;
-        --muted: 231.43 36.84% 96.27%;
-        --muted-foreground: 240 3.8% 46.1%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 240 10% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 225 18.18% 12.94%;
-        --border: 210 5.26% 92.55%;
-        --input: 225 5.57% 92.67%;
-        --primary: 72.22 95.29% 66%;
-        --primary-foreground: 225 14.63% 16.08%;
-        --secondary: 230.59 93.87% 68.04%;
-        --secondary-foreground: 0 0% 100%;
-        --accent: 72.22 95.29% 40%;
-        --accent-foreground: 225 14.63% 16.08%;
-        --destructive: 4.02 100% 68.84%;
-        --destructive-foreground: 0 0% 98%;
-        --ring: 225 18.18% 12.94%;
+        --background: 10 62% 100%;
+        --foreground: 10 56% 5%;
+        --muted: 340 32% 92%;
+        --muted-foreground: 340 3% 30%;
+        --popover: 10 62% 100%;
+        --popover-foreground: 10 56% 5%;
+        --card: 10 62% 100%;
+        --card-foreground: 10 56% 5%;
+        --border: 10 14% 91%;
+        --input: 10 14% 91%;
+        --primary: 10 87% 67%;
+        --primary-foreground: 10 87% 7%;
+        --secondary: 33.89 94.74% 55.29%;
+        --secondary-foreground: 340 87% 7%;
+        --accent: 182.63 56.44% 39.61%;
+        --accent-foreground: 40 0% 100%;
+        --destructive: 18 98% 21%;
+        --destructive-foreground: 18 98% 81%;
+        --ring: 10 87% 67%;
         --radius: 0.5rem;
     }
 
     .dark {
-        --background: 225 18.18% 12.94%;
-        --foreground: 0 0% 100%;
-        --muted: 0 0% 20.78%;
-        --muted-foreground: 219.43 22.58% 69.61%;
-        --popover: 225 14.63% 16.08%;
-        --popover-foreground: 0 0% 98%;
-        --card: 225 14.63% 16.08%;
-        --card-foreground: 0 0% 100%;
-        --border: 225 17.53% 20.94%;
-        --input: 224.21 17.76% 20.98%;
-        --primary: 87.06 100% 70%;
-        --primary-foreground: 225 14.63% 16.08%;
-        --secondary: 230.59 93.87% 68.04%;
-        --secondary-foreground: 0 0% 100%;
-        --accent: 72.22 95.29% 66.67%;
-        --accent-foreground: 225 14.63% 16.08%;
-        --destructive: 4.02 100% 69.84%;
-        --destructive-foreground: 0 0% 20%;
-        --ring: 72.22 95.29% 66.67%;
+        --background: 10 37% 4%;
+        --foreground: 10 14% 97%;
+        --muted: 340 32% 8%;
+        --muted-foreground: 340 3% 70%;
+        --popover: 10 37% 4%;
+        --popover-foreground: 10 14% 97%;
+        --card: 10 37% 4%;
+        --card-foreground: 10 14% 97%;
+        --border: 10 14% 11%;
+        --input: 10 14% 11%;
+        --primary: 10 87% 67%;
+        --primary-foreground: 10 87% 7%;
+        --secondary: 340 87% 67%;
+        --secondary-foreground: 340 87% 7%;
+        --accent: 40 87% 67%;
+        --accent-foreground: 40 87% 7%;
+        --destructive: 18 98% 54%;
+        --destructive-foreground: 0 0% 0%;
+        --ring: 10 87% 67%;
     }
 }
 
@@ -140,4 +140,288 @@ code {
     body {
         @apply bg-background text-foreground;
     }
+}
+
+.rhap_container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    font-family: var(--rhap-font-family);
+    padding: 0px;
+    background-color: var(--rhap-background-color);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.rhap_container:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+.rhap_container svg {
+    vertical-align: initial;
+}
+
+.rhap_header {
+    margin-bottom: 10px;
+}
+
+.rhap_footer {
+    margin-top: 5px;
+}
+
+.rhap_main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    background-color: var(--surface);
+}
+
+.rhap_stacked .rhap_controls-section {
+    margin-top: 0px;
+}
+
+.rhap_horizontal .rhap_controls-section {
+    margin-left: 8px;
+}
+
+.rhap_horizontal-reverse .rhap_controls-section {
+    margin-right: 8px;
+}
+
+.rhap_stacked-reverse .rhap_controls-section {
+    margin-bottom: 8px;
+}
+
+.rhap_progress-section {
+    display: none;
+}
+
+.rhap_progress-container {
+    display: flex;
+    align-items: center;
+    height: 20px;
+    flex: 1 0 auto;
+    align-self: center;
+    margin: 0 calc(10px + 1%);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.rhap_progress-container:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+.rhap_time {
+    color: var(--rhap-time-color);
+    font-size: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.rhap_progress-bar {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--rhap-bar-color);
+    border-radius: 2px;
+}
+
+.rhap_progress-filled {
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: var(--rhap-theme-color);
+    border-radius: 2px;
+}
+
+.rhap_progress-bar-show-download {
+    background-color: rgba(var(--rhap-bar-color), 0.5);
+}
+
+.rhap_download-progress {
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: var(--rhap-bar-color);
+    border-radius: 2px;
+}
+
+.rhap_progress-indicator {
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 3;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    top: -8px;
+    background: var(--rhap-theme-color);
+    border-radius: 50px;
+    box-shadow: rgba(var(--rhap-theme-color), 0.5) 0 0 5px;
+}
+
+.rhap_controls-section {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .rhap_controls-section {
+        display: flex;
+        flex: 1 1 auto;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        flex-direction: row-reverse;
+    }
+}
+
+.rhap_additional-controls {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+}
+
+.rhap_repeat-button {
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+    color: var(--rhap-theme-color);
+    margin-right: 6px;
+}
+
+.rhap_main-controls {
+    flex: 0 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .rhap_main-controls {
+        gap: 0;
+    }
+}
+
+.rhap_main-controls-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    color: var(--primary);
+    font-size: 35px;
+}
+
+.rhap_play-pause-button {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+}
+
+.rhap_volume-controls {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .rhap_volume-controls {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 130px;
+    }
+}
+
+.rhap_volume-button {
+    flex: 0 0 26px;
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+    color: var(--primary);
+    margin-right: 6px;
+}
+
+.rhap_volume-container {
+    display: flex;
+    align-items: center;
+    flex: 1 1 100px;
+    user-select: none;
+    -webkit-user-select: none;
+    margin: 0 6px;
+    gap: 4px;
+}
+
+.rhap_volume-bar-area {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 14px;
+    cursor: pointer;
+}
+
+.rhap_volume-bar-area:focus:not(:focus-visible) {
+    outline: 0;
+}
+
+.rhap_volume-bar {
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background: var(--surface-variant-hex);
+    border-radius: 2px;
+}
+
+.rhap_volume-indicator {
+    box-sizing: border-box;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    left: 0;
+    top: -4px;
+    background: var(--surface-foreground-hex);
+    opacity: 0.9;
+    border-radius: 50px;
+    box-shadow: rgba(var(--surface-foreground-hex), 0.5) 0 0 3px;
+    cursor: pointer;
+}
+
+.rhap_volume-indicator:hover {
+    opacity: 0.9;
+}
+
+.rhap_volume-filled {
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: var(--surface-foreground-hex);
+    border-radius: 2px;
+}
+
+/* Utils */
+.rhap_button-clear {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.rhap_button-clear:hover {
+    opacity: 0.9;
+    transition-duration: 0.2s;
+}
+
+.rhap_button-clear:active {
+    opacity: 0.95;
+}
+
+.rhap_button-clear:focus:not(:focus-visible) {
+    outline: 0;
 }
