@@ -7,9 +7,20 @@ type AudioPlayerProps = {
     thumb?: string;
     isPlaying: boolean;
     onPlayPause: () => void;
+    stationName: string;
+    stationCountry: string;
+    stationState: string;
 };
 
-const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, thumb, isPlaying, onPlayPause }) => {
+const AudioPlayer: React.FC<AudioPlayerProps> = ({
+    audioUrl,
+    thumb,
+    isPlaying,
+    onPlayPause,
+    stationName,
+    stationCountry,
+    stationState,
+}) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [volume, setVolume] = useState(1);
     const [isMuted, setIsMuted] = useState(false);
@@ -52,18 +63,34 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, thumb, isPlaying, o
     return (
         <div className="h-full w-full bg-muted">
             <audio ref={audioRef} />
-            <div className="flex items-center justify-between h-full">
-                <button onClick={onPlayPause}>
-                    {isPlaying ? (
-                        <FaCirclePause size={36} className="text-primary" />
-                    ) : (
-                        <FaCirclePlay size={36} className="text-primary" />
-                    )}
-                </button>
-                {thumb && (
-                    <img className="min-w-[68px] w-[68px] min-h-[68px] h-[68px]" src={thumb} alt="Station thumbnail" />
-                )}
-                <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between h-full gap-4">
+                <div className="flex gap-4">
+                    <button onClick={onPlayPause}>
+                        {isPlaying ? (
+                            <FaCirclePause size={36} className="text-primary" />
+                        ) : (
+                            <FaCirclePlay size={36} className="text-primary" />
+                        )}
+                    </button>
+                    <div className="flex gap-2 items-center">
+                        {thumb && (
+                            <img
+                                className="min-w-[68px] w-[68px] min-h-[68px] h-[68px]"
+                                src={thumb}
+                                alt="Station thumbnail"
+                            />
+                        )}
+                        <div>
+                            <div className="font-bold text-ellipsis line-clamp-1 break-all">{stationName}</div>
+                            <div className="text-sm text-muted-foreground line-clamp-1">
+                                {stationCountry}
+                                {stationCountry && stationState ? ", " : ""}
+                                {stationState ?? stationState}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="sm:flex hidden items-center gap-2">
                     <button onClick={toggleMute}>
                         {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
                     </button>

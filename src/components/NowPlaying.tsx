@@ -32,6 +32,9 @@ export const NowPlaying: React.FC = () => {
                 thumb={currentStation.favicon} // Assuming the station has a favicon
                 isPlaying={isPlaying}
                 onPlayPause={handlePlayPause}
+                stationName={currentStation.name}
+                stationCountry={currentStation.country}
+                stationState={currentStation.state}
             />
         </div>
     );
