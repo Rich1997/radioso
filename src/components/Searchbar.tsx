@@ -21,7 +21,7 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
     };
 
     return (
-        <div className="flex space-x-2 mb-4">
+        <div className="flex gap-2">
             <Input
                 type="text"
                 value={searchTerm}

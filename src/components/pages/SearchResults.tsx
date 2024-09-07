@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Searchbar from "../../components/Searchbar";
+import { useLocation } from "react-router-dom";
 import { searchStations } from "../../services/radioAPI";
 import { Station } from "../../utils/types";
 import RadioStation from "../../components/RadioStation";
+import Subtitlebar from "../ui snippets/Subtitlebar";
+import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
+import PaddedContainer from "../ui snippets/PaddedContainer";
 
 const SearchResults: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -11,7 +13,7 @@ const SearchResults: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const location = useLocation();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -40,30 +42,32 @@ const SearchResults: React.FC = () => {
         fetchResults();
     }, [location]);
 
-    const handleSearch = (term: string) => {
-        if (term.trim() === "") {
-            setError("Search query cannot be empty.");
-            return;
-        }
-        navigate(`/search/${encodeURIComponent(term)}`);
-    };
+    // const handleSearch = (term: string) => {
+    //     if (term.trim() === "") {
+    //         setError("Search query cannot be empty.");
+    //         return;
+    //     }
+    //     navigate(`/search/${encodeURIComponent(term)}`);
+    // };
 
     return (
         <div>
-            <Searchbar onSearch={handleSearch} placeholder="Search stations..." />
-            <h1 className="text-2xl font-bold mb-4">Search Results for "{searchTerm || "..."}"</h1>
-            {isLoading && <p>Searching...</p>}
+            {/* <Searchbar onSearch={handleSearch} placeholder="Search stations..." /> */}
+            <Subtitlebar>Search Results for "{searchTerm || "..."}</Subtitlebar>
+            <PaddedContainer padding="4">{isLoading && <p>Searching...</p>}</PaddedContainer>
             {error && <p className="text-red-500">{error}</p>}
 
             {results.length > 0 && (
-                <div className="space-y-2 mt-4">
+                <PaddedFlexContainer>
                     {results.map((station) => (
                         <RadioStation key={station.stationuuid} station={station} />
                     ))}
-                </div>
+                </PaddedFlexContainer>
             )}
 
-            {results.length === 0 && !isLoading && !error && <p>No results found.</p>}
+            <PaddedContainer padding="4">
+                {results.length === 0 && !isLoading && !error && <p>No results found.</p>}
+            </PaddedContainer>
         </div>
     );
 };

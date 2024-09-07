@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AudioPlayer from "./AudioPlayer";
 import { useRadioContext } from "../context/RadioContext";
+import PaddedContainer from "./ui snippets/PaddedContainer";
 
 export const NowPlaying: React.FC = () => {
     const { currentStation, isPlaying, setIsPlaying } = useRadioContext();
@@ -13,7 +14,11 @@ export const NowPlaying: React.FC = () => {
     }, [currentStation, setIsPlaying]);
 
     if (!currentStation) {
-        return <div className="text-center py-4">No station currently playing</div>;
+        return (
+            <div className="flex items-center py-4 h-full">
+                <PaddedContainer padding="4">No station currently playing</PaddedContainer>
+            </div>
+        );
     }
 
     const handlePlayPause = () => {
@@ -21,7 +26,7 @@ export const NowPlaying: React.FC = () => {
     };
 
     return (
-        <div className="text-muted-foreground h-full">
+        <div className="flex items-center text-muted-foreground h-full px-4">
             <AudioPlayer
                 audioUrl={currentStation.url}
                 thumb={currentStation.favicon} // Assuming the station has a favicon

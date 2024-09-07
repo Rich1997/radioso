@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Search from "../Search"; // Import the updated SearchComponent
 import RadioStation from "../RadioStation";
 import { Station } from "../../utils/types";
 import { getTopStations } from "../../services/radioAPI";
 import RecentlyPlayed from "../RecentlyPlayed";
 import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
+import Titlebar from "../ui snippets/Titlebar";
+import Subtitlebar from "../ui snippets/Subtitlebar";
 
 export const Home: React.FC = () => {
     const [topStations, setTopStations] = useState<Station[]>([]);
@@ -25,26 +26,24 @@ export const Home: React.FC = () => {
 
     return (
         <div className="h-full w-full">
-            <h1 className="text-2xl font-bold mb-4">Radio Browser</h1>
+            <Titlebar>Radio Browser</Titlebar>
+            <div className="sm:flex block">
+                <RecentlyPlayed />
 
-            <Search />
-
-            <RecentlyPlayed />
-
-            {error && <p className="text-red-500">{error}</p>}
-
-            <PaddedFlexContainer>
                 {topStations.length > 0 && (
-                    <div className="mb-8">
-                        <h2 className="text-xl font-semibold mb-2">Top Stations</h2>
-                        <div className="space-y-2">
+                    <div className="flex-1">
+                        <div className="px-4">{error && <p className="text-red-500">{error}</p>}</div>
+
+                        <Subtitlebar>Top Stations</Subtitlebar>
+
+                        <PaddedFlexContainer>
                             {topStations.map((station) => (
                                 <RadioStation key={station.stationuuid} station={station} />
                             ))}
-                        </div>
+                        </PaddedFlexContainer>
                     </div>
                 )}
-            </PaddedFlexContainer>
+            </div>
         </div>
     );
 };

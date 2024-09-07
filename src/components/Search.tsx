@@ -16,10 +16,12 @@ const Search: React.FC = () => {
     };
 
     return (
-        <div>
-            <Searchbar onSearch={handleSearch} placeholder="Search stations..." />
+        <>
+            <div>
+                <Searchbar onSearch={handleSearch} placeholder="Search stations..." />
+            </div>
             {error && <p className="text-red-500">{error}</p>}
-        </div>
+        </>
     );
 };
 

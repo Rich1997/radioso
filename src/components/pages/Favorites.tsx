@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 
 import RadioStation from "../RadioStation";
 import { useRadioContext } from "../../context/RadioContext";
+import Titlebar from "../ui snippets/Titlebar";
+import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
 
 export const Favorites: React.FC = () => {
     const { favorites } = useRadioContext();
@@ -12,15 +14,17 @@ export const Favorites: React.FC = () => {
 
     return (
         <div>
-            <div className="font-bold text-2xl pb-6 pt-4 sm:px-0 px-6">Favorites</div>
+            <Titlebar>Favorites</Titlebar>
 
-            <div className="space-y-2">
-                {filteredFavorites.map((station) => {
-                    return <RadioStation key={station.stationuuid} station={station} />;
-                })}
-            </div>
+            <PaddedFlexContainer>
+                <div className="space-y-2">
+                    {filteredFavorites.map((station) => {
+                        return <RadioStation key={station.stationuuid} station={station} />;
+                    })}
+                </div>
 
-            {filteredFavorites.length === 0 && <p>No favorite stations found.</p>}
+                {filteredFavorites.length === 0 && <p>No favorite stations found.</p>}
+            </PaddedFlexContainer>
         </div>
     );
 };
