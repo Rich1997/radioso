@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 
 type AudioPlayerProps = {
@@ -52,18 +53,21 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl, thumb, isPlaying, o
         <div className="h-full w-full bg-muted">
             <audio ref={audioRef} />
             <div className="flex items-center justify-between h-full">
-                <button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</button>
+                <button onClick={onPlayPause}>
+                    {isPlaying ? (
+                        <FaCirclePause size={36} className="text-primary" />
+                    ) : (
+                        <FaCirclePlay size={36} className="text-primary" />
+                    )}
+                </button>
+                {thumb && (
+                    <img className="min-w-[68px] w-[68px] min-h-[68px] h-[68px]" src={thumb} alt="Station thumbnail" />
+                )}
                 <div className="flex items-center gap-2">
                     <button onClick={toggleMute}>
                         {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
                     </button>
-                    {thumb && (
-                        <img
-                            className="min-w-[68px] w-[68px] min-h-[68px] h-[68px]"
-                            src={thumb}
-                            alt="Station thumbnail"
-                        />
-                    )}
+
                     <input
                         className="slider"
                         type="range"

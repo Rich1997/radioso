@@ -16,7 +16,7 @@ export const Favorites: React.FC = () => {
 
             <div className="space-y-2">
                 {filteredFavorites.map((station) => {
-                    return <RadioStation key={station.id} station={station} />;
+                    return <RadioStation key={station.stationuuid} station={station} />;
                 })}
             </div>
 

@@ -14,10 +14,10 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
     const { currentStation, isPlaying, playStation, toggleFavorite, favorites, pauseStation } = useRadioContext(); // Use context
 
     // Check if this station is currently playing
-    const isCurrentStationPlaying = currentStation?.id === station.id && isPlaying;
+    const isCurrentStationPlaying = currentStation?.stationuuid === station.stationuuid && isPlaying;
 
     // Check if this station is a favorite
-    const isFavorite = favorites.some((fav) => fav.id === station.id);
+    const isFavorite = favorites.some((fav) => fav.stationuuid === station.stationuuid);
 
     const handlePlayPause = () => {
         if (isCurrentStationPlaying) {

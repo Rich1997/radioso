@@ -92,7 +92,10 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setCurrentStation(station);
         setIsPlaying(true);
 
-        const updatedRecentlyPlayed = [station, ...recentlyPlayed.filter((s) => s.id !== station.id)].slice(0, 5);
+        const updatedRecentlyPlayed = [
+            station,
+            ...recentlyPlayed.filter((s) => s.stationuuid !== station.stationuuid),
+        ].slice(0, 5);
         setRecentlyPlayed(updatedRecentlyPlayed);
     };
 
@@ -101,8 +104,8 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
 
     const toggleFavorite = (station: Station) => {
-        if (favorites.some((fav) => fav.id === station.id)) {
-            setFavorites(favorites.filter((fav) => fav.id !== station.id));
+        if (favorites.some((fav) => fav.stationuuid === station.stationuuid)) {
+            setFavorites(favorites.filter((fav) => fav.stationuuid !== station.stationuuid));
         } else {
             setFavorites([...favorites, station]);
         }

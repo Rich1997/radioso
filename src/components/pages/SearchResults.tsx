@@ -58,7 +58,7 @@ const SearchResults: React.FC = () => {
             {results.length > 0 && (
                 <div className="space-y-2 mt-4">
                     {results.map((station) => (
-                        <RadioStation key={station.id} station={station} />
+                        <RadioStation key={station.stationuuid} station={station} />
                     ))}
                 </div>
             )}

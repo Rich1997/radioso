@@ -39,14 +39,14 @@ body {
 code {
     font-family: space mono;
 }
-
+/* 
 [data-color-scheme="dark"] {
     color-scheme: dark;
 }
 
 [data-color-scheme="light"] {
     color-scheme: light;
-}
+} */
 
 @media (min-width: 641px) {
     .scrollarea:hover::-webkit-scrollbar-thumb,

@@ -4,6 +4,7 @@ import RadioStation from "../RadioStation";
 import { Station } from "../../utils/types";
 import { getTopStations } from "../../services/radioAPI";
 import RecentlyPlayed from "../RecentlyPlayed";
+import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
 
 export const Home: React.FC = () => {
     const [topStations, setTopStations] = useState<Station[]>([]);
@@ -28,20 +29,22 @@ export const Home: React.FC = () => {
 
             <Search />
 
-            {error && <p className="text-red-500">{error}</p>}
-
             <RecentlyPlayed />
 
-            {topStations.length > 0 && (
-                <div className="mb-8">
-                    <h2 className="text-xl font-semibold mb-2">Top Stations</h2>
-                    <div className="space-y-2">
-                        {topStations.map((station) => (
-                            <RadioStation key={station.id} station={station} />
-                        ))}
+            {error && <p className="text-red-500">{error}</p>}
+
+            <PaddedFlexContainer>
+                {topStations.length > 0 && (
+                    <div className="mb-8">
+                        <h2 className="text-xl font-semibold mb-2">Top Stations</h2>
+                        <div className="space-y-2">
+                            {topStations.map((station) => (
+                                <RadioStation key={station.stationuuid} station={station} />
+                            ))}
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
+            </PaddedFlexContainer>
         </div>
     );
 };
