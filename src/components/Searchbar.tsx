@@ -28,7 +28,7 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={placeholder}
                 className="flex-grow"
-                onKeyPress={handleKeyPress}
+                onKeyDown={handleKeyPress}
             />
             <Button onClick={handleSearch} variant="outline">
                 Search

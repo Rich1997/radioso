@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Search from "../Search"; // Import the updated SearchComponent
 import RadioStation from "../RadioStation";
-import { useRadioContext } from "../../context/RadioContext";
 import { Station } from "../../utils/types";
 import { getTopStations } from "../../services/radioAPI";
 import RecentlyPlayed from "../RecentlyPlayed";
 
 export const Home: React.FC = () => {
-    const { playStation, toggleFavorite, favorites } = useRadioContext();
     const [topStations, setTopStations] = useState<Station[]>([]);
     const [error, setError] = useState<string | null>(null);
 
@@ -39,14 +37,7 @@ export const Home: React.FC = () => {
                     <h2 className="text-xl font-semibold mb-2">Top Stations</h2>
                     <div className="space-y-2">
                         {topStations.map((station) => (
-                            <RadioStation
-                                key={station.id}
-                                station={station}
-                                isPlaying={false}
-                                isFavorite={favorites.some((fav) => fav.id === station.id)}
-                                onTogglePlay={() => playStation(station)}
-                                onToggleFavorite={() => toggleFavorite(station)}
-                            />
+                            <RadioStation key={station.id} station={station} />
                         ))}
                     </div>
                 </div>
