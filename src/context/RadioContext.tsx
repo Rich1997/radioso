@@ -51,6 +51,43 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
     }, [recentlyPlayed]);
 
+    // Initialize Media Session API
+    useEffect(() => {
+        if ("mediaSession" in navigator) {
+            navigator.mediaSession.setActionHandler("play", () => {
+                if (currentStation && !isPlaying) {
+                    setIsPlaying(true);
+                }
+            });
+
+            navigator.mediaSession.setActionHandler("pause", () => {
+                if (currentStation && isPlaying) {
+                    setIsPlaying(false);
+                }
+            });
+
+            navigator.mediaSession.setActionHandler("stop", () => {
+                setIsPlaying(false);
+            });
+
+            navigator.mediaSession.setActionHandler("previoustrack", () => {
+                // Handle previous track functionality if needed
+            });
+
+            navigator.mediaSession.setActionHandler("nexttrack", () => {
+                // Handle next track functionality if needed
+            });
+
+            // Optionally set metadata (e.g., current station's info)
+            if (currentStation) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: currentStation.name,
+                    artwork: [{ src: currentStation.favicon, sizes: "96x96", type: "image/png" }],
+                });
+            }
+        }
+    }, [currentStation, isPlaying]);
+
     const playStation = (station: Station) => {
         setCurrentStation(station);
         setIsPlaying(true);
