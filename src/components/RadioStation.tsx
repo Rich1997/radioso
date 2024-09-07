@@ -4,6 +4,7 @@ import { FaPlay, FaStop } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext"; // Import context
+import { Card } from "./ui/card";
 
 interface RadioStationProps {
     station: Station;
@@ -28,7 +29,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
     };
 
     return (
-        <div className="flex items-center justify-between p-2 border rounded">
+        <Card className="flex items-center justify-between p-2">
             <div className="flex items-center">
                 <img src={station.favicon} alt={station.name} className="w-10 h-10 mr-2" />
                 <span>{station.name}</span>
@@ -43,13 +44,13 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
                 {/* Button to toggle favorite */}
                 <Button
                     onClick={() => toggleFavorite(station)}
-                    variant="outline"
-                    className={isFavorite ? "text-red-500" : ""}
+                    variant="ghost"
+                    className={isFavorite ? "text-primary" : ""}
                 >
                     <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
                 </Button>
             </div>
-        </div>
+        </Card>
     );
 };
 

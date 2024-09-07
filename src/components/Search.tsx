@@ -9,6 +9,7 @@ const Search: React.FC = () => {
     const handleSearch = (term: string) => {
         if (term.trim() === "") {
             setError("Search query cannot be empty.");
+            console.log(error);
             return;
         }
         setError(null);
@@ -17,10 +18,7 @@ const Search: React.FC = () => {
 
     return (
         <>
-            <div>
-                <Searchbar onSearch={handleSearch} placeholder="Search stations..." />
-            </div>
-            {error && <p className="text-red-500">{error}</p>}
+            <Searchbar onSearch={handleSearch} placeholder="Search stations..." />
         </>
     );
 };

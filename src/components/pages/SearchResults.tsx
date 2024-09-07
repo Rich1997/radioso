@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { searchStations } from "../../services/radioAPI";
 import { Station } from "../../utils/types";
 import RadioStation from "../../components/RadioStation";
@@ -13,7 +13,6 @@ const SearchResults: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const location = useLocation();
-    // const navigate = useNavigate();
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -42,18 +41,15 @@ const SearchResults: React.FC = () => {
         fetchResults();
     }, [location]);
 
-    // const handleSearch = (term: string) => {
-    //     if (term.trim() === "") {
-    //         setError("Search query cannot be empty.");
-    //         return;
-    //     }
-    //     navigate(`/search/${encodeURIComponent(term)}`);
-    // };
-
     return (
         <div>
-            {/* <Searchbar onSearch={handleSearch} placeholder="Search stations..." /> */}
-            <Subtitlebar>Search Results for "{searchTerm || "..."}"</Subtitlebar>
+            <div className="sticky xx:top-[129px] top-[169px] bg-background">
+                <Link to="/" className="text-sm font-normal px-4">
+                    ↑ Go back home
+                </Link>
+                <Subtitlebar>Search Results for "{searchTerm || "..."}"</Subtitlebar>
+            </div>
+
             <PaddedContainer padding="4">{isLoading && <p>Searching...</p>}</PaddedContainer>
             {error && <p className="text-red-500">{error}</p>}
 

@@ -61,7 +61,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     };
 
     return (
-        <div className="h-full w-full bg-muted">
+        <div className="h-full w-full bg-card">
             <audio ref={audioRef} />
             <div className="flex items-center justify-between h-full gap-4">
                 <div className="flex gap-4">

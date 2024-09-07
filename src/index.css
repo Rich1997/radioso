@@ -83,25 +83,25 @@ code {
 
 @layer base {
     :root {
-        --background: 10 62% 100%;
-        --foreground: 10 56% 5%;
-        --muted: 340 32% 92%;
-        --muted-foreground: 340 3% 30%;
-        --popover: 10 62% 100%;
-        --popover-foreground: 10 56% 5%;
-        --card: 10 62% 100%;
-        --card-foreground: 10 56% 5%;
-        --border: 10 14% 91%;
-        --input: 10 14% 91%;
-        --primary: 10 87% 67%;
-        --primary-foreground: 10 87% 7%;
-        --secondary: 33.89 94.74% 55.29%;
-        --secondary-foreground: 340 87% 7%;
-        --accent: 182.63 56.44% 39.61%;
-        --accent-foreground: 40 0% 100%;
-        --destructive: 18 98% 21%;
-        --destructive-foreground: 18 98% 81%;
-        --ring: 10 87% 67%;
+        --background: 294 55% 98%;
+        --foreground: 294 67% 3%;
+        --muted: 264 35% 86%;
+        --muted-foreground: 264 15% 36%;
+        --popover: 294 55% 98%;
+        --popover-foreground: 294 67% 3%;
+        --card: 294 55% 98%;
+        --card-foreground: 294 67% 3%;
+        --border: 294 3% 93%;
+        --input: 294 3% 93%;
+        --primary: 294 85% 45%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 264 85% 45%;
+        --secondary-foreground: 0 0% 100%;
+        --accent: 324 85% 45%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 21 87% 38%;
+        --destructive-foreground: 0 0% 100%;
+        --ring: 294 85% 45%;
         --radius: 0.5rem;
     }
 
@@ -134,6 +134,12 @@ code {
     }
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+@media (min-width: 411px) {
+    .xx\:top-\[129px\] {
+        top: 129px;
     }
 }
 
