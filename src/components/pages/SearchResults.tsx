@@ -53,7 +53,7 @@ const SearchResults: React.FC = () => {
     return (
         <div>
             {/* <Searchbar onSearch={handleSearch} placeholder="Search stations..." /> */}
-            <Subtitlebar>Search Results for "{searchTerm || "..."}</Subtitlebar>
+            <Subtitlebar>Search Results for "{searchTerm || "..."}"</Subtitlebar>
             <PaddedContainer padding="4">{isLoading && <p>Searching...</p>}</PaddedContainer>
             {error && <p className="text-red-500">{error}</p>}
 
