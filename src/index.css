@@ -137,12 +137,6 @@ code {
     }
 }
 
-@media (min-width: 411px) {
-    .xx\:top-\[129px\] {
-        top: 129px;
-    }
-}
-
 .slider {
     -webkit-appearance: none;
     -moz-appearance: none;

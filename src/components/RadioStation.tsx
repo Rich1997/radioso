@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext"; // Import context
 import { Card } from "./ui/card";
+import Thumbnail from "./ui snippets/Thumbnail";
 
 interface RadioStationProps {
     station: Station;
@@ -30,11 +31,16 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
 
     return (
         <Card className="flex items-center justify-between p-2">
-            <div className="flex items-center">
-                <img src={station.favicon} alt={station.name} className="w-10 h-10 mr-2" />
-                <span>{station.name}</span>
+            <div className="flex items-center gap-2">
+                <Thumbnail size="40" imgSrc={station.favicon} />
+                <div className="text-sm text-muted-foreground line-clamp-2">
+                    <div className="font-semibold leading-4">{station.name}</div>
+                    {station.country}
+                    {station.country && station.state ? ", " : ""}
+                    {station.state ?? station.state}
+                </div>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex gap-2">
                 {/* Button to toggle play/stop */}
                 <Button onClick={handlePlayPause} variant="outline">
                     {/* Use playIcon if passed, otherwise default to FaPlay/FaStop */}

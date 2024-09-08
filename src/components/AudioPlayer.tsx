@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
+import Thumbnail from "./ui snippets/Thumbnail";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -73,13 +74,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                         )}
                     </button>
                     <div className="flex gap-2 items-center">
-                        {thumb && (
-                            <img
-                                className="min-w-[68px] w-[68px] min-h-[68px] h-[68px]"
-                                src={thumb}
-                                alt="Station thumbnail"
-                            />
-                        )}
+                        <Thumbnail size="68" imgSrc={thumb} />
                         <div>
                             <div className="font-bold text-ellipsis line-clamp-1 break-all">{stationName}</div>
                             <div className="text-sm text-muted-foreground line-clamp-1">

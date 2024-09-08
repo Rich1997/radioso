@@ -6,8 +6,8 @@ const Navbar = () => {
     return (
         <div className="sticky top-[55px] bg-background py-4 container mx-auto">
             <PaddedContainer padding="4">
-                <div className="flex justify-between items-center gap-4 flex-wrap">
-                    <ul className="flex gap-4">
+                <div className="flex justify-between sm:items-center items-start gap-4 sm:gap-6 flex-col sm:flex-row">
+                    <ul className="flex gap-6">
                         <li>
                             <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary" : "")}>
                                 Home
