@@ -7,18 +7,17 @@ const Navbar = () => {
         <div className="sticky top-[56px] bg-background py-4 container mx-auto z-10">
             <PaddedContainer padding="4">
                 <div className="flex justify-between sm:items-center items-start gap-4 sm:gap-6 flex-col sm:flex-row">
-                    <ul className="flex gap-6">
-                        <li>
-                            <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary" : "")}>
-                                Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/favorites" className={({ isActive }) => (isActive ? "text-primary" : "")}>
-                                Favorites
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <div className="flex gap-6">
+                        <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}>
+                            Home
+                        </NavLink>
+                        <NavLink
+                            to="/favorites"
+                            className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}
+                        >
+                            Favorites
+                        </NavLink>
+                    </div>
                     <Search />
                 </div>
             </PaddedContainer>

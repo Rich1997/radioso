@@ -27,7 +27,7 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
                 <FaSearch />
             </Button>
             <Input
-                type="text"
+                type="search"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={placeholder}
