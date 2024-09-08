@@ -30,7 +30,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
     };
 
     return (
-        <Card className="flex items-center justify-between p-2">
+        <Card className="flex items-center justify-between p-2 cursor-pointer select-none">
             <div className="flex items-center gap-2">
                 <Thumbnail size="40" imgSrc={station.favicon} />
                 <div className="text-sm text-muted-foreground line-clamp-2">
