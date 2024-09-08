@@ -33,7 +33,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
         <Card className="flex items-center justify-between p-2 cursor-pointer select-none">
             <div className="flex items-center gap-2">
                 <Thumbnail size="40" imgSrc={station.favicon} />
-                <div className="text-sm text-muted-foreground line-clamp-2">
+                <div className="text-sm text-muted-foreground line-clamp-2 pr-2">
                     <div className="font-semibold leading-4">{station.name}</div>
                     {station.country}
                     {station.country && station.state ? ", " : ""}

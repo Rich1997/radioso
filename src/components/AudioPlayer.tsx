@@ -152,7 +152,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     </div>
                     <div className="flex flex-col items-center gap-4 justify-center h-full pb-[128px]">
                         <div className="flex gap-4">
-                            <Thumbnail size="200" imgSrc={thumb} />
+                            <Thumbnail size="180" imgSrc={thumb} />
                             <div>
                                 <h3 className="text-xl font-semibold">{stationName}</h3>
                                 <p className="text-muted-foreground">
@@ -165,7 +165,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                         <div className="flex flex-col items-center w-1/2 gap-4">
                             <div className="flex gap-4 mt-4">
                                 <button onClick={onPlayPause} className="text-4xl">
-                                    {isPlaying ? <FaCirclePause /> : <FaCirclePlay />}
+                                    {isPlaying ? (
+                                        <FaCirclePause size={64} className="text-primary" />
+                                    ) : (
+                                        <FaCirclePlay size={64} className="text-primary" />
+                                    )}
                                 </button>
                             </div>
                             <input
