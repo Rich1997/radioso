@@ -85,21 +85,23 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     return (
         <div className="relative h-full w-full bg-card">
             <audio ref={audioRef} />
-            <div className="flex items-center justify-between h-full gap-4 p-4 cursor-pointer" onClick={toggleDrawer}>
-                <div className="flex gap-4">
-                    <button
-                        className="controls-area"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onPlayPause();
-                        }}
-                    >
-                        {isPlaying ? (
-                            <FaCirclePause size={36} className="text-primary" />
-                        ) : (
-                            <FaCirclePlay size={36} className="text-primary" />
-                        )}
-                    </button>
+            <div className="flex items-center justify-between h-full gap-4 cursor-pointer" onClick={toggleDrawer}>
+                <div className="flex gap-4 items-center">
+                    <div className="h-9">
+                        <button
+                            className="controls-area"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onPlayPause();
+                            }}
+                        >
+                            {isPlaying ? (
+                                <FaCirclePause size={36} className="text-primary" />
+                            ) : (
+                                <FaCirclePlay size={36} className="text-primary" />
+                            )}
+                        </button>
+                    </div>
                     <div className="flex gap-2 items-center">
                         <Thumbnail size="68" imgSrc={thumb} />
                         <div>
