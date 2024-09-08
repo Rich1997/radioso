@@ -153,7 +153,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                             <IoMdClose />
                         </button>
                     </div>
-                    <div className="flex flex-col items-center gap-10 justify-center h-full pb-[128px]">
+                    <div className="flex flex-col items-center gap-10 justify-center h-full pb-[72px]">
                         <div className="flex gap-4 flex-col items-center">
                             <div className="hidden sm:block">
                                 <Thumbnail size="240" imgSrc={thumb} />
