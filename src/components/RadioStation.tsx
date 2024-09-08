@@ -32,7 +32,17 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
     return (
         <Card className="flex items-center justify-between p-2 cursor-pointer select-none">
             <div className="flex items-center gap-2">
-                <Thumbnail size="40" imgSrc={station.favicon} />
+                <div className="relative">
+                    <Thumbnail size="40" imgSrc={station.favicon} />
+                    {isCurrentStationPlaying ? (
+                        <div className="flex absolute top-0">
+                            <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></div>
+                            <div className="relative rounded-full h-3 w-3 bg-success ring-2 ring-white"></div>
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </div>
                 <div className="text-sm text-muted-foreground line-clamp-2 pr-2">
                     <div className="font-semibold leading-4">{station.name}</div>
                     {station.country}

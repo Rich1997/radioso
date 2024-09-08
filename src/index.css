@@ -103,6 +103,7 @@ code {
         --destructive-foreground: 0 0% 100%;
         --ring: 294 85% 45%;
         --radius: 0.5rem;
+        --success: 142 76% 36%;
     }
 
     .dark {
