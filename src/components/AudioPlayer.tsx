@@ -12,6 +12,7 @@ type AudioPlayerProps = {
     stationName: string;
     stationCountry: string;
     stationState: string;
+    tags?: string;
 };
 
 const AudioPlayer: React.FC<AudioPlayerProps> = ({
@@ -22,6 +23,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     stationName,
     stationCountry,
     stationState,
+    tags,
 }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [volume, setVolume] = useState(1);
@@ -123,7 +125,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     >
                         {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
                     </button>
-
                     <input
                         className="slider"
                         type="range"
@@ -147,25 +148,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             >
                 <div className="container mx-auto p-4 h-full">
                     <div className="flex justify-between items-center mb-6">
-                        <h2 className="text-2xl font-bold">Now Playing</h2>
+                        <h2 className="text-2xl font-bold tracking-tight sm:leading-snug leading-5">Now Playing</h2>
                         <button onClick={() => setIsDrawerOpen(false)} className="text-2xl">
                             <IoMdClose />
                         </button>
                     </div>
-                    <div className="flex flex-col items-center gap-4 justify-center h-full pb-[128px]">
-                        <div className="flex gap-4">
-                            <Thumbnail size="180" imgSrc={thumb} />
-                            <div>
-                                <h3 className="text-xl font-semibold">{stationName}</h3>
-                                <p className="text-muted-foreground">
+                    <div className="flex flex-col items-center gap-10 justify-center h-full pb-[128px]">
+                        <div className="flex gap-4 flex-col items-center">
+                            <div className="hidden sm:block">
+                                <Thumbnail size="240" imgSrc={thumb} />
+                            </div>
+                            <div className="sm:hidden block">
+                                <Thumbnail size="200" imgSrc={thumb} />
+                            </div>
+                            <div className="flex flex-col items-center text-center">
+                                <h3 className="sm:text-xl text-base font-semibold leading-tight">{stationName}</h3>
+                                <p className="text-muted-foreground sm:text-base text-sm">
                                     {stationCountry}
                                     {stationCountry && stationState ? ", " : ""}
                                     {stationState ?? stationState}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex flex-col items-center w-1/2 gap-4">
-                            <div className="flex gap-4 mt-4">
+                        <div className="flex flex-col items-center w-2/3 gap-10">
+                            <div>
                                 <button onClick={onPlayPause} className="text-4xl">
                                     {isPlaying ? (
                                         <FaCirclePause size={64} className="text-primary" />
@@ -174,23 +180,35 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     )}
                                 </button>
                             </div>
-                            <input
-                                className="slider"
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.01"
-                                value={isMuted ? 0 : volume}
-                                onChange={handleVolumeChange}
-                                onClick={(e) => e.stopPropagation()}
-                                style={
-                                    {
-                                        "--value": `${(isMuted ? 0 : volume) * 100}%`,
-                                        width: "100%",
-                                    } as React.CSSProperties
-                                }
-                            />
+                            <div className="flex items-center gap-2 justify-center w-full sm:w-2/3 lg:w-1/2">
+                                <button
+                                    className="text-muted-foreground"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleMute();
+                                    }}
+                                >
+                                    {isMuted ? <HiVolumeOff size={20} /> : <HiVolumeUp size={20} />}
+                                </button>
+                                <input
+                                    className="slider flex-1"
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.01"
+                                    value={isMuted ? 0 : volume}
+                                    onChange={handleVolumeChange}
+                                    onClick={(e) => e.stopPropagation()}
+                                    style={
+                                        {
+                                            "--value": `${(isMuted ? 0 : volume) * 100}%`,
+                                            width: "100%",
+                                        } as React.CSSProperties
+                                    }
+                                />
+                            </div>
                         </div>
+                        <div className="hidden">{tags}</div>
                     </div>
                 </div>
             </div>
