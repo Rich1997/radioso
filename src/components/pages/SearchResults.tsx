@@ -43,7 +43,7 @@ const SearchResults: React.FC = () => {
 
     return (
         <div>
-            <div className="sticky sm:top-[129px] top-[169px] bg-background">
+            <div className="sticky sm:top-[129px] top-[169px] bg-background z-10">
                 <Link to="/" className="text-sm font-normal px-4">
                     ↑ Go back home
                 </Link>
