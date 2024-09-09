@@ -111,7 +111,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             <div className="h-full gap-4 cursor-pointer flex items-center" onClick={toggleDrawer}>
                 <Surface>
                     <>
-                        <div className="flex gap-2 sm:gap-4 items-center">
+                        <div className="flex gap-4 items-center">
                             <div className="h-10">
                                 <button
                                     className="controls-area"
@@ -209,7 +209,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     )}
                                 </button>
                             </div>
-                            <div className="flex items-center gap-2 justify-center w-full sm:w-2/3 lg:w-1/2 h-6">
+                            <div className="flex items-center justify-center w-full sm:w-2/3 lg:w-1/2 h-6 gap-2">
                                 <button
                                     className="text-muted-foreground"
                                     onClick={(e) => {
@@ -235,7 +235,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         } as React.CSSProperties
                                     }
                                 />
-                                <div className="pb-24" />
                             </div>
                         </div>
                         <div className="hidden">{tags}</div>
