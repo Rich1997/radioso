@@ -15,7 +15,7 @@ export const NowPlaying: React.FC = () => {
 
     if (!currentStation) {
         return (
-            <div className="flex items-center p-4 h-full justify-center w-full">
+            <div className="p-4 h-full w-full">
                 <Surface>No station currently playing</Surface>
             </div>
         );
@@ -26,7 +26,7 @@ export const NowPlaying: React.FC = () => {
     };
 
     return (
-        <div className="flex items-center text-muted-foreground h-full px-4">
+        <div className="flex items-center text-muted-foreground h-full p-4">
             <AudioPlayer
                 audioUrl={currentStation.url}
                 thumb={currentStation.favicon} // Assuming the station has a favicon

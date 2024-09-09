@@ -4,7 +4,6 @@ import { Station } from "../../utils/types";
 import { getTopStations } from "../../services/radioAPI";
 import RecentlyPlayed from "../RecentlyPlayed";
 import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
-import Titlebar from "../ui snippets/Titlebar";
 import Subtitlebar from "../ui snippets/Subtitlebar";
 
 export const Home: React.FC = () => {
@@ -26,7 +25,6 @@ export const Home: React.FC = () => {
 
     return (
         <div className="h-full w-full">
-            <Titlebar>Radio Browser</Titlebar>
             <div className="sm:flex block">
                 <RecentlyPlayed />
 

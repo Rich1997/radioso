@@ -44,7 +44,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
                     )}
                 </div>
                 <div className="text-sm text-muted-foreground line-clamp-2 pr-2">
-                    <div className="font-semibold leading-4">{station.name}</div>
+                    <div className="font-semibold leading-4 sm:break-words break-all">{station.name}</div>
                     {station.country}
                     {station.country && station.state ? ", " : ""}
                     {station.state ?? station.state}

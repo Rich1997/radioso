@@ -106,13 +106,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }, [volume, isMuted]);
 
     return (
-        <div className="relative h-full w-full bg-card">
+        <div className="relative h-full w-full">
             <audio ref={audioRef} />
-            <div className="flex items-center justify-between h-full gap-4 cursor-pointer py-4" onClick={toggleDrawer}>
+            <div className="h-full gap-4 cursor-pointer flex items-center" onClick={toggleDrawer}>
                 <Surface>
                     <>
-                        <div className="flex gap-4 items-center">
-                            <div className="h-9">
+                        <div className="flex gap-2 sm:gap-4 items-center">
+                            <div className="h-10">
                                 <button
                                     className="controls-area"
                                     onClick={(e) => {
@@ -121,19 +121,19 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     }}
                                 >
                                     {isPlaying ? (
-                                        <FaCirclePause size={38} className="text-primary" />
+                                        <FaCirclePause size={40} className="text-primary" />
                                     ) : (
-                                        <FaCirclePlay size={38} className="text-primary" />
+                                        <FaCirclePlay size={40} className="text-primary" />
                                     )}
                                 </button>
                             </div>
-                            <div className="flex gap-2 items-center">
-                                <Thumbnail size="68" imgSrc={thumb} />
+                            <div className="flex gap-2 sm:gap-4 items-center mb-[2px]">
+                                <Thumbnail size="72" imgSrc={thumb} />
                                 <div>
-                                    <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-4xl">
+                                    <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-4xl sm:text-base text-sm">
                                         {stationName}
                                     </div>
-                                    <div className="text-sm text-muted-foreground line-clamp-1">
+                                    <div className="sm:text-sm text-xs text-muted-foreground line-clamp-1">
                                         {stationCountry}
                                         {stationCountry && stationState ? ", " : ""}
                                         {stationState ?? stationState}

@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import RadioStation from "../RadioStation";
 import { useRadioContext } from "../../context/RadioContext";
-import Titlebar from "../ui snippets/Titlebar";
 import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
+import Subtitlebar from "../ui snippets/Subtitlebar";
 
 export const Favorites: React.FC = () => {
     const { favorites } = useRadioContext();
@@ -13,7 +13,7 @@ export const Favorites: React.FC = () => {
 
     return (
         <div>
-            <Titlebar>Favorites</Titlebar>
+            <Subtitlebar>Favorites</Subtitlebar>
 
             <PaddedFlexContainer>
                 <div className="space-y-2">

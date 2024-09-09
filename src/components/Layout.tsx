@@ -16,7 +16,7 @@ export const Layout: React.FC = () => {
                 </div>
             </div>
             <footer className="h-24 sticky bottom-0 bg-card z-30 border-t w-full border-b-0">
-                <div className="sm:container h-[95px] sm:px-0 w-full mx-auto">
+                <div className="container h-[95px] sm:px-0 w-full mx-auto">
                     <NowPlaying />
                 </div>
             </footer>
