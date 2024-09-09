@@ -175,7 +175,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                             </div>
                         </div>
                         <div className="flex flex-col items-center w-2/3 gap-10">
-                            <div>
+                            <div className="h-16">
                                 <button onClick={onPlayPause} className="text-4xl">
                                     {isPlaying ? (
                                         <FaCirclePause size={64} className="text-primary" />
@@ -184,7 +184,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     )}
                                 </button>
                             </div>
-                            <div className="flex items-center gap-2 justify-center w-full sm:w-2/3 lg:w-1/2">
+                            <div className="flex items-center gap-2 justify-center w-full sm:w-2/3 lg:w-1/2 h-6">
                                 <button
                                     className="text-muted-foreground"
                                     onClick={(e) => {
