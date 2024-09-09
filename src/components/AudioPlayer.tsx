@@ -141,8 +141,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
             {/* Drawer */}
             <div
-                className={`fixed bottom-0 left-0 w-full h-full bg-card z-10 transition-transform transform ${
-                    isDrawerOpen ? "translate-y-0" : "translate-y-full"
+                className={`fixed bottom-0 left-0 w-full h-full bg-card z-10 transition-transform transform scrollarea overflow-y-auto duration-300 ${
+                    isDrawerOpen ? "translate-y-0" : "translate-y-full -z-10"
                 }`}
                 style={{ height: "100%" }}
             >
@@ -153,7 +153,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                             <IoMdClose />
                         </button>
                     </div>
-                    <div className="flex flex-col items-center gap-10 justify-center h-full pb-[72px]">
+                    <div className="flex flex-col items-center gap-10 justify-center h-[calc(100%-73px)] min-h-[500px]">
                         <div className="flex gap-4 flex-col items-center">
                             <div className="hidden sm:block">
                                 <Thumbnail size="240" imgSrc={thumb} />
