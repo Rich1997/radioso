@@ -15,7 +15,7 @@ export const NowPlaying: React.FC = () => {
 
     if (!currentStation) {
         return (
-            <div className="flex items-center py-4 h-full">
+            <div className="flex items-center py-4 h-full px-2.5">
                 <PaddedContainer padding="4">No station currently playing</PaddedContainer>
             </div>
         );
