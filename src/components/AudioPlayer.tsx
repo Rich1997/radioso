@@ -84,8 +84,28 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         setIsDrawerOpen(!isDrawerOpen);
     };
 
+    useEffect(() => {
+        // Load volume and mute state from localStorage
+        const storedVolume = localStorage.getItem("volume");
+        const storedIsMuted = localStorage.getItem("isMuted");
+        if (storedVolume !== null) {
+            setVolume(parseFloat(storedVolume));
+            if (audioRef.current) {
+                audioRef.current.volume = parseFloat(storedVolume);
+                audioRef.current.muted = storedIsMuted === "true";
+            }
+            setIsMuted(storedIsMuted === "true");
+        }
+    }, []);
+
+    useEffect(() => {
+        // Save volume and mute state to localStorage
+        localStorage.setItem("volume", volume.toString());
+        localStorage.setItem("isMuted", isMuted.toString());
+    }, [volume, isMuted]);
+
     return (
-        <div className="relative h-full w-full bg-card">
+        <div className="relative h-full w-full bg-card px-2.5">
             <audio ref={audioRef} />
             <div className="flex items-center justify-between h-full gap-4 cursor-pointer" onClick={toggleDrawer}>
                 <div className="flex gap-4 items-center">
@@ -98,9 +118,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                             }}
                         >
                             {isPlaying ? (
-                                <FaCirclePause size={36} className="text-primary" />
+                                <FaCirclePause size={38} className="text-primary" />
                             ) : (
-                                <FaCirclePlay size={36} className="text-primary" />
+                                <FaCirclePlay size={38} className="text-primary" />
                             )}
                         </button>
                     </div>
