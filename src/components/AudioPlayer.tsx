@@ -127,7 +127,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     )}
                                 </button>
                             </div>
-                            <div className="flex gap-2 sm:gap-4 items-center mb-[2px]">
+                            <div className="flex gap-2 sm:gap-4 items-center mb-[1px]">
                                 <Thumbnail size="72" imgSrc={thumb} />
                                 <div>
                                     <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-4xl sm:text-base text-sm">
@@ -209,7 +209,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     )}
                                 </button>
                             </div>
-                            <div className="flex items-center justify-center w-full sm:w-2/3 lg:w-1/2 h-6 gap-2">
+                            <div className="flex items-center justify-center w-full sm:w-2/3 lg:w-1/3 h-6 gap-2">
                                 <button
                                     className="text-muted-foreground"
                                     onClick={(e) => {
