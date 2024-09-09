@@ -107,7 +107,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     <div className="flex gap-2 items-center">
                         <Thumbnail size="68" imgSrc={thumb} />
                         <div>
-                            <div className="font-bold text-ellipsis line-clamp-1 break-all">{stationName}</div>
+                            <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-4xl">
+                                {stationName}
+                            </div>
                             <div className="text-sm text-muted-foreground line-clamp-1">
                                 {stationCountry}
                                 {stationCountry && stationState ? ", " : ""}
@@ -153,7 +155,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                             <IoMdClose />
                         </button>
                     </div>
-                    <div className="flex flex-col items-center gap-10 justify-center h-[calc(100%-73px)] min-h-[500px]">
+                    <div className="flex flex-col items-center gap-10 justify-center h-[calc(100%-73px)] min-h-[596px]">
                         <div className="flex gap-4 flex-col items-center">
                             <div className="hidden sm:block">
                                 <Thumbnail size="240" imgSrc={thumb} />
@@ -162,7 +164,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                 <Thumbnail size="200" imgSrc={thumb} />
                             </div>
                             <div className="flex flex-col items-center text-center">
-                                <h3 className="sm:text-xl text-base font-semibold leading-tight">{stationName}</h3>
+                                <h3 className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-24 overflow-auto scrollarea sm:max-w-2xl max-w-xs">
+                                    {stationName}
+                                </h3>
                                 <p className="text-muted-foreground sm:text-base text-sm">
                                     {stationCountry}
                                     {stationCountry && stationState ? ", " : ""}
@@ -206,6 +210,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         } as React.CSSProperties
                                     }
                                 />
+                                <div className="pb-24" />
                             </div>
                         </div>
                         <div className="hidden">{tags}</div>
