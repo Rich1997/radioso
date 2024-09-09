@@ -3,6 +3,7 @@ import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
 import Thumbnail from "./ui snippets/Thumbnail";
+import Surface from "./ui snippets/Surface";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -105,60 +106,64 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     }, [volume, isMuted]);
 
     return (
-        <div className="relative h-full w-full bg-card px-2.5">
+        <div className="relative h-full w-full bg-card">
             <audio ref={audioRef} />
-            <div className="flex items-center justify-between h-full gap-4 cursor-pointer" onClick={toggleDrawer}>
-                <div className="flex gap-4 items-center">
-                    <div className="h-9">
-                        <button
-                            className="controls-area"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onPlayPause();
-                            }}
-                        >
-                            {isPlaying ? (
-                                <FaCirclePause size={38} className="text-primary" />
-                            ) : (
-                                <FaCirclePlay size={38} className="text-primary" />
-                            )}
-                        </button>
-                    </div>
-                    <div className="flex gap-2 items-center">
-                        <Thumbnail size="68" imgSrc={thumb} />
-                        <div>
-                            <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-4xl">
-                                {stationName}
+            <div className="flex items-center justify-between h-full gap-4 cursor-pointer py-4" onClick={toggleDrawer}>
+                <Surface>
+                    <>
+                        <div className="flex gap-4 items-center">
+                            <div className="h-9">
+                                <button
+                                    className="controls-area"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onPlayPause();
+                                    }}
+                                >
+                                    {isPlaying ? (
+                                        <FaCirclePause size={38} className="text-primary" />
+                                    ) : (
+                                        <FaCirclePlay size={38} className="text-primary" />
+                                    )}
+                                </button>
                             </div>
-                            <div className="text-sm text-muted-foreground line-clamp-1">
-                                {stationCountry}
-                                {stationCountry && stationState ? ", " : ""}
-                                {stationState ?? stationState}
+                            <div className="flex gap-2 items-center">
+                                <Thumbnail size="68" imgSrc={thumb} />
+                                <div>
+                                    <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-4xl">
+                                        {stationName}
+                                    </div>
+                                    <div className="text-sm text-muted-foreground line-clamp-1">
+                                        {stationCountry}
+                                        {stationCountry && stationState ? ", " : ""}
+                                        {stationState ?? stationState}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div className="sm:flex hidden items-center gap-2 controls-area">
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            toggleMute();
-                        }}
-                    >
-                        {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
-                    </button>
-                    <input
-                        className="slider"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value={isMuted ? 0 : volume}
-                        onChange={handleVolumeChange}
-                        onClick={(e) => e.stopPropagation()}
-                        style={{ "--value": `${(isMuted ? 0 : volume) * 100 - 1}%` } as React.CSSProperties}
-                    />
-                </div>
+                        <div className="sm:flex hidden items-center gap-2 controls-area">
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    toggleMute();
+                                }}
+                            >
+                                {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
+                            </button>
+                            <input
+                                className="slider"
+                                type="range"
+                                min="0"
+                                max="1"
+                                step="0.01"
+                                value={isMuted ? 0 : volume}
+                                onChange={handleVolumeChange}
+                                onClick={(e) => e.stopPropagation()}
+                                style={{ "--value": `${(isMuted ? 0 : volume) * 100 - 1}%` } as React.CSSProperties}
+                            />
+                        </div>
+                    </>
+                </Surface>
             </div>
 
             {/* Drawer */}

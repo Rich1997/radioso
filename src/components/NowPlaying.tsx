@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import AudioPlayer from "./AudioPlayer";
 import { useRadioContext } from "../context/RadioContext";
-import PaddedContainer from "./ui snippets/PaddedContainer";
+import Surface from "./ui snippets/Surface";
 
 export const NowPlaying: React.FC = () => {
     const { currentStation, isPlaying, setIsPlaying } = useRadioContext();
@@ -15,8 +15,8 @@ export const NowPlaying: React.FC = () => {
 
     if (!currentStation) {
         return (
-            <div className="flex items-center py-4 h-full px-2.5">
-                <PaddedContainer padding="4">No station currently playing</PaddedContainer>
+            <div className="flex items-center p-4 h-full justify-center w-full">
+                <Surface>No station currently playing</Surface>
             </div>
         );
     }
