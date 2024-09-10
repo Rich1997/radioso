@@ -3,7 +3,7 @@ import { Heart } from "lucide-react";
 import { FaPlay, FaStop } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
-import { useRadioContext } from "../context/RadioContext"; // Import context
+import { useRadioContext } from "../context/RadioContext";
 import { Card } from "./ui/card";
 import Thumbnail from "./ui snippets/Thumbnail";
 
@@ -13,7 +13,7 @@ interface RadioStationProps {
 }
 
 export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon }) => {
-    const { currentStation, isPlaying, playStation, toggleFavorite, favorites, pauseStation } = useRadioContext(); // Use context
+    const { currentStation, isPlaying, playStation, toggleFavorite, favorites, pauseStation } = useRadioContext();
 
     // Check if this station is currently playing
     const isCurrentStationPlaying = currentStation?.stationuuid === station.stationuuid && isPlaying;
@@ -43,8 +43,10 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
                         ""
                     )}
                 </div>
-                <div className="text-sm text-muted-foreground line-clamp-2 pr-2">
-                    <div className="font-semibold leading-4 sm:break-words break-all">{station.name}</div>
+                <div className="text-sm text-muted-foreground pr-2">
+                    <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1">
+                        {station.name}
+                    </div>
                     {station.country}
                     {station.country && station.state ? ", " : ""}
                     {station.state ?? station.state}

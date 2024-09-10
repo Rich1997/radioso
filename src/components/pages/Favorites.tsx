@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import RadioStation from "../RadioStation";
 import { useRadioContext } from "../../context/RadioContext";
-import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
+import FlexContainer from "../ui snippets/FlexContainer";
 import Subtitlebar from "../ui snippets/Subtitlebar";
 
 export const Favorites: React.FC = () => {
@@ -12,10 +12,10 @@ export const Favorites: React.FC = () => {
     }, [favorites]);
 
     return (
-        <div>
+        <>
             <Subtitlebar>Favorites</Subtitlebar>
 
-            <PaddedFlexContainer>
+            <FlexContainer>
                 <div className="space-y-2">
                     {filteredFavorites.map((station) => {
                         return <RadioStation key={station.stationuuid} station={station} />;
@@ -23,8 +23,8 @@ export const Favorites: React.FC = () => {
                 </div>
 
                 {filteredFavorites.length === 0 && <p>No favorite stations found.</p>}
-            </PaddedFlexContainer>
-        </div>
+            </FlexContainer>
+        </>
     );
 };
 

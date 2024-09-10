@@ -3,7 +3,7 @@ import RadioStation from "../RadioStation";
 import { Station } from "../../utils/types";
 import { getTopStations } from "../../services/radioAPI";
 import RecentlyPlayed from "../RecentlyPlayed";
-import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
+import FlexContainer from "../ui snippets/FlexContainer";
 import Subtitlebar from "../ui snippets/Subtitlebar";
 
 export const Home: React.FC = () => {
@@ -24,21 +24,21 @@ export const Home: React.FC = () => {
     };
 
     return (
-        <div className="h-full w-full">
-            <div className="sm:flex block">
+        <div>
+            <div className="sm:flex block gap-4">
                 <RecentlyPlayed />
 
                 {topStations.length > 0 && (
                     <div className="flex-1">
-                        <div className="px-4">{error && <p className="text-red-500">{error}</p>}</div>
+                        <div>{error && <p className="text-red-500">{error}</p>}</div>
 
                         <Subtitlebar>Top Stations</Subtitlebar>
 
-                        <PaddedFlexContainer>
+                        <FlexContainer>
                             {topStations.map((station) => (
                                 <RadioStation key={station.stationuuid} station={station} />
                             ))}
-                        </PaddedFlexContainer>
+                        </FlexContainer>
                     </div>
                 )}
             </div>

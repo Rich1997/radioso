@@ -11,7 +11,7 @@ export const Layout: React.FC = () => {
                 <Topbar />
                 <Navbar />
                 {/* <Sidebar /> */}
-                <div className="flex-1 container mx-auto">
+                <div className="flex-1 container mx-auto px-4">
                     <Outlet />
                 </div>
             </div>

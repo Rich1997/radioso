@@ -4,8 +4,7 @@ import { searchStations } from "../../services/radioAPI";
 import { Station } from "../../utils/types";
 import RadioStation from "../../components/RadioStation";
 import Subtitlebar from "../ui snippets/Subtitlebar";
-import PaddedFlexContainer from "../ui snippets/PaddedFlexContainer";
-import PaddedContainer from "../ui snippets/PaddedContainer";
+import FlexContainer from "../ui snippets/FlexContainer";
 
 const SearchResults: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -44,26 +43,25 @@ const SearchResults: React.FC = () => {
     return (
         <>
             <div className="sticky sm:top-[129px] top-[169px] bg-background z-10">
-                <Link to="/" className="text-sm font-normal px-4">
+                <Link to="/" className="text-sm font-normal">
                     ↑ Go back home
                 </Link>
                 <Subtitlebar>Search Results for "{searchTerm || "..."}"</Subtitlebar>
             </div>
+            <div>
+                <div>{isLoading && <p>Searching...</p>}</div>
+                {error && <p className="text-red-500">{error}</p>}
 
-            <PaddedContainer padding="4">{isLoading && <p>Searching...</p>}</PaddedContainer>
-            {error && <p className="text-red-500">{error}</p>}
+                {results.length > 0 && (
+                    <FlexContainer>
+                        {results.map((station) => (
+                            <RadioStation key={station.stationuuid} station={station} />
+                        ))}
+                    </FlexContainer>
+                )}
 
-            {results.length > 0 && (
-                <PaddedFlexContainer>
-                    {results.map((station) => (
-                        <RadioStation key={station.stationuuid} station={station} />
-                    ))}
-                </PaddedFlexContainer>
-            )}
-
-            <PaddedContainer padding="4">
-                {results.length === 0 && !isLoading && !error && <p>No results found.</p>}
-            </PaddedContainer>
+                <div>{results.length === 0 && !isLoading && !error && <p>No results found.</p>}</div>
+            </div>
         </>
     );
 };

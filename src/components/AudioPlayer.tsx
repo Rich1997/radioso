@@ -115,7 +115,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     <div className="flex gap-2 sm:gap-4 items-center mb-[1px]">
                                         <Thumbnail size="72" imgSrc={thumb} />
                                         <div className="flex flex-col items-start">
-                                            <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-3xl sm:text-base text-sm text-left">
+                                            <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-xl sm:text-base text-sm text-left">
                                                 {stationName}
                                             </div>
                                             <div className="sm:text-sm text-xs text-muted-foreground line-clamp-1 text-left">
@@ -155,7 +155,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     <DrawerContent>
                         <div className="px-4 h-full pb-8 container mx-auto">
                             <div className="w-full text-center text-lg font-bold tracking-tight">Now Playing</div>
-                            <div className="flex flex-col items-center gap-10 justify-center h-full min-h-[596px]">
+                            <div className="flex flex-col items-center gap-10 justify-center h-[calc(100%-68px)] min-h-[596px]">
                                 <div className="flex gap-4 flex-col items-center">
                                     <div className="hidden sm:block">
                                         <Thumbnail size="240" imgSrc={thumb} />
