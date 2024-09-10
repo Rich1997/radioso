@@ -48,6 +48,20 @@ code {
     color-scheme: light;
 } */
 
+.min-h-patch {
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100svh;
+}
+
+.scrollarea::-webkit-scrollbar {
+    width: 0px;
+}
+
+.scrollarea::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+}
+
 @media (min-width: 641px) {
     .scrollarea:hover::-webkit-scrollbar-thumb,
     .scrollarea.show-thumb::-webkit-scrollbar-thumb {
@@ -65,20 +79,6 @@ code {
         scrollbar-color: hsl(var(--border)) hsl(var(--background));
         scrollbar-width: thin;
     }
-}
-
-.min-h-patch {
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100svh;
-}
-
-.scrollarea::-webkit-scrollbar {
-    width: 0px;
-}
-
-.scrollarea::-webkit-scrollbar-track {
-    background: hsl(var(--background));
 }
 
 @layer base {
