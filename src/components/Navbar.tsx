@@ -4,7 +4,7 @@ import Search from "./Search";
 
 const Navbar = () => {
     return (
-        <div className="sticky top-[56px] bg-background py-4 container mx-auto z-10">
+        <div className="sticky top-[56px] bg-background py-4 container mx-auto z-10 -mb-[1px]">
             <PaddedContainer padding="4">
                 <div className="flex justify-between sm:items-center items-start gap-4 sm:gap-6 flex-col sm:flex-row">
                     <div className="flex gap-6">

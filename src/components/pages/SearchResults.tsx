@@ -42,8 +42,8 @@ const SearchResults: React.FC = () => {
     }, [location]);
 
     return (
-        <div>
-            <div className="sticky sm:top-[130px] top-[170px] bg-background z-10">
+        <>
+            <div className="sticky sm:top-[129px] top-[169px] bg-background z-10">
                 <Link to="/" className="text-sm font-normal px-4">
                     ↑ Go back home
                 </Link>
@@ -64,7 +64,7 @@ const SearchResults: React.FC = () => {
             <PaddedContainer padding="4">
                 {results.length === 0 && !isLoading && !error && <p>No results found.</p>}
             </PaddedContainer>
-        </div>
+        </>
     );
 };
 
