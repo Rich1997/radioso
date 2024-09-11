@@ -84,13 +84,13 @@ code {
 @layer base {
     :root {
         --background: 294 20% 96%;
-        --foreground: 294 67% 3%;
+        --foreground: 294 67% 20%;
         --muted: 264 20% 90%;
         --muted-foreground: 264 15% 36%;
         --popover: 294 55% 98%;
-        --popover-foreground: 294 67% 3%;
+        --popover-foreground: 294 67% 20%;
         --card: 294 55% 98%;
-        --card-foreground: 294 67% 3%;
+        --card-foreground: 294 67% 20%;
         --border: 294 3% 90%;
         --input: 294 3% 93%;
         --primary: 294 85% 45%;
@@ -180,4 +180,19 @@ code {
 
 .slider::-moz-range-thumb:hover {
     background: hsl(var(--secondary));
+}
+
+@keyframes wave {
+    0%,
+    100% {
+        transform: scaleY(0.5);
+    }
+    50% {
+        transform: scaleY(1.1);
+    }
+}
+
+/* Utility classes for the animation */
+.animate-wave {
+    animation: wave 1s infinite ease-in-out;
 }

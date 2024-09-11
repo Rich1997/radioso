@@ -6,6 +6,7 @@ import { useRadioContext } from "../context/RadioContext";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { Card } from "./ui/card";
+import AnimatedWave from "./ui snippets/AnimatedWave";
 
 interface RadioStationProps {
     station: Station;
@@ -36,6 +37,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
         <Card
             className="flex items-center justify-between p-2 cursor-pointer select-none hover:bg-muted rounded-lg"
             onClick={handlePlayPause}
+            title={station.name}
         >
             <div className="flex items-center gap-2">
                 <div className="relative">
@@ -45,14 +47,6 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     <div className="sm:block hidden">
                         <Thumbnail size="56" imgSrc={station.favicon} />
                     </div>
-                    {isCurrentStationPlaying ? (
-                        <div className="flex absolute top-0">
-                            <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></div>
-                            <div className="relative rounded-full h-3 w-3 bg-success ring-2 ring-white"></div>
-                        </div>
-                    ) : (
-                        ""
-                    )}
                 </div>
                 <div className="text-sm pr-2">
                     <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1 text-foreground">
@@ -65,7 +59,9 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     </div>
                 </div>
             </div>
-            <div className="flex controls-area">
+            <div className="flex controls-area items-center">
+                {isCurrentStationPlaying ? <AnimatedWave /> : ""}
+
                 {/* Button to toggle favorite */}
                 {favIcon ? (
                     <Button
