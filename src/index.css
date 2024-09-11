@@ -39,14 +39,14 @@ body {
 code {
     font-family: space mono;
 }
-/* 
+
 [data-color-scheme="dark"] {
     color-scheme: dark;
 }
 
 [data-color-scheme="light"] {
     color-scheme: light;
-} */
+}
 
 .min-h-patch {
     height: 100dvh;
@@ -95,7 +95,7 @@ code {
         --input: 294 3% 93%;
         --primary: 294 85% 45%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 264 85% 45%;
+        --secondary: 280 85% 80%;
         --secondary-foreground: 0 0% 100%;
         --accent: 324 85% 45%;
         --accent-foreground: 0 0% 100%;
@@ -107,25 +107,25 @@ code {
     }
 
     .dark {
-        --background: 10 37% 4%;
-        --foreground: 10 14% 97%;
-        --muted: 340 32% 8%;
-        --muted-foreground: 340 3% 70%;
-        --popover: 10 37% 4%;
-        --popover-foreground: 10 14% 97%;
-        --card: 10 37% 4%;
-        --card-foreground: 10 14% 97%;
-        --border: 10 14% 11%;
-        --input: 10 14% 11%;
-        --primary: 10 87% 67%;
-        --primary-foreground: 10 87% 7%;
-        --secondary: 340 87% 67%;
-        --secondary-foreground: 340 87% 7%;
-        --accent: 40 87% 67%;
-        --accent-foreground: 40 87% 7%;
-        --destructive: 18 98% 54%;
-        --destructive-foreground: 0 0% 0%;
-        --ring: 10 87% 67%;
+        --background: 294 10% 15%;
+        --foreground: 294 23% 95%;
+        --muted: 264 20% 28%;
+        --muted-foreground: 264 15% 64%;
+        --popover: 294 44% 3%;
+        --popover-foreground: 294 23% 95%;
+        --card: 294 10% 18%;
+        --card-foreground: 294 23% 95%;
+        --border: 294 3% 24%;
+        --input: 294 3% 10%;
+        --primary: 294 85% 45%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 264 85% 70%;
+        --secondary-foreground: 0 0% 100%;
+        --accent: 324 85% 45%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 21 87% 46%;
+        --destructive-foreground: 0 0% 100%;
+        --ring: 294 85% 45%;
     }
 }
 
@@ -150,8 +150,8 @@ code {
         to right,
         hsl(var(--primary)) 0%,
         hsl(var(--primary)) var(--value),
-        hsl(var(--background)) var(--value),
-        hsl(var(--background)) 100%
+        hsl(var(--muted)) var(--value),
+        hsl(var(--muted)) 100%
     );
 }
 

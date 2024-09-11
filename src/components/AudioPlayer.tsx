@@ -93,7 +93,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 <Drawer>
                     <DrawerTrigger
                         className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0
-        focus-visible:ring-offset-0 active:outline-none"
+        focus-visible:ring-offset-0 active:outline-none text-card-foreground"
                     >
                         <Surface>
                             <>

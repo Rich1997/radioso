@@ -5,6 +5,7 @@ import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { FaEllipsisVertical } from "react-icons/fa6";
+import { Card } from "./ui/card";
 
 interface RadioStationProps {
     station: Station;
@@ -32,8 +33,8 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
     };
 
     return (
-        <div
-            className="flex items-center justify-between p-2 cursor-pointer select-none hover:bg-muted hover:text-muted-foreground rounded-lg"
+        <Card
+            className="flex items-center justify-between p-2 cursor-pointer select-none hover:bg-muted rounded-lg"
             onClick={handlePlayPause}
         >
             <div className="flex items-center gap-2">
@@ -53,11 +54,11 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                         ""
                     )}
                 </div>
-                <div className="text-sm text-muted-foreground pr-2">
-                    <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1">
+                <div className="text-sm pr-2">
+                    <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1 text-foreground">
                         {station.name}
                     </div>
-                    <div className="line-clamp-1">
+                    <div className="line-clamp-1 text-muted-foreground">
                         {station.country}
                         {station.country && station.state ? ", " : ""}
                         {station.state ?? station.state}
@@ -70,7 +71,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     <Button
                         onClick={() => toggleFavorite(station)}
                         variant="ghost"
-                        className={isFavorite ? "text-red-400 hover:text-red-500" : "hover:text-red-500"}
+                        className={isFavorite ? "text-secondary" : ""}
                     >
                         <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
                     </Button>
@@ -82,7 +83,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     <FaEllipsisVertical />
                 </Button>
             </div>
-        </div>
+        </Card>
     );
 };
 

@@ -5,7 +5,7 @@ import { RadioProvider } from "./context/RadioContext.tsx";
 import { ThemeProvider } from "./context/ThemeContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <ThemeProvider defaultTheme="light" storageKey="ui-theme">
+    <ThemeProvider defaultTheme="system" storageKey="ui-theme">
         <RadioProvider>
             <App />
         </RadioProvider>
