@@ -85,7 +85,7 @@ code {
     :root {
         --background: 294 20% 96%;
         --foreground: 294 67% 3%;
-        --muted: 264 35% 86%;
+        --muted: 264 20% 90%;
         --muted-foreground: 264 15% 36%;
         --popover: 294 55% 98%;
         --popover-foreground: 294 67% 3%;

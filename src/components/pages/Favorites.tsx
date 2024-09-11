@@ -16,7 +16,7 @@ export const Favorites: React.FC = () => {
             <Subtitlebar>Favorites</Subtitlebar>
 
             <FlexContainer>
-                <div className="space-y-2">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-x-4 gap-y-1">
                     {filteredFavorites.map((station) => {
                         return <RadioStation key={station.stationuuid} station={station} />;
                     })}

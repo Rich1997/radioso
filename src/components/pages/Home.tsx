@@ -36,7 +36,7 @@ export const Home: React.FC = () => {
 
                         <FlexContainer>
                             {topStations.map((station) => (
-                                <RadioStation key={station.stationuuid} station={station} />
+                                <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                             ))}
                         </FlexContainer>
                     </div>

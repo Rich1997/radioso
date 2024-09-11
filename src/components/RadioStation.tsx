@@ -1,18 +1,17 @@
 import React from "react";
 import { Heart } from "lucide-react";
-import { FaPlay, FaStop } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext";
-import { Card } from "./ui/card";
 import Thumbnail from "./ui snippets/Thumbnail";
+import { FaEllipsisVertical } from "react-icons/fa6";
 
 interface RadioStationProps {
     station: Station;
-    playIcon?: React.ReactNode;
+    favIcon?: boolean;
 }
 
-export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon }) => {
+export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = false }) => {
     const { currentStation, isPlaying, playStation, toggleFavorite, favorites, pauseStation } = useRadioContext();
 
     // Check if this station is currently playing
@@ -21,7 +20,10 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
     // Check if this station is a favorite
     const isFavorite = favorites.some((fav) => fav.stationuuid === station.stationuuid);
 
-    const handlePlayPause = () => {
+    const handlePlayPause = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).closest(".controls-area")) {
+            return;
+        }
         if (isCurrentStationPlaying) {
             pauseStation(); // Pause the station if it's playing
         } else {
@@ -30,10 +32,18 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
     };
 
     return (
-        <Card className="flex items-center justify-between p-2 cursor-pointer select-none">
+        <div
+            className="flex items-center justify-between p-2 cursor-pointer select-none hover:bg-muted hover:text-muted-foreground rounded-lg"
+            onClick={handlePlayPause}
+        >
             <div className="flex items-center gap-2">
                 <div className="relative">
-                    <Thumbnail size="40" imgSrc={station.favicon} />
+                    <div className="sm:hidden block">
+                        <Thumbnail size="40" imgSrc={station.favicon} />
+                    </div>
+                    <div className="sm:block hidden">
+                        <Thumbnail size="56" imgSrc={station.favicon} />
+                    </div>
                     {isCurrentStationPlaying ? (
                         <div className="flex absolute top-0">
                             <div className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></div>
@@ -54,23 +64,25 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
                     </div>
                 </div>
             </div>
-            <div className="flex gap-2">
-                {/* Button to toggle play/stop */}
-                <Button onClick={handlePlayPause} variant="outline">
-                    {/* Use playIcon if passed, otherwise default to FaPlay/FaStop */}
-                    {playIcon ? playIcon : isCurrentStationPlaying ? <FaStop /> : <FaPlay />}
-                </Button>
-
+            <div className="flex controls-area">
                 {/* Button to toggle favorite */}
-                <Button
-                    onClick={() => toggleFavorite(station)}
-                    variant="ghost"
-                    className={isFavorite ? "text-primary" : ""}
-                >
-                    <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
+                {favIcon ? (
+                    <Button
+                        onClick={() => toggleFavorite(station)}
+                        variant="ghost"
+                        className={isFavorite ? "text-red-400 hover:text-red-500" : "hover:text-red-500"}
+                    >
+                        <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
+                    </Button>
+                ) : (
+                    ""
+                )}
+
+                <Button variant="ghost" className="px-2 rounded-full">
+                    <FaEllipsisVertical />
                 </Button>
             </div>
-        </Card>
+        </div>
     );
 };
 

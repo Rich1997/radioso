@@ -17,7 +17,7 @@ const RecentlyPlayed: React.FC = () => {
 
             <FlexContainer>
                 {recentlyPlayed.map((station) => (
-                    <RadioStation key={station.stationuuid} station={station} />
+                    <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                 ))}
             </FlexContainer>
         </div>

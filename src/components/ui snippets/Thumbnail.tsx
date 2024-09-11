@@ -7,7 +7,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc }) => {
     return (
         // Small screen size on default size prop, sizeOverride prop for larger screens
         <div
-            className="relative bg-background rounded-lg flex items-center border overflow-hidden"
+            className="relative bg-border rounded-lg flex items-center overflow-hidden"
             style={{
                 minWidth: `${size}px`,
                 width: `${size}px`,
