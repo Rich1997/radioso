@@ -4,6 +4,7 @@ import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
 import Surface from "./ui snippets/Surface";
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
+// import { HeartIcon, Share2Icon } from "lucide-react";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -175,14 +176,24 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center w-2/3 gap-10">
-                                    <div className="h-16">
-                                        <button onClick={onPlayPause} className="text-4xl">
+                                    <div className="h-16 flex justify-center items-center gap-12">
+                                        {/* <button>
+                                            <Share2Icon />
+                                        </button> */}
+                                        <button
+                                            onClick={onPlayPause}
+                                            className="text-4xl"
+                                            aria-label="play/pause button"
+                                        >
                                             {isPlaying ? (
                                                 <FaCirclePause size={64} className="text-primary" />
                                             ) : (
                                                 <FaCirclePlay size={64} className="text-primary" />
                                             )}
                                         </button>
+                                        {/* <button>
+                                            <HeartIcon />
+                                        </button> */}
                                     </div>
                                     <div className="flex items-center justify-center w-full sm:w-2/3 lg:w-1/3 h-6 gap-2">
                                         <button
@@ -194,6 +205,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         >
                                             {isMuted ? <HiVolumeOff size={20} /> : <HiVolumeUp size={20} />}
                                         </button>
+
                                         <input
                                             className="slider flex-1"
                                             type="range"

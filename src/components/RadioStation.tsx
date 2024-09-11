@@ -47,9 +47,11 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, playIcon })
                     <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1">
                         {station.name}
                     </div>
-                    {station.country}
-                    {station.country && station.state ? ", " : ""}
-                    {station.state ?? station.state}
+                    <div className="line-clamp-1">
+                        {station.country}
+                        {station.country && station.state ? ", " : ""}
+                        {station.state ?? station.state}
+                    </div>
                 </div>
             </div>
             <div className="flex gap-2">
