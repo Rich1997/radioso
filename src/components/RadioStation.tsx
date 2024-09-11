@@ -35,7 +35,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
 
     return (
         <Card
-            className="flex items-center justify-between p-2 cursor-pointer select-none hover:bg-muted rounded-lg"
+            className="flex items-center justify-between p-2 cursor-pointer select-none hover:bg-muted rounded-lg gap-4"
             onClick={handlePlayPause}
             title={station.name}
         >
@@ -48,7 +48,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                         <Thumbnail size="56" imgSrc={station.favicon} />
                     </div>
                 </div>
-                <div className="text-sm pr-2">
+                <div className="text-sm">
                     <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1 text-foreground">
                         {station.name}
                     </div>

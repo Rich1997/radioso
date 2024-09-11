@@ -133,6 +133,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                             e.stopPropagation();
                                             toggleMute();
                                         }}
+                                        className="text-muted-foreground"
                                     >
                                         {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
                                     </button>
