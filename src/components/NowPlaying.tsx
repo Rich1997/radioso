@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import AudioPlayer from "./AudioPlayer";
 import { useRadioContext } from "../context/RadioContext";
-import Surface from "./ui snippets/Surface";
 
 export const NowPlaying: React.FC = () => {
     const { currentStation, isPlaying, setIsPlaying } = useRadioContext();
@@ -15,8 +14,8 @@ export const NowPlaying: React.FC = () => {
 
     if (!currentStation) {
         return (
-            <div className="p-4 h-full w-full">
-                <Surface>No station currently playing</Surface>
+            <div className="p-4 h-full w-full flex items-center text-center">
+                <div className="flex-1">No station currently playing</div>
             </div>
         );
     }

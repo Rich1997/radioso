@@ -2,7 +2,7 @@ import React from "react";
 import { useRadioContext } from "../context/RadioContext";
 import RadioStation from "./RadioStation";
 import Subtitlebar from "./ui snippets/Subtitlebar";
-import FlexContainer from "./ui snippets/FlexContainer";
+import GridContainer from "./ui snippets/GridContainer";
 
 const RecentlyPlayed: React.FC = () => {
     const { recentlyPlayed } = useRadioContext();
@@ -14,12 +14,11 @@ const RecentlyPlayed: React.FC = () => {
     return (
         <div className="flex-1">
             <Subtitlebar>Recently Played</Subtitlebar>
-
-            <FlexContainer>
+            <GridContainer>
                 {recentlyPlayed.map((station) => (
                     <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                 ))}
-            </FlexContainer>
+            </GridContainer>
         </div>
     );
 };

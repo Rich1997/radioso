@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from "react";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
-import Surface from "./ui snippets/Surface";
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
 // import { HeartIcon, Share2Icon } from "lucide-react";
 
@@ -93,9 +92,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 <Drawer>
                     <DrawerTrigger
                         className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0
-        focus-visible:ring-offset-0 active:outline-none text-card-foreground"
+        focus-visible:ring-offset-0 active:outline-none text-card-foreground sm:pl-0 pl-2"
                     >
-                        <Surface>
+                        <div className="flex items-center justify-between">
                             <>
                                 <div className="flex gap-4 items-center">
                                     <div className="h-10">
@@ -152,7 +151,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     />
                                 </div>
                             </>
-                        </Surface>
+                        </div>
                     </DrawerTrigger>
                     <DrawerContent>
                         <div className="px-4 h-full pb-8 container mx-auto">
@@ -166,7 +165,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <Thumbnail size="200" imgSrc={thumb} />
                                     </div>
                                     <div className="flex flex-col items-center text-center">
-                                        <h3 className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-24 overflow-auto scrollarea sm:max-w-xl max-w-xs">
+                                        <h3 className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 sm:max-h-12 overflow-auto scrollarea sm:max-w-xl max-w-xs">
                                             {stationName}
                                         </h3>
                                         <p className="text-muted-foreground sm:text-base text-sm">

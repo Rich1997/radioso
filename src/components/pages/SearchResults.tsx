@@ -42,7 +42,7 @@ const SearchResults: React.FC = () => {
 
     return (
         <>
-            <div className="sticky sm:top-[129px] top-[169px] bg-background z-10">
+            <div className="sticky sm:top-[119px] top-[159px] bg-background z-10">
                 <Link to="/" className="text-sm font-normal">
                     ↑ Go back home
                 </Link>
@@ -55,7 +55,7 @@ const SearchResults: React.FC = () => {
                 {results.length > 0 && (
                     <FlexContainer>
                         {results.map((station) => (
-                            <RadioStation key={station.stationuuid} station={station} />
+                            <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                         ))}
                     </FlexContainer>
                 )}

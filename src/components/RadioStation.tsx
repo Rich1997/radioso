@@ -49,10 +49,10 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     </div>
                 </div>
                 <div className="text-sm">
-                    <div className="font-semibold leading-4 sm:break-words break-all max-w-lg line-clamp-1 text-foreground">
+                    <div className="font-semibold leading-tight sm:break-words break-all max-w-lg line-clamp-1 text-foreground">
                         {station.name}
                     </div>
-                    <div className="line-clamp-1 text-muted-foreground">
+                    <div className="line-clamp-1 text-muted-foreground text-sm">
                         {station.country}
                         {station.country && station.state ? ", " : ""}
                         {station.state ?? station.state}
