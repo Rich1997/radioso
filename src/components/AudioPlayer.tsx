@@ -92,12 +92,12 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 <Drawer>
                     <DrawerTrigger
                         className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0
-        focus-visible:ring-offset-0 active:outline-none text-card-foreground sm:pl-0 pl-2"
+        focus-visible:ring-offset-0 active:outline-none text-card-foreground sm:px-0 px-[9px]"
                     >
                         <div className="flex items-center justify-between">
                             <>
                                 <div className="flex gap-4 items-center">
-                                    <div className="h-10">
+                                    <div className="h-12 sm:h-10">
                                         <button
                                             className="controls-area"
                                             onClick={(e) => {
@@ -105,15 +105,29 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                                 onPlayPause();
                                             }}
                                         >
-                                            {isPlaying ? (
-                                                <FaCirclePause size={40} className="text-primary" />
-                                            ) : (
-                                                <FaCirclePlay size={40} className="text-primary" />
-                                            )}
+                                            <div className="sm:hidden block">
+                                                {isPlaying ? (
+                                                    <FaCirclePause size={48} className="text-primary" />
+                                                ) : (
+                                                    <FaCirclePlay size={48} className="text-primary" />
+                                                )}
+                                            </div>
+                                            <div className="sm:block hidden">
+                                                {isPlaying ? (
+                                                    <FaCirclePause size={40} className="text-primary" />
+                                                ) : (
+                                                    <FaCirclePlay size={40} className="text-primary" />
+                                                )}
+                                            </div>
                                         </button>
                                     </div>
-                                    <div className="flex gap-2 sm:gap-4 items-center mb-[1px]">
-                                        <Thumbnail size="72" imgSrc={thumb} />
+                                    <div className="flex gap-2 sm:gap-4 items-center">
+                                        <div className="sm:hidden block">
+                                            <Thumbnail size="64" imgSrc={thumb} />
+                                        </div>
+                                        <div className="sm:block hidden">
+                                            <Thumbnail size="72" imgSrc={thumb} />
+                                        </div>
                                         <div className="flex flex-col items-start">
                                             <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-xl sm:text-base text-sm text-left">
                                                 {stationName}

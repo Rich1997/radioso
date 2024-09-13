@@ -12,7 +12,7 @@ export const Favorites: React.FC = () => {
     }, [favorites]);
 
     return (
-        <>
+        <div className="pt-4 w-full">
             <Subtitlebar>Favorites</Subtitlebar>
 
             <GridContainer>
@@ -22,7 +22,7 @@ export const Favorites: React.FC = () => {
             </GridContainer>
 
             {filteredFavorites.length === 0 && <p>No favorite stations found.</p>}
-        </>
+        </div>
     );
 };
 

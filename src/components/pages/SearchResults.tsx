@@ -4,7 +4,7 @@ import { searchStations } from "../../services/radioAPI";
 import { Station } from "../../utils/types";
 import RadioStation from "../../components/RadioStation";
 import Subtitlebar from "../ui snippets/Subtitlebar";
-import FlexContainer from "../ui snippets/FlexContainer";
+import GridContainer from "../ui snippets/GridContainer";
 
 const SearchResults: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -41,28 +41,28 @@ const SearchResults: React.FC = () => {
     }, [location]);
 
     return (
-        <>
-            <div className="sticky sm:top-[119px] top-[159px] bg-background z-10">
-                <Link to="/" className="text-sm font-normal">
-                    ↑ Go back home
+        <div className="w-full">
+            <div className="sticky top-[73px] bg-background z-10 pt-4">
+                <Link to="/" className="text-sm font-normal text-muted-foreground hover:text-foreground">
+                    ← Go back home
                 </Link>
-                <Subtitlebar>Search Results for "{searchTerm || "..."}"</Subtitlebar>
+                <Subtitlebar>Search results for "{searchTerm || "..."}"</Subtitlebar>
             </div>
             <div>
                 <div>{isLoading && <p>Searching...</p>}</div>
                 {error && <p className="text-red-500">{error}</p>}
 
                 {results.length > 0 && (
-                    <FlexContainer>
+                    <GridContainer>
                         {results.map((station) => (
                             <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                         ))}
-                    </FlexContainer>
+                    </GridContainer>
                 )}
 
                 <div>{results.length === 0 && !isLoading && !error && <p>No results found.</p>}</div>
             </div>
-        </>
+        </div>
     );
 };
 

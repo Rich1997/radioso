@@ -2,7 +2,8 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import NowPlaying from "./NowPlaying";
 import Topbar from "./Topbar";
-import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
+import BottomNav from "./BottomNav";
 
 export const Layout: React.FC = () => {
     return (
@@ -10,17 +11,19 @@ export const Layout: React.FC = () => {
             <div className="flex flex-1 flex-col">
                 <div className="max-w-7xl container mx-auto sticky top-0 z-10">
                     <Topbar />
-                    <Navbar />
                 </div>
+                <div className="border-b sticky top-[74px] h-0 z-20" />
                 {/* <Sidebar /> */}
-                <div className="flex-1 container max-w-7xl mx-auto px-4">
+                <div className="flex gap-4 flex-1 container max-w-7xl mx-auto px-4">
+                    <Sidebar />
                     <Outlet />
                 </div>
             </div>
-            <footer className="h-24 sticky bottom-0 bg-muted z-30 border-t w-full border-b-0">
+            <footer className="sm:h-24 h-[180px] sticky bottom-0 bg-muted z-30 border-t w-full border-b-0">
                 <div className="container h-[95px] sm:px-0 w-full mx-auto max-w-7xl">
                     <NowPlaying />
                 </div>
+                <BottomNav />
             </footer>
         </div>
     );

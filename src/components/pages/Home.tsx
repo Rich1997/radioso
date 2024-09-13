@@ -4,7 +4,7 @@ import TopStations from "../TopStations";
 
 export const Home: React.FC = () => {
     return (
-        <div>
+        <div className="pt-4 w-full">
             <RecentlyPlayed />
             <TopStations />
         </div>
