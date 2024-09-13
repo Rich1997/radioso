@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
     return (
-        <aside className="sticky top-[75px] h-[calc(100svh-172px)] hidden shrink-0 md:sticky md:block py-4 border-r pr-4 lg:w-[300px] md:w-[200px]">
+        <aside className="sticky top-[75px] h-[calc(100dvh-172px)] hidden shrink-0 md:sticky md:block py-4 border-r pr-4 lg:w-[300px] md:w-[200px]">
             <nav className="h-full scrollarea mb-4 overflow-auto">
                 <ul className="flex flex-col gap-2">
                     <li>

@@ -48,7 +48,7 @@ const SearchResults: React.FC = () => {
                 </Link>
                 <Subtitlebar>Search results for "{searchTerm || "..."}"</Subtitlebar>
             </div>
-            <div>
+            <div className="pt-[1px]">
                 <div>{isLoading && <p>Searching...</p>}</div>
                 {error && <p className="text-red-500">{error}</p>}
 
