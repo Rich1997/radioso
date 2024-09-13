@@ -64,11 +64,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
 
                 {/* Button to toggle favorite */}
                 {favIcon ? (
-                    <Button
-                        onClick={() => toggleFavorite(station)}
-                        variant="ghost"
-                        className={isFavorite ? "text-secondary" : ""}
-                    >
+                    <Button onClick={() => toggleFavorite(station)} variant="ghost" className="text-secondary">
                         <Heart className={`w-5 h-5 ${isFavorite ? "fill-current" : ""}`} />
                     </Button>
                 ) : (
