@@ -2,30 +2,42 @@ import { NavLink } from "react-router-dom";
 
 const BottomNav = () => {
     return (
-        <nav className="sm:hidden flex h-[84px] bg-background items-center px-4 justify-around text-xs gap-2">
-            <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary fill" : "")}>
-                <div className="flex flex-col items-center">
-                    <span className="material-symbols-rounded">home</span>
-                    <div>Home</div>
-                </div>
+        <nav className="sm:hidden flex h-[80px] bg-background items-center px-4 justify-around text-xs gap-2 text-muted-foreground">
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-foreground fill py-2 px-6 bg-muted rounded-full w-14 flex items-center justify-center"
+                        : "w-14 flex items-center justify-center"
+                }
+            >
+                <span className="material-symbols-rounded">home</span>
             </NavLink>
-            <NavLink to="/favorites" className={({ isActive }) => (isActive ? "text-primary fill" : "")}>
-                <div className="flex flex-col items-center">
-                    <span className="material-symbols-rounded">favorite</span>
-                    <div>Favorites</div>
-                </div>
+            <NavLink
+                to="/favorites"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-foreground fill py-2 px-6 bg-muted rounded-full w-14 flex items-center justify-center"
+                        : "w-14 flex items-center justify-center"
+                }
+            >
+                <span className="material-symbols-rounded">favorite</span>
             </NavLink>
-            <NavLink to="#" className={({ isActive }) => (isActive ? "text" : "")}>
-                <div className="flex flex-col items-center">
-                    <span className="material-symbols-rounded">explore</span>
-                    <div>Discover</div>
-                </div>
+            <NavLink
+                to="#"
+                className={({ isActive }) =>
+                    isActive ? "w-14 flex items-center justify-center" : "w-14 flex items-center justify-center"
+                }
+            >
+                <span className="material-symbols-rounded">explore</span>
             </NavLink>
-            <NavLink to="#" className={({ isActive }) => (isActive ? "text" : "")}>
-                <div className="flex flex-col items-center">
-                    <span className="material-symbols-rounded">settings</span>
-                    <div>Settings</div>
-                </div>
+            <NavLink
+                to="#"
+                className={({ isActive }) =>
+                    isActive ? "w-14 flex items-center justify-center" : "w-14 flex items-center justify-center"
+                }
+            >
+                <span className="material-symbols-rounded">queue_music</span>
             </NavLink>
         </nav>
     );

@@ -95,7 +95,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         const updatedRecentlyPlayed = [
             station,
             ...recentlyPlayed.filter((s) => s.stationuuid !== station.stationuuid),
-        ].slice(0, 5);
+        ].slice(0, 100);
         setRecentlyPlayed(updatedRecentlyPlayed);
     };
 

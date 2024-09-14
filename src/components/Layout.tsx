@@ -13,14 +13,13 @@ export const Layout: React.FC = () => {
                     <Topbar />
                 </div>
                 <div className="border-b sticky top-[74px] h-0 z-20" />
-                {/* <Sidebar /> */}
                 <div className="flex gap-4 flex-1 container max-w-7xl mx-auto px-4">
                     <Sidebar />
                     <Outlet />
                 </div>
             </div>
-            <footer className="sm:h-24 h-[180px] sticky bottom-0 bg-muted z-30 border-t w-full border-b-0">
-                <div className="container h-[95px] sm:px-0 w-full mx-auto max-w-7xl">
+            <footer className="sticky bottom-0 bg-muted z-30 border-t w-full border-b-0">
+                <div className="container sm:h-[95px] h-[84px] sm:px-0 w-full mx-auto max-w-7xl">
                     <NowPlaying />
                 </div>
                 <BottomNav />

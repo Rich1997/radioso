@@ -4,8 +4,13 @@ import RadioStation from "./RadioStation";
 import Subtitlebar from "./ui snippets/Subtitlebar";
 import GridContainer from "./ui snippets/GridContainer";
 
-const RecentlyPlayed: React.FC = () => {
+type RecentlyPlayedProps = {
+    items?: number;
+};
+
+const RecentlyPlayed: React.FC<RecentlyPlayedProps> = ({ items = 10 }) => {
     const { recentlyPlayed } = useRadioContext();
+    const firstNStations = recentlyPlayed.slice(0, items);
 
     if (recentlyPlayed.length === 0) {
         return null;
@@ -15,7 +20,7 @@ const RecentlyPlayed: React.FC = () => {
         <div className="flex-1">
             <Subtitlebar>Recently Played</Subtitlebar>
             <GridContainer>
-                {recentlyPlayed.map((station) => (
+                {firstNStations.map((station) => (
                     <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                 ))}
             </GridContainer>
