@@ -5,6 +5,7 @@ import { Station } from "../../utils/types";
 import RadioStation from "../../components/RadioStation";
 import Subtitlebar from "../ui snippets/Subtitlebar";
 import GridContainer from "../ui snippets/GridContainer";
+import Skeleton from "../ui snippets/Skeleton";
 
 const SearchResults: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -20,18 +21,19 @@ const SearchResults: React.FC = () => {
 
             if (term === "") {
                 setError("Search query cannot be empty.");
-                setResults([]); // Clear results for empty search term
+                setResults([]);
                 return;
             }
 
             try {
                 setIsLoading(true);
                 setError(null);
+                setResults([]);
                 const searchResults = await searchStations(term);
                 setResults(searchResults);
             } catch (err) {
                 setError("Failed to search stations. Please try again.");
-                setResults([]); // Clear results on error
+                setResults([]);
             } finally {
                 setIsLoading(false);
             }
@@ -42,14 +44,18 @@ const SearchResults: React.FC = () => {
 
     return (
         <div className="w-full">
-            <div className="sticky top-[73px] bg-background z-10 pt-4">
+            <div className="sticky top-[73px] bg-background z-10 sm:pt-8 pt-6">
                 <Link to="/" className="text-sm font-normal text-muted-foreground hover:text-foreground">
                     ← Go back home
                 </Link>
                 <Subtitlebar>Search results for "{searchTerm || "..."}"</Subtitlebar>
             </div>
             <div className="pt-[1px]">
-                <div>{isLoading && <p>Searching...</p>}</div>
+                {isLoading && (
+                    <GridContainer>
+                        <Skeleton />
+                    </GridContainer>
+                )}
                 {error && <p className="text-red-500">{error}</p>}
 
                 {results.length > 0 && (

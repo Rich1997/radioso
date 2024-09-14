@@ -4,6 +4,7 @@ import { getTopStations } from "../services/radioAPI";
 import RadioStation from "./RadioStation";
 import GridContainer from "./ui snippets/GridContainer";
 import Subtitlebar from "./ui snippets/Subtitlebar";
+import Skeleton from "./ui snippets/Skeleton";
 
 const TopStations: React.FC = () => {
     const [topStations, setTopStations] = useState<Station[]>([]);
@@ -26,18 +27,13 @@ const TopStations: React.FC = () => {
         }
     };
 
-    if (isLoading) {
-        return <div>Loading top stations...</div>;
-    }
-
-    if (error) {
-        return <p className="text-red-500">{error}</p>;
-    }
-
     return (
         <div className="flex-1">
             <Subtitlebar>Top Stations</Subtitlebar>
+            {error ? <div className="text-red-500">{error}</div> : ""}
+
             <GridContainer>
+                {isLoading ? <Skeleton /> : ""}
                 {topStations.map((station) => (
                     <RadioStation key={station.stationuuid} station={station} favIcon={true} />
                 ))}

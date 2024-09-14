@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext";
 import Thumbnail from "./ui snippets/Thumbnail";
-import { FaEllipsisVertical } from "react-icons/fa6";
 import { Card } from "./ui/card";
 import AnimatedWave from "./ui snippets/AnimatedWave";
 
@@ -71,8 +70,8 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     ""
                 )}
 
-                <Button variant="ghost" className="px-2 rounded-full">
-                    <FaEllipsisVertical />
+                <Button variant="ghost" className="px-0 rounded-full">
+                    <span className="material-symbols-rounded">more_vert</span>
                 </Button>
             </div>
         </Card>

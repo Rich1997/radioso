@@ -128,7 +128,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <div className="sm:block hidden">
                                             <Thumbnail size="72" imgSrc={thumb} />
                                         </div>
-                                        <div className="flex flex-col items-start">
+                                        <div className="flex flex-col items-start leading-none">
                                             <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-xl sm:text-base text-sm text-left">
                                                 {stationName}
                                             </div>
