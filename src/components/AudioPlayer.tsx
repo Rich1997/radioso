@@ -3,6 +3,7 @@ import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
+import { DialogTitle } from "@radix-ui/react-dialog";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -154,7 +155,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     </DrawerTrigger>
                     <DrawerContent>
                         <div className="px-4 h-full pb-8 container mx-auto">
-                            <div className="w-full text-center text-lg font-bold tracking-tight">Now Playing</div>
+                            <DialogTitle className="w-full text-center text-lg font-bold tracking-tight">
+                                Now Playing
+                            </DialogTitle>
                             <div className="flex flex-col items-center gap-10 justify-center h-[calc(100%-68px)] min-h-[596px]">
                                 <div className="flex gap-4 flex-col items-center">
                                     <div className="hidden sm:block">

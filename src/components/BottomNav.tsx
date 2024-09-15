@@ -21,7 +21,7 @@ const BottomNav = () => {
                         : "w-14 flex items-center justify-center"
                 }
             >
-                <span className="material-symbols-rounded">favorite</span>
+                <span className="material-symbols-rounded -mb-0.5">favorite</span>
             </NavLink>
             <NavLink
                 to="#"

@@ -16,5 +16,5 @@ export function concatenateFirstLetters(inputString: string) {
 }
 
 export function handleImageError(channelName: string) {
-    return "https://ui-avatars.com/api/?size=70&name=" + concatenateFirstLetters(channelName);
+    return "https://placehold.co/800?text=" + concatenateFirstLetters(channelName);
 }
