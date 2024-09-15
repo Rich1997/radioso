@@ -41,10 +41,10 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
             <div className="flex items-center gap-2">
                 <div className="relative">
                     <div className="sm:hidden block">
-                        <Thumbnail size="48" imgSrc={station.favicon} />
+                        <Thumbnail size="48" imgSrc={station.favicon} stationName={station.name} />
                     </div>
                     <div className="sm:block hidden">
-                        <Thumbnail size="56" imgSrc={station.favicon} />
+                        <Thumbnail size="56" imgSrc={station.favicon} stationName={station.name} />
                     </div>
                 </div>
                 <div className="text-sm">

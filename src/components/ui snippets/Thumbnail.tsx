@@ -1,11 +1,13 @@
+import { handleImageError } from "@/lib/utils";
+
 type ThumbnailProps = {
     size: string;
     imgSrc: string | undefined;
+    stationName: string;
 };
 
-const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc }) => {
+const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc, stationName }) => {
     return (
-        // Small screen size on default size prop, sizeOverride prop for larger screens
         <div
             className="relative bg-border rounded-lg flex items-center overflow-hidden"
             style={{
@@ -21,10 +23,10 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc }) => {
                 }}
                 src={imgSrc}
                 alt="Station thumbnail"
-                // onError={(event) => {
-                //     const target = event.target as HTMLImageElement;
-                //     target.src = handleImageError(stationName);
-                // }}
+                onError={(event) => {
+                    const target = event.target as HTMLImageElement;
+                    target.src = handleImageError(stationName);
+                }}
             />
         </div>
     );

@@ -21,14 +21,14 @@ export const NowPlaying: React.FC = () => {
     }
 
     const handlePlayPause = () => {
-        setIsPlaying(!isPlaying); // Toggle play/pause state
+        setIsPlaying(!isPlaying);
     };
 
     return (
         <div className="flex items-center text-muted-foreground h-full p-4">
             <AudioPlayer
                 audioUrl={currentStation.url}
-                thumb={currentStation.favicon} // Assuming the station has a favicon
+                thumb={currentStation.favicon}
                 isPlaying={isPlaying}
                 onPlayPause={handlePlayPause}
                 stationName={currentStation.name}

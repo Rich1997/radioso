@@ -1,6 +1,20 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+    return twMerge(clsx(inputs));
+}
+
+export function concatenateFirstLetters(inputString: string) {
+    const initialsArray = inputString
+        .replace(/\d+/g, "")
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase());
+    const result = initialsArray.join("");
+
+    return result;
+}
+
+export function handleImageError(channelName: string) {
+    return "https://ui-avatars.com/api/?size=70&name=" + concatenateFirstLetters(channelName);
 }
