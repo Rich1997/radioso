@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
-import { Compass, Heart, Home, Settings } from "lucide-react";
+import { Compass, Settings } from "lucide-react";
+import HomeIcon from "./assets/icons/HomeIcon";
+import FavoriteIcon from "./assets/icons/FavoriteIcon";
 
 const BottomNav = () => {
     return (
@@ -12,9 +14,11 @@ const BottomNav = () => {
                         : "w-14 flex items-center justify-center"
                 }
             >
-                <div>
-                    <Home size={20} />
-                </div>
+                {({ isActive }) => (
+                    <div>
+                        <HomeIcon fill={isActive} />
+                    </div>
+                )}
             </NavLink>
             <NavLink
                 to="/favorites"
@@ -24,9 +28,11 @@ const BottomNav = () => {
                         : "w-14 flex items-center justify-center"
                 }
             >
-                <div>
-                    <Heart size={20} />
-                </div>
+                {({ isActive }) => (
+                    <div>
+                        <FavoriteIcon fill={isActive} />
+                    </div>
+                )}
             </NavLink>
             <NavLink
                 to="#"

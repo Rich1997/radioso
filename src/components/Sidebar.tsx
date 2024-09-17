@@ -1,5 +1,6 @@
-import { Heart, Home } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import HomeIcon from "./assets/icons/HomeIcon";
+import FavoriteIcon from "./assets/icons/FavoriteIcon";
 
 const Sidebar = () => {
     return (
@@ -13,9 +14,7 @@ const Sidebar = () => {
                         }
                     >
                         <div className="flex gap-2 h-9 py-2 px-4 items-center">
-                            <div>
-                                <Home size={16} />
-                            </div>
+                            <HomeIcon size={16} />
                             <div className="flex items-center gap-2 text-sm">Home</div>
                         </div>
                     </NavLink>
@@ -26,7 +25,7 @@ const Sidebar = () => {
                         }
                     >
                         <div className="flex gap-2 h-9 py-2 px-4 items-center">
-                            <Heart size={16} />
+                            <FavoriteIcon size={16} />
                             <div className="flex items-center gap-2 text-sm">Favorites</div>
                         </div>
                     </NavLink>
