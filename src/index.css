@@ -205,7 +205,3 @@ code {
 .animate-wave {
     animation: wave 1s infinite ease-in-out;
 }
-
-.fill {
-    font-variation-settings: "FILL" 1;
-}
