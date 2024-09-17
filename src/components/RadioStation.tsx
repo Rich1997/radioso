@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart } from "lucide-react";
+import { Heart, MoreVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext";
@@ -71,7 +71,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                 )}
 
                 <Button variant="ghost" className="px-0 rounded-full">
-                    <span className="material-symbols-rounded">more_vert</span>
+                    <MoreVertical size={20} />
                 </Button>
             </div>
         </Card>

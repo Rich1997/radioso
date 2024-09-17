@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Compass, Heart, Home, Settings } from "lucide-react";
 
 const BottomNav = () => {
     return (
@@ -11,7 +12,9 @@ const BottomNav = () => {
                         : "w-14 flex items-center justify-center"
                 }
             >
-                <span className="material-symbols-rounded">home</span>
+                <div>
+                    <Home size={20} />
+                </div>
             </NavLink>
             <NavLink
                 to="/favorites"
@@ -21,7 +24,9 @@ const BottomNav = () => {
                         : "w-14 flex items-center justify-center"
                 }
             >
-                <span className="material-symbols-rounded -mb-0.5">favorite</span>
+                <div>
+                    <Heart size={20} />
+                </div>
             </NavLink>
             <NavLink
                 to="#"
@@ -29,7 +34,9 @@ const BottomNav = () => {
                     isActive ? "w-14 flex items-center justify-center" : "w-14 flex items-center justify-center"
                 }
             >
-                <span className="material-symbols-rounded">explore</span>
+                <div>
+                    <Compass size={20} />
+                </div>
             </NavLink>
             <NavLink
                 to="#"
@@ -37,7 +44,9 @@ const BottomNav = () => {
                     isActive ? "w-14 flex items-center justify-center" : "w-14 flex items-center justify-center"
                 }
             >
-                <span className="material-symbols-rounded">queue_music</span>
+                <div>
+                    <Settings size={20} />
+                </div>
             </NavLink>
         </nav>
     );
