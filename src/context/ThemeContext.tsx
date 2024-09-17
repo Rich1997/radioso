@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useLayoutEffect, useState } from "react";
 
 export type Theme = "dark" | "light" | "system";
 
@@ -38,7 +38,7 @@ export function ThemeProvider({
         window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
     );
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const root = window.document.documentElement;
 
         const handleThemeChange = (event: MediaQueryListEvent) => {
