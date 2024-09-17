@@ -3,9 +3,9 @@ type FavoriteIconProps = {
     fill?: boolean;
 };
 
-const FavoriteIcon: React.FC<FavoriteIconProps> = ({ size, fill = false }) => {
+const FavoriteIcon: React.FC<FavoriteIconProps> = ({ size = 24, fill = false }) => {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 0 24 24" width="24" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 0 24 24" fill="currentColor">
             {fill ? (
                 <path d="M11.994 21.064q-.405-.001-.811-.146a2 2 0 0 1-.724-.457l-1.737-1.587a66 66 0 0 1-4.782-4.815q-2.143-2.41-2.143-5.35 0-2.439 1.629-4.074Q5.054 3 7.493 3a5.9 5.9 0 0 1 2.482.535 6.1 6.1 0 0 1 2.018 1.487 6.1 6.1 0 0 1 2.018-1.487A5.9 5.9 0 0 1 16.494 3q2.44 0 4.078 1.635 1.637 1.635 1.637 4.074 0 2.94-2.14 5.362a59 59 0 0 1-4.828 4.834l-1.706 1.562a1.9 1.9 0 0 1-.727.454 2.5 2.5 0 0 1-.814.143" />
             ) : (

@@ -1,9 +1,18 @@
+import React from "react";
+
 type LogoProps = {
     width?: number;
     height?: number;
+    primaryColor?: string;
+    secondaryColor?: string;
 };
 
-const Logo: React.FC<LogoProps> = ({ width, height }) => {
+const Logo: React.FC<LogoProps> = ({
+    width,
+    height,
+    primaryColor = "hsl(var(--primary))",
+    secondaryColor = "hsl(var(--secondary))",
+}) => {
     return (
         <svg width={width} height={height} viewBox="0 0 584 95" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -16,8 +25,8 @@ const Logo: React.FC<LogoProps> = ({ width, height }) => {
             />
             <defs>
                 <linearGradient id="grad1" x1="0%" y1="100%" x2="100%" y2="0%">
-                    <stop offset="0%" style={{ stopColor: "hsl(var(--primary))" }} />
-                    <stop offset="100%" style={{ stopColor: "hsl(var(--secondary))" }} />
+                    <stop offset="0%" style={{ stopColor: primaryColor }} />
+                    <stop offset="100%" style={{ stopColor: secondaryColor }} />
                 </linearGradient>
             </defs>
             <path

@@ -12,7 +12,7 @@ export const Layout: React.FC = () => {
                 <div className="max-w-7xl container mx-auto sticky top-0 z-10">
                     <Topbar />
                 </div>
-                <div className="border-b sticky top-[74px] h-0 z-20" />
+                <div className="bg-border sticky top-[75px] h-[1px] z-20 sm:block hidden" />
                 <div className="flex gap-4 flex-1 container max-w-7xl mx-auto px-4">
                     <Sidebar />
                     <Outlet />

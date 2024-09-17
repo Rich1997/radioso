@@ -22,8 +22,8 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
     };
 
     return (
-        <div className="flex gap-3 bg-muted/30 border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-lg min-w-[230px] w-full sm:w-[300px]">
-            <Button onClick={handleSearch} variant="ghost" size="oo" className="pl-3">
+        <div className="flex gap-3 bg-muted border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:rounded-lg rounded-full min-w-[230px] w-full sm:w-[300px]">
+            <Button onClick={handleSearch} variant="ghost" size="oo" className="sm:pl-3 pl-4">
                 <FaSearch />
             </Button>
             <Input
@@ -31,7 +31,7 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={placeholder}
-                className="flex-grow"
+                className="flex-grow sm:h-auto h-12"
                 onKeyDown={handleKeyPress}
             />
         </div>

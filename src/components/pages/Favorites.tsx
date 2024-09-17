@@ -12,7 +12,7 @@ export const Favorites: React.FC = () => {
     }, [favorites]);
 
     return (
-        <div className="sm:pt-8 pt-6 w-full">
+        <div className="w-full sm:pt-8 pt-2">
             <Subtitlebar>Favorites</Subtitlebar>
 
             <GridContainer>
