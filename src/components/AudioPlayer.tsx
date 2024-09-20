@@ -3,16 +3,8 @@ import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
-import {
-    AlertDialog,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-} from "./ui/alert-dialog";
 import { TriangleAlert } from "lucide-react";
+import Alert from "./Alert";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -44,7 +36,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         return localStorage.getItem("isMuted") === "true";
     });
     const [error, setError] = useState<string | null>(null);
-    const [showModal, setShowModal] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -68,7 +60,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 audio.play().catch((error) => {
                     console.error("Error playing audio:", error);
                     setError("Station cannot be played :-(");
-                    setShowModal(true);
+                    setShowAlert(true);
                     onPlayPause();
                 });
             } else {
@@ -121,22 +113,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         <div className="relative h-full w-full">
             <audio ref={audioRef} />
             {error && (
-                <AlertDialog open={showModal} onOpenChange={setShowModal}>
-                    <AlertDialogContent>
-                        <AlertDialogHeader>
-                            <AlertDialogTitle className="flex items-center gap-2 leading-3 sm:justify-start justify-center">
-                                <TriangleAlert />
-                                Playback error
-                            </AlertDialogTitle>
-                            <AlertDialogDescription className="sm:text-left text-center">
-                                {error}
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter>
-                            <AlertDialogCancel>Okay</AlertDialogCancel>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>
+                <Alert
+                    isOpen={showAlert}
+                    onOpenChange={setShowAlert}
+                    icon={<TriangleAlert />}
+                    errorMessage="Playback error"
+                    errorDescription={error}
+                    dialogActionText="Okay"
+                />
             )}
             <div className="h-full w-full gap-4 cursor-pointer flex items-center">
                 <Drawer>

@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import {
     AlertDialog,
-    AlertDialogAction,
+    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -11,16 +11,23 @@ import {
 
 type AlertProps = {
     isOpen: boolean;
+    onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
     icon: ReactNode;
     errorMessage: string;
     errorDescription: string;
-    onClick: () => void;
     dialogActionText: string;
 };
 
-const Alert: React.FC<AlertProps> = ({ isOpen, icon, errorMessage, errorDescription, onClick, dialogActionText }) => {
+const Alert: React.FC<AlertProps> = ({
+    isOpen,
+    onOpenChange,
+    icon,
+    errorMessage,
+    errorDescription,
+    dialogActionText,
+}) => {
     return (
-        <AlertDialog open={isOpen}>
+        <AlertDialog open={isOpen} onOpenChange={onOpenChange}>
             <AlertDialogContent>
                 <AlertDialogHeader>
                     <AlertDialogTitle className="flex items-center gap-2 leading-3 sm:justify-start justify-center">
@@ -30,7 +37,7 @@ const Alert: React.FC<AlertProps> = ({ isOpen, icon, errorMessage, errorDescript
                     <AlertDialogDescription>{errorDescription}</AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                    <AlertDialogAction onClick={onClick}>{dialogActionText}</AlertDialogAction>
+                    <AlertDialogCancel>{dialogActionText}</AlertDialogCancel>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>
