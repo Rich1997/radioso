@@ -2,8 +2,17 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
-import { Drawer, DrawerContent, DrawerTrigger } from "./ui/drawer";
-import { DialogTitle } from "@radix-ui/react-dialog";
+import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
+import {
+    AlertDialog,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+} from "./ui/alert-dialog";
+import { TriangleAlert } from "lucide-react";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -34,6 +43,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     const [isMuted, setIsMuted] = useState(() => {
         return localStorage.getItem("isMuted") === "true";
     });
+    const [error, setError] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -41,21 +52,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             audio.src = audioUrl;
             audio.load();
             if (isPlaying) {
-                audio.play().catch((error) => console.error("Error playing audio:", error));
+                audio.play().catch((error) => {
+                    console.error("Error playing audio:", error);
+                    setError("Station could not be played :-(");
+                    onPlayPause();
+                });
             }
         }
-    }, [audioUrl]);
+    }, [audioUrl, isPlaying, onPlayPause]);
 
     useEffect(() => {
         const audio = audioRef.current;
         if (audio) {
             if (isPlaying) {
-                audio.play().catch((error) => console.error("Error playing audio:", error));
+                audio.play().catch((error) => {
+                    console.error("Error playing audio:", error);
+                    setError("Station cannot be played :-(");
+                    setShowModal(true);
+                    onPlayPause();
+                });
             } else {
                 audio.pause();
             }
         }
-    }, [isPlaying]);
+    }, [isPlaying, onPlayPause]);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -84,6 +104,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     const handlePlayPause = useCallback(
         (e: React.MouseEvent) => {
             e.stopPropagation();
+            setError(null); // Clear any previous errors
             onPlayPause();
         },
         [onPlayPause]
@@ -99,9 +120,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     return (
         <div className="relative h-full w-full">
             <audio ref={audioRef} />
+            {error && (
+                <AlertDialog open={showModal} onOpenChange={setShowModal}>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle className="flex items-center gap-2 leading-3 sm:justify-start justify-center">
+                                <TriangleAlert />
+                                Playback error
+                            </AlertDialogTitle>
+                            <AlertDialogDescription className="sm:text-left text-center">
+                                {error}
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>Okay</AlertDialogCancel>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+            )}
             <div className="h-full w-full gap-4 cursor-pointer flex items-center">
                 <Drawer>
-                    <DrawerTrigger className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none text-card-foreground sm:px-0 px-[9px]">
+                    <DrawerTrigger
+                        className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none text-card-foreground sm:px-0 px-[9px] select-none"
+                        asChild={true}
+                    >
                         <div className="flex items-center justify-between">
                             <div className="flex gap-4 items-center">
                                 <div className="h-12 sm:h-10">
@@ -155,9 +197,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     </DrawerTrigger>
                     <DrawerContent>
                         <div className="px-4 h-full pb-8 container mx-auto">
-                            <DialogTitle className="w-full text-center text-lg font-bold tracking-tight">
+                            <DrawerTitle className="w-full text-center text-lg font-bold tracking-tight">
                                 Now Playing
-                            </DialogTitle>
+                            </DrawerTitle>
                             <div className="flex flex-col items-center gap-10 justify-center h-[calc(100%-68px)] min-h-[596px]">
                                 <div className="flex gap-4 flex-col items-center">
                                     <div className="hidden sm:block">
