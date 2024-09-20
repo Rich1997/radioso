@@ -45,7 +45,7 @@ const SearchResults: React.FC = () => {
     return (
         <div className="w-full">
             <div className="sticky sm:top-[76px] top-[90px] bg-background z-10 sm:pt-8 pt-2">
-                <Link to="/" className="text-sm font-normal text-muted-foreground hover:text-foreground">
+                <Link to="/" className="text-sm font-normal text-muted-foreground hover:text-foreground sm:px-0 px-4">
                     ← Go back home
                 </Link>
                 <Subtitlebar>Search results for "{searchTerm || "..."}"</Subtitlebar>

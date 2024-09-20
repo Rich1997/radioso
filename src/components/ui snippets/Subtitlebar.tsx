@@ -5,7 +5,7 @@ interface SubtitlebarProps {
 }
 
 const Subtitlebar: React.FC<SubtitlebarProps> = ({ children }) => {
-    return <div className="sm:text-xl text-lg font-semibold tracking-tight pb-4">{children}</div>;
+    return <div className="sm:text-xl text-lg font-semibold tracking-tight pb-4 sm:px-0 px-4">{children}</div>;
 };
 
 export default Subtitlebar;

@@ -125,7 +125,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             <div className="h-full w-full gap-4 cursor-pointer flex items-center">
                 <Drawer>
                     <DrawerTrigger
-                        className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none text-card-foreground sm:px-0 px-[9px] select-none"
+                        className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none text-card-foreground px-0 select-none"
                         asChild={true}
                     >
                         <div className="flex items-center justify-between">

@@ -34,7 +34,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
 
     return (
         <Card
-            className="flex items-center justify-between p-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-card active:bg-muted rounded-lg gap-4"
+            className="flex items-center justify-between sm:p-2 px-4 py-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-card active:bg-muted sm:rounded-lg rounded-none gap-4 sm:bg-card bg-background sm:border border-0"
             onClick={handlePlayPause}
             title={station.name}
         >

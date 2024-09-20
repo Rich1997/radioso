@@ -13,7 +13,7 @@ export const Layout: React.FC = () => {
                     <Topbar />
                 </div>
                 <div className="bg-border sticky top-[75px] h-[1px] z-20 sm:block hidden" />
-                <div className="flex gap-4 flex-1 container max-w-7xl mx-auto px-4">
+                <div className="flex gap-4 flex-1 container max-w-7xl mx-auto sm:px-4 px-0">
                     <Sidebar />
                     <Outlet />
                 </div>
