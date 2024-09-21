@@ -49,6 +49,7 @@ const SearchResults: React.FC = () => {
                     ← Go back home
                 </Link>
                 <Subtitlebar>Search results for "{searchTerm || "..."}"</Subtitlebar>
+                <div className="bg-gradient-to-b from-background via-transparent to-transparent w-full h-4 -mb-4 absolute sm:hidden block" />
             </div>
             <div className="pt-[1px]">
                 {isLoading && (

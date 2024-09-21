@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { handleImageError } from "@/lib/utils";
 
 type ThumbnailProps = {
@@ -7,9 +8,23 @@ type ThumbnailProps = {
 };
 
 const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc, stationName }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [useFallback, setUseFallback] = useState(false);
+
+    const handleLoad = () => {
+        setImageLoaded(true);
+    };
+
+    const handleError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        const target = event.target as HTMLImageElement;
+        target.src = handleImageError(stationName);
+        setUseFallback(true);
+        setImageLoaded(false);
+    };
+
     return (
         <div
-            className="relative bg-border rounded-lg flex items-center overflow-hidden"
+            className="relative bg-border rounded-lg flex items-center justify-center overflow-hidden"
             style={{
                 minWidth: `${size}px`,
                 width: `${size}px`,
@@ -20,13 +35,15 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc, stationName }) => {
             <img
                 style={{
                     width: `${size}px`,
+                    height: `${size}px`,
+                    objectFit: "cover",
+                    opacity: imageLoaded ? 1 : 0,
+                    transition: "opacity 0.3s ease-in-out",
                 }}
-                src={imgSrc}
+                src={useFallback ? handleImageError(stationName) : imgSrc}
                 alt="Station thumbnail"
-                onError={(event) => {
-                    const target = event.target as HTMLImageElement;
-                    target.src = handleImageError(stationName);
-                }}
+                onLoad={handleLoad}
+                onError={handleError}
             />
         </div>
     );
