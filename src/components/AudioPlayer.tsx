@@ -51,7 +51,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                 });
             }
         }
-    }, [audioUrl, isPlaying, onPlayPause]);
+    }, [audioUrl]);
 
     useEffect(() => {
         const audio = audioRef.current;
