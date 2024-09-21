@@ -18,7 +18,8 @@ export const Layout: React.FC = () => {
                     <Outlet />
                 </div>
             </div>
-            <footer className="sticky bottom-0 bg-muted z-30 border-t w-full border-b-0">
+            <footer className="sticky bottom-0 bg-muted z-30 w-full">
+                <div className="bg-gradient-to-t from-background to-transparent w-full h-8 -mt-8 relative"></div>
                 <div className="container sm:h-[95px] h-[84px] sm:px-0 w-full mx-auto max-w-7xl">
                     <NowPlaying />
                 </div>
