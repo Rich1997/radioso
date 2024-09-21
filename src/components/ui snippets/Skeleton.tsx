@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 
 const Skeleton = () => {
     return (
-        <Card className="flex items-center justify-between p-2 select-none rounded-lg gap-4 animate-pulse">
+        <Card className="flex items-center justify-between sm:p-2 py-2 px-4 select-none sm:rounded-lg rounded-none gap-4 animate-pulse sm:border border-0">
             <div className="flex items-center gap-2 w-full">
                 <div>
                     <div className="sm:hidden block">
