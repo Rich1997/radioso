@@ -3,6 +3,7 @@ import RadioStation from "../RadioStation";
 import { useRadioContext } from "../../context/RadioContext";
 import GridContainer from "../ui snippets/GridContainer";
 import Subtitlebar from "../ui snippets/Subtitlebar";
+import PaddedContainer from "../ui snippets/PaddedContainer";
 
 export const Favorites: React.FC = () => {
     const { favorites } = useRadioContext();
@@ -21,7 +22,7 @@ export const Favorites: React.FC = () => {
                 })}
             </GridContainer>
 
-            {filteredFavorites.length === 0 && <p>No favorite stations found.</p>}
+            {filteredFavorites.length === 0 && <PaddedContainer>No favorite stations found.</PaddedContainer>}
         </div>
     );
 };

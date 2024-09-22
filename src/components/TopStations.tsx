@@ -5,6 +5,7 @@ import RadioStation from "./RadioStation";
 import GridContainer from "./ui snippets/GridContainer";
 import Subtitlebar from "./ui snippets/Subtitlebar";
 import Skeleton from "./ui snippets/Skeleton";
+import PaddedContainer from "./ui snippets/PaddedContainer";
 
 const TopStations: React.FC = () => {
     const [topStations, setTopStations] = useState<Station[]>([]);
@@ -30,7 +31,7 @@ const TopStations: React.FC = () => {
     return (
         <div className="flex-1">
             <Subtitlebar>Top Stations</Subtitlebar>
-            {error ? <div className="text-red-500">{error}</div> : ""}
+            {error ? <PaddedContainer>{error}</PaddedContainer> : ""}
 
             <GridContainer>
                 {isLoading ? <Skeleton /> : ""}

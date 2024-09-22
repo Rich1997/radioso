@@ -6,6 +6,7 @@ import RadioStation from "../../components/RadioStation";
 import Subtitlebar from "../ui snippets/Subtitlebar";
 import GridContainer from "../ui snippets/GridContainer";
 import Skeleton from "../ui snippets/Skeleton";
+import PaddedContainer from "../ui snippets/PaddedContainer";
 
 const SearchResults: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
@@ -57,7 +58,7 @@ const SearchResults: React.FC = () => {
                         <Skeleton />
                     </GridContainer>
                 )}
-                {error && <p className="text-red-500">{error}</p>}
+                {error && <PaddedContainer>{error}</PaddedContainer>}
 
                 {results.length > 0 && (
                     <GridContainer>
@@ -67,7 +68,7 @@ const SearchResults: React.FC = () => {
                     </GridContainer>
                 )}
 
-                <div>{results.length === 0 && !isLoading && !error && <p>No results found.</p>}</div>
+                {results.length === 0 && !isLoading && !error && <PaddedContainer>No results found.</PaddedContainer>}
             </div>
         </div>
     );

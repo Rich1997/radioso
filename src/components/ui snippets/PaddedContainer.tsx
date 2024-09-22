@@ -2,21 +2,10 @@ import { ReactNode } from "react";
 
 type PaddedContainerProps = {
     children: ReactNode;
-    padding?: string;
 };
 
-const PaddedContainer: React.FC<PaddedContainerProps> = ({ children, padding = "2" }) => {
-    const numericPadding = parseInt(padding);
-    const inlineStyle = {
-        paddingLeft: `${numericPadding * 0.25}rem`,
-        paddingRight: `${numericPadding * 0.25}rem`,
-    };
-
-    return (
-        <div className={`w-full px-${padding}`} style={inlineStyle}>
-            {children}
-        </div>
-    );
+const PaddedContainer: React.FC<PaddedContainerProps> = ({ children }) => {
+    return <div className="w-full sm:px-0 px-4">{children}</div>;
 };
 
 export default PaddedContainer;
