@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AudioPlayer from "./AudioPlayer";
 import { useRadioContext } from "../context/RadioContext";
+import AudioPlayerSkeleton from "./AudioPlayerSkeleton";
 
 export const NowPlaying: React.FC = () => {
     const { currentStation, isPlaying, setIsPlaying } = useRadioContext();
@@ -13,11 +14,7 @@ export const NowPlaying: React.FC = () => {
     }, [currentStation, setIsPlaying]);
 
     if (!currentStation) {
-        return (
-            <div className="p-4 h-full w-full flex items-center text-center">
-                <div className="flex-1">No station currently playing</div>
-            </div>
-        );
+        return <AudioPlayerSkeleton />;
     }
 
     const handlePlayPause = () => {
