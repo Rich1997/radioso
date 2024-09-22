@@ -5,7 +5,7 @@ import Search from "./Search";
 const Navbar = () => {
     return (
         <div className="bg-background py-4">
-            <PaddedContainer padding="4">
+            <PaddedContainer>
                 <div className="flex justify-between sm:items-center items-start gap-4 sm:gap-6 flex-col sm:flex-row">
                     <div className="flex gap-6">
                         <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary font-bold" : "")}>
