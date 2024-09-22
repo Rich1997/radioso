@@ -14,7 +14,12 @@ export const Favorites: React.FC = () => {
 
     return (
         <div className="w-full sm:pt-8 pt-2">
-            <Subtitlebar>Favorites</Subtitlebar>
+            <Subtitlebar>
+                Favorites
+                <div className="ml-2 text-muted-foreground font-medium sm:text-base text-sm inline-block">
+                    ({filteredFavorites.length})
+                </div>
+            </Subtitlebar>
 
             <GridContainer>
                 {filteredFavorites.map((station) => {
