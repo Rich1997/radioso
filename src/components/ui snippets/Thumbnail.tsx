@@ -24,7 +24,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({ size, imgSrc, stationName }) => {
 
     return (
         <div
-            className="relative bg-border rounded-lg flex items-center justify-center overflow-hidden"
+            className="relative bg-input rounded-lg flex items-center justify-center overflow-hidden"
             style={{
                 minWidth: `${size}px`,
                 width: `${size}px`,
