@@ -128,7 +128,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                         className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none text-card-foreground px-0 select-none"
                         asChild={true}
                     >
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center sm:justify-between justify-start gap-4">
                             <div className="flex gap-4 items-center">
                                 <div className="h-12 sm:h-10">
                                     <button className="controls-area" onClick={handlePlayPause}>
@@ -137,24 +137,15 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     </button>
                                 </div>
                                 <div className="flex gap-2 sm:gap-4 items-center">
-                                    <div className="sm:hidden block">
-                                        <Thumbnail
-                                            key={`mobile-${stationName}`}
-                                            size="64"
-                                            imgSrc={thumb}
-                                            stationName={stationName}
-                                        />
-                                    </div>
-                                    <div className="sm:block hidden">
-                                        <Thumbnail
-                                            key={`desktop-${stationName}`}
-                                            size="72"
-                                            imgSrc={thumb}
-                                            stationName={stationName}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col items-start leading-none">
-                                        <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-xl sm:text-base text-sm text-left">
+                                    <Thumbnail
+                                        key={`mobile-${stationName}`}
+                                        size="64"
+                                        imgSrc={thumb}
+                                        stationName={stationName}
+                                    />
+
+                                    <div className="flex flex-col items-start">
+                                        <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
                                             {stationName}
                                         </div>
                                         <div className="sm:text-sm text-xs text-muted-foreground line-clamp-1 text-left">

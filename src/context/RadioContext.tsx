@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Station } from "../utils/types";
+import { handleImageError } from "@/lib/utils";
 
 interface RadioContextType {
     currentStation: Station | null;
@@ -71,19 +72,41 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             });
 
             navigator.mediaSession.setActionHandler("previoustrack", () => {
-                // Handle previous track functionality if needed
+                // Handle previous track functionality
             });
 
             navigator.mediaSession.setActionHandler("nexttrack", () => {
-                // Handle next track functionality if needed
+                // Handle next track functionality
             });
 
-            // Optionally set metadata (e.g., current station's info)
             if (currentStation) {
-                navigator.mediaSession.metadata = new MediaMetadata({
-                    title: currentStation.name,
-                    artwork: [{ src: currentStation.favicon, sizes: "96x96", type: "image/png" }],
-                });
+                const fallbackImage = handleImageError(currentStation.name);
+
+                const artwork = [
+                    { src: currentStation.favicon, sizes: "96x96", type: "image/png" },
+                    { src: currentStation.favicon, sizes: "128x128", type: "image/png" },
+                    { src: currentStation.favicon, sizes: "192x192", type: "image/png" },
+                    { src: currentStation.favicon, sizes: "256x256", type: "image/png" },
+                    { src: currentStation.favicon, sizes: "384x384", type: "image/png" },
+                    { src: currentStation.favicon, sizes: "512x512", type: "image/png" },
+                ];
+
+                const img = new Image();
+                img.src = currentStation.favicon;
+                img.onload = () => {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: currentStation.name,
+                        artist: currentStation.country,
+                        artwork: artwork,
+                    });
+                };
+                img.onerror = () => {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: currentStation.name,
+                        artist: currentStation.country,
+                        artwork: artwork.map((item) => ({ ...item, src: fallbackImage })),
+                    });
+                };
             }
         }
     }, [currentStation, isPlaying]);

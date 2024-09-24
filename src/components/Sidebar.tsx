@@ -9,7 +9,7 @@ const Sidebar = () => {
     const { favorites } = useRadioContext();
 
     return (
-        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r pr-2 w-[200px] select-none">
+        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[200px] select-none">
             <nav className="h-full scrollarea mb-4 overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col items-stretch gap-6 justify-between h-full">
                     <div className="flex flex-col gap-1 text-sm font-medium">
@@ -17,8 +17,8 @@ const Sidebar = () => {
                             to="/"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "bg-secondary/50 rounded-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-lg"
+                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
+                                    : "hover:bg-muted rounded-l-lg"
                             }
                         >
                             <div className="flex gap-2 h-9 py-2 px-3 items-center">
@@ -30,8 +30,8 @@ const Sidebar = () => {
                             to="/favorites"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "bg-secondary/50 rounded-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-lg"
+                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
+                                    : "hover:bg-muted rounded-l-lg"
                             }
                         >
                             <div className="flex gap-2 h-9 py-2 px-3 items-center">
@@ -46,8 +46,8 @@ const Sidebar = () => {
                             to="/discover"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "bg-secondary/50 rounded-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-lg"
+                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
+                                    : "hover:bg-muted rounded-l-lg"
                             }
                         >
                             <div className="flex gap-2 h-9 py-2 px-3 items-center">
@@ -59,8 +59,8 @@ const Sidebar = () => {
                             to="/settings"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "bg-secondary/50 rounded-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-lg"
+                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
+                                    : "hover:bg-muted rounded-l-lg"
                             }
                         >
                             <div className="flex gap-2 h-9 py-2 px-3 items-center">
@@ -72,8 +72,8 @@ const Sidebar = () => {
                             to="/about"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "bg-secondary/50 rounded-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-lg"
+                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
+                                    : "hover:bg-muted rounded-l-lg"
                             }
                         >
                             <div className="flex gap-2 h-9 py-2 px-3 items-center">
