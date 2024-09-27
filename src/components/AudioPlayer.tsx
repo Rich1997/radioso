@@ -128,8 +128,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                         className="w-full ring-0 border-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none text-card-foreground px-0 select-none"
                         asChild={true}
                     >
-                        <div className="flex items-center sm:justify-between justify-start gap-4">
-                            <div className="flex gap-4 items-center">
+                        <div className="flex items-center">
+                            <div className="flex gap-4 items-center sm:justify-between justify-start flex-1">
                                 <div className="h-12 sm:h-10">
                                     <button className="controls-area" onClick={handlePlayPause}>
                                         <div className="sm:hidden block">{renderPlayPauseButton(48)}</div>
@@ -155,28 +155,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="sm:flex hidden items-center gap-2 controls-area">
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        toggleMute();
-                                    }}
-                                    className="text-muted-foreground"
-                                >
-                                    {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
-                                </button>
-                                <input
-                                    className="slider"
-                                    type="range"
-                                    min="0"
-                                    max="1"
-                                    step="0.01"
-                                    value={isMuted ? 0 : volume}
-                                    onChange={handleVolumeChange}
-                                    onClick={(e) => e.stopPropagation()}
-                                    style={{ "--value": `${(isMuted ? 0 : volume) * 100 - 1}%` } as React.CSSProperties}
-                                />
+                                <div className="sm:flex hidden items-center gap-2 controls-area">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            toggleMute();
+                                        }}
+                                        className="text-muted-foreground"
+                                    >
+                                        {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
+                                    </button>
+                                    <input
+                                        className="slider"
+                                        type="range"
+                                        min="0"
+                                        max="1"
+                                        step="0.01"
+                                        value={isMuted ? 0 : volume}
+                                        onChange={handleVolumeChange}
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={
+                                            { "--value": `${(isMuted ? 0 : volume) * 100 - 1}%` } as React.CSSProperties
+                                        }
+                                    />
+                                </div>
                             </div>
                         </div>
                     </DrawerTrigger>

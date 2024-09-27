@@ -16,5 +16,5 @@ export function concatenateFirstLetters(inputString: string) {
 }
 
 export function handleImageError(channelName: string) {
-    return "https://placehold.co/200?text=" + concatenateFirstLetters(channelName);
+    return "https://placehold.co/192?text=" + concatenateFirstLetters(channelName);
 }

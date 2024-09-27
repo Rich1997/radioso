@@ -71,13 +71,13 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 setIsPlaying(false);
             });
 
-            navigator.mediaSession.setActionHandler("previoustrack", () => {
-                // Handle previous track functionality
-            });
+            // navigator.mediaSession.setActionHandler("previoustrack", () => {
+            //     // Handle previous track functionality
+            // });
 
-            navigator.mediaSession.setActionHandler("nexttrack", () => {
-                // Handle next track functionality
-            });
+            // navigator.mediaSession.setActionHandler("nexttrack", () => {
+            //     // Handle next track functionality
+            // });
 
             if (currentStation) {
                 const fallbackImage = handleImageError(currentStation.name);
