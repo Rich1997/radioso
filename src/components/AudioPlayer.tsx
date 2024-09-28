@@ -136,14 +136,23 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <div className="sm:block hidden">{renderPlayPauseButton(40)}</div>
                                     </button>
                                 </div>
-                                <div className="flex gap-2 sm:gap-4 items-center">
-                                    <Thumbnail
-                                        key={`mobile-${stationName}`}
-                                        size="64"
-                                        imgSrc={thumb}
-                                        stationName={stationName}
-                                    />
-
+                                <div className="flex sm:gap-4 gap-3 items-center">
+                                    <div className="sm:hidden block">
+                                        <Thumbnail
+                                            key={`mobile-${stationName}`}
+                                            size="56"
+                                            imgSrc={thumb}
+                                            stationName={stationName}
+                                        />
+                                    </div>
+                                    <div className="sm:block hidden">
+                                        <Thumbnail
+                                            key={`mobile-${stationName}`}
+                                            size="64"
+                                            imgSrc={thumb}
+                                            stationName={stationName}
+                                        />
+                                    </div>
                                     <div className="flex flex-col items-start">
                                         <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
                                             {stationName}
