@@ -50,7 +50,8 @@ export const getTopStations = async (limit: number = 10): Promise<Station[]> => 
             throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        return data.map(
+        const filteredStations = data.filter((station: Station) => station.countrycode === "US").slice(0, 10);
+        return filteredStations.map(
             (station: any): Station => ({
                 stationuuid: station.stationuuid,
                 name: station.name,

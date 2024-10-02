@@ -8,7 +8,7 @@ type RecentlyPlayedProps = {
     items?: number;
 };
 
-const RecentlyPlayed: React.FC<RecentlyPlayedProps> = ({ items = 10 }) => {
+const RecentlyPlayed: React.FC<RecentlyPlayedProps> = ({ items = 5 }) => {
     const { recentlyPlayed } = useRadioContext();
     const firstNStations = recentlyPlayed.slice(0, items);
 

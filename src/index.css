@@ -54,6 +54,10 @@ code {
     width: 0px;
 }
 
+.scrollarea.sx::-webkit-scrollbar {
+    height: 12px;
+}
+
 .scrollarea::-webkit-scrollbar-track {
     background: hsl(var(--background));
 }
@@ -74,6 +78,10 @@ code {
         border-radius: var(--radius);
         scrollbar-color: hsl(var(--border)) hsl(var(--background));
         scrollbar-width: thin;
+    }
+
+    .scrollarea.sx::-webkit-scrollbar {
+        height: 0;
     }
 }
 

@@ -16,7 +16,9 @@ export const Layout: React.FC = () => {
                 <div className="bg-border sticky top-[75px] h-[1px] z-20 sm:block hidden" />
                 <div className="max-w-7xl flex gap-4 flex-1 container mx-auto sm:px-4 px-0">
                     <Sidebar />
-                    <Outlet />
+                    <div className="sm:max-w-[calc(100%-216px)] w-full">
+                        <Outlet />
+                    </div>
                 </div>
             </div>
             <footer className="sticky bottom-0 bg-muted z-30 w-full">
