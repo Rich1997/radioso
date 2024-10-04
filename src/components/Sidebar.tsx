@@ -9,19 +9,17 @@ const Sidebar = () => {
     const { favorites } = useRadioContext();
 
     return (
-        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[200px] select-none">
+        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[216px] select-none">
             <nav className="h-full scrollarea mb-4 overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col items-stretch gap-6 justify-between h-full">
                     <div className="flex flex-col gap-1 text-sm font-medium">
                         <NavLink
                             to="/"
                             className={({ isActive }) =>
-                                isActive
-                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-l-lg"
+                                isActive ? "bg-muted hover:bg-secondary/40" : "hover:bg-secondary/40"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-4 items-center">
                                 <HomeIcon size={16} />
                                 <div className="flex items-center gap-2 text-sm">Home</div>
                             </div>
@@ -29,12 +27,10 @@ const Sidebar = () => {
                         <NavLink
                             to="/favorites"
                             className={({ isActive }) =>
-                                isActive
-                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-l-lg"
+                                isActive ? "bg-muted hover:bg-secondary/40" : "hover:bg-secondary/40"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-4 items-center">
                                 <FavoriteIcon size={16} />
                                 <div className="flex items-center gap-2 text-sm justify-between w-full">
                                     <div>Favorites</div>
@@ -45,12 +41,10 @@ const Sidebar = () => {
                         <NavLink
                             to="/discover"
                             className={({ isActive }) =>
-                                isActive
-                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-l-lg"
+                                isActive ? "bg-muted hover:bg-secondary/40" : "hover:bg-secondary/40"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-4 items-center">
                                 <Compass size={16} />
                                 <div className="flex items-center gap-2 text-sm">Discover</div>
                             </div>
@@ -58,12 +52,10 @@ const Sidebar = () => {
                         <NavLink
                             to="/settings"
                             className={({ isActive }) =>
-                                isActive
-                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-l-lg"
+                                isActive ? "bg-muted hover:bg-secondary/40" : "hover:bg-secondary/40"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-4 items-center">
                                 <Settings size={16} />
                                 <div className="flex items-center gap-2 text-sm">Settings</div>
                             </div>
@@ -71,19 +63,17 @@ const Sidebar = () => {
                         <NavLink
                             to="/about"
                             className={({ isActive }) =>
-                                isActive
-                                    ? "bg-secondary/50 rounded-l-lg hover:bg-secondary/70"
-                                    : "hover:bg-muted rounded-l-lg"
+                                isActive ? "bg-muted hover:bg-secondary/40" : "hover:bg-secondary/40"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-4 items-center">
                                 <Info size={16} />
                                 <div className="flex items-center gap-2 text-sm">About</div>
                             </div>
                         </NavLink>
                     </div>
-                    <div className="opacity-20">
-                        <SidebarLogo height={140} />
+                    <div className="opacity-20 px-4">
+                        <SidebarLogo height={136} />
                     </div>
                 </div>
             </nav>

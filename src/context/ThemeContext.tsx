@@ -1,4 +1,4 @@
-import { createContext, useContext, useLayoutEffect, useState } from "react";
+import { createContext, useContext, useLayoutEffect, useState, useCallback } from "react";
 
 export type Theme = "dark" | "light" | "system";
 
@@ -11,11 +11,13 @@ type ThemeProviderProps = {
 type ThemeProviderState = {
     theme: Theme;
     setTheme: (theme: Theme) => void;
+    systemTheme: "dark" | "light";
 };
 
 const initialState: ThemeProviderState = {
     theme: "system",
     setTheme: () => null,
+    systemTheme: "light",
 };
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
@@ -34,8 +36,19 @@ export function ThemeProvider({
         }
         return defaultTheme;
     });
-    const [systemTheme, setSystemTheme] = useState<string>(
+
+    const [systemTheme, setSystemTheme] = useState<"dark" | "light">(() =>
         window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+    );
+
+    const updateSystemTheme = useCallback(
+        (newSystemTheme: "dark" | "light") => {
+            setSystemTheme(newSystemTheme);
+            if (theme === "system") {
+                localStorage.setItem(storageKey, `system:${newSystemTheme}`);
+            }
+        },
+        [theme, storageKey]
     );
 
     useLayoutEffect(() => {
@@ -43,11 +56,7 @@ export function ThemeProvider({
 
         const handleThemeChange = (event: MediaQueryListEvent) => {
             const newSystemTheme = event.matches ? "dark" : "light";
-
-            // Update system color scheme only if the selected theme is "system"
-            if (theme === "system") {
-                setSystemTheme(newSystemTheme);
-            }
+            updateSystemTheme(newSystemTheme);
         };
 
         const mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
@@ -67,8 +76,8 @@ export function ThemeProvider({
                 if (newTheme && newTheme !== theme) {
                     setTheme(newTheme as Theme);
                 }
-                if (newTheme === "system" && newSystemTheme && newSystemTheme !== systemTheme) {
-                    setSystemTheme(newSystemTheme);
+                if (newSystemTheme && (newSystemTheme === "dark" || newSystemTheme === "light")) {
+                    updateSystemTheme(newSystemTheme);
                 }
             }
         };
@@ -79,10 +88,10 @@ export function ThemeProvider({
             mediaQueryList.removeEventListener("change", handleThemeChange);
             window.removeEventListener("storage", handleStorageChange);
         };
-    }, [theme, systemTheme, storageKey]);
+    }, [theme, systemTheme, storageKey, updateSystemTheme]);
 
     const updateTheme = (newTheme: Theme) => {
-        const updatedValue = newTheme === "system" ? `system:${systemTheme}` : newTheme;
+        const updatedValue = newTheme === "system" ? `system:${systemTheme}` : `${newTheme}:${systemTheme}`;
         localStorage.setItem(storageKey, updatedValue);
         setTheme(newTheme);
     };
@@ -102,8 +111,6 @@ export function ThemeProvider({
 
 export const useTheme = () => {
     const context = useContext(ThemeProviderContext);
-
     if (context === undefined) throw new Error("useTheme must be used within a ThemeProvider");
-
     return context;
 };

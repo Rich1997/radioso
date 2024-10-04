@@ -16,11 +16,7 @@ const Search: React.FC = () => {
         navigate(`/search/${encodeURIComponent(term)}`);
     };
 
-    return (
-        <>
-            <Searchbar onSearch={handleSearch} placeholder="Search stations..." />
-        </>
-    );
+    return <Searchbar onSearch={handleSearch} placeholder="Search stations..." />;
 };
 
 export default Search;
