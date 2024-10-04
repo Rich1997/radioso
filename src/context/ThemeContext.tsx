@@ -1,116 +1,82 @@
-import { createContext, useContext, useLayoutEffect, useState, useCallback } from "react";
+import React, { createContext, useContext, useLayoutEffect, useState } from "react";
 
-export type Theme = "dark" | "light" | "system";
+type Theme = "light" | "dark" | "system";
 
-type ThemeProviderProps = {
-    children: React.ReactNode;
-    defaultTheme?: Theme;
-    storageKey?: string;
-};
-
-type ThemeProviderState = {
+interface ThemeContextType {
     theme: Theme;
     setTheme: (theme: Theme) => void;
-    systemTheme: "dark" | "light";
-};
+}
 
-const initialState: ThemeProviderState = {
-    theme: "system",
-    setTheme: () => null,
-    systemTheme: "light",
-};
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState);
-
-export function ThemeProvider({
-    children,
-    defaultTheme = "system",
-    storageKey = "ui-theme",
-    ...props
-}: ThemeProviderProps) {
-    const [theme, setTheme] = useState<Theme>(() => {
-        const storedValue = localStorage.getItem(storageKey);
-        if (storedValue) {
-            const [selectedTheme] = storedValue.split(":");
-            return selectedTheme as Theme;
-        }
-        return defaultTheme;
-    });
-
-    const [systemTheme, setSystemTheme] = useState<"dark" | "light">(() =>
-        window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-    );
-
-    const updateSystemTheme = useCallback(
-        (newSystemTheme: "dark" | "light") => {
-            setSystemTheme(newSystemTheme);
-            if (theme === "system") {
-                localStorage.setItem(storageKey, `system:${newSystemTheme}`);
-            }
-        },
-        [theme, storageKey]
-    );
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+    const [theme, setTheme] = useState<Theme>("system");
+    const [themeChannel, setThemeChannel] = useState<BroadcastChannel | null>(null);
 
     useLayoutEffect(() => {
-        const root = window.document.documentElement;
-
-        const handleThemeChange = (event: MediaQueryListEvent) => {
-            const newSystemTheme = event.matches ? "dark" : "light";
-            updateSystemTheme(newSystemTheme);
-        };
-
-        const mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
-        mediaQueryList.addEventListener("change", handleThemeChange);
-
-        // Initial setup
-        root.classList.remove("light", "dark");
-        if (theme === "system") {
-            root.classList.add(systemTheme);
-        } else {
-            root.classList.add(theme);
+        const storedTheme = localStorage.getItem("theme") as Theme | null;
+        if (storedTheme) {
+            setTheme(storedTheme);
         }
 
-        const handleStorageChange = (event: StorageEvent) => {
-            if (event.key === storageKey) {
-                const [newTheme, newSystemTheme] = event.newValue?.split(":") || [];
-                if (newTheme && newTheme !== theme) {
-                    setTheme(newTheme as Theme);
-                }
-                if (newSystemTheme && (newSystemTheme === "dark" || newSystemTheme === "light")) {
-                    updateSystemTheme(newSystemTheme);
+        const channel = new BroadcastChannel("theme_channel");
+        setThemeChannel(channel);
+
+        channel.onmessage = (event) => {
+            if (event.data && event.data.type === "theme_change") {
+                setTheme(event.data.theme);
+            }
+        };
+
+        return () => {
+            channel.close();
+        };
+    }, []);
+
+    useLayoutEffect(() => {
+        localStorage.setItem("theme", theme);
+
+        if (themeChannel) {
+            themeChannel.postMessage({ type: "theme_change", theme });
+        }
+
+        if (theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, [theme, themeChannel]);
+
+    useLayoutEffect(() => {
+        const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        const handleChange = () => {
+            if (theme === "system") {
+                if (mediaQuery.matches) {
+                    document.documentElement.classList.add("dark");
+                } else {
+                    document.documentElement.classList.remove("dark");
                 }
             }
         };
 
-        window.addEventListener("storage", handleStorageChange);
-
-        return () => {
-            mediaQueryList.removeEventListener("change", handleThemeChange);
-            window.removeEventListener("storage", handleStorageChange);
-        };
-    }, [theme, systemTheme, storageKey, updateSystemTheme]);
-
-    const updateTheme = (newTheme: Theme) => {
-        const updatedValue = newTheme === "system" ? `system:${systemTheme}` : `${newTheme}:${systemTheme}`;
-        localStorage.setItem(storageKey, updatedValue);
-        setTheme(newTheme);
-    };
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+    }, [theme]);
 
     const value = {
         theme,
-        setTheme: updateTheme,
-        systemTheme,
+        setTheme: (newTheme: Theme) => {
+            setTheme(newTheme);
+        },
     };
 
-    return (
-        <ThemeProviderContext.Provider {...props} value={value}>
-            {children}
-        </ThemeProviderContext.Provider>
-    );
+    return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }
 
-export const useTheme = () => {
-    const context = useContext(ThemeProviderContext);
-    if (context === undefined) throw new Error("useTheme must be used within a ThemeProvider");
+export function useTheme() {
+    const context = useContext(ThemeContext);
+    if (context === undefined) {
+        throw new Error("useTheme must be used within a ThemeProvider");
+    }
     return context;
-};
+}
