@@ -154,7 +154,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         />
                                     </div>
                                     <div className="flex flex-col items-start">
-                                        <div className="font-bold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
+                                        <div className="font-semibold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
                                             {stationName}
                                         </div>
                                         <div className="sm:text-sm text-xs text-muted-foreground line-clamp-1 text-left">

@@ -52,8 +52,8 @@ export const RadioStationGridItem: React.FC<RadioStationGridItemProps> = ({ stat
                         <div className="font-semibold sm:break-words break-words max-w-lg line-clamp-2 text-foreground leading-tight">
                             {station.name}
                         </div>
-                        <div className="line-clamp-2 text-muted-foreground text-xs">
-                            {station.country}
+                        <div className="line-clamp-2 text-muted-foreground text-xs" title={station.country}>
+                            {station.countrycode}
                             {station.country && station.state ? ", " : ""}
                             {station.state ?? station.state}
                         </div>
