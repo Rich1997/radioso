@@ -1,9 +1,6 @@
-type FavoriteIconProps = {
-    size?: number;
-    fill?: boolean;
-};
+import { IconProps } from "@/utils/types";
 
-const FavoriteIcon: React.FC<FavoriteIconProps> = ({ size = 24, fill = false }) => {
+const FavoriteIcon: React.FC<IconProps> = ({ size = 24, fill = false }) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 0 24 24" fill="currentColor">
             {fill ? (

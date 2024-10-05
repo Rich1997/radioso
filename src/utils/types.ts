@@ -1,3 +1,15 @@
+export type IconProps = {
+    size?: number;
+    fill?: boolean;
+};
+
+export type ListItem = {
+    to: string;
+    label: string;
+    icon: (isActive: boolean) => JSX.Element;
+    count?: number;
+};
+
 export type Station = {
     stationuuid: string;
     name: string;

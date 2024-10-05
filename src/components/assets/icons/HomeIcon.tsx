@@ -1,9 +1,6 @@
-type HomeIconProps = {
-    size?: number;
-    fill?: boolean;
-};
+import { IconProps } from "@/utils/types";
 
-const HomeIcon: React.FC<HomeIconProps> = ({ size = 24, fill = false }) => {
+const HomeIcon: React.FC<IconProps> = ({ size = 24, fill = false }) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" height={size} viewBox="0 -960 960 960" fill="currentColor">
             {fill ? (
