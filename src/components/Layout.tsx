@@ -14,9 +14,9 @@ export const Layout: React.FC = () => {
                     <div className="bg-gradient-to-b from-background to-transparent w-full h-5 -mb-5 relative sm:hidden block" />
                 </div>
                 <div className="bg-border sticky top-[75px] h-[1px] z-20 sm:block hidden" />
-                <div className="flex gap-4 flex-1 sm:pr-4 pr-0">
+                <div className="flex gap-6 flex-1 sm:pr-6 pr-0">
                     <Sidebar />
-                    <div className="sm:max-w-[calc(100%-248px)] max-w-full mx-auto sm:w-[1240px] w-full">
+                    <div className="sm:max-w-[calc(100%-256px)] max-w-full mx-auto sm:w-[1240px] w-full">
                         <Outlet />
                     </div>
                 </div>

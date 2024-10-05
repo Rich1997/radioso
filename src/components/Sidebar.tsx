@@ -10,7 +10,7 @@ const Sidebar = () => {
     const { favorites } = useRadioContext();
 
     return (
-        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[232px] select-none px-2">
+        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[232px] select-none px-3">
             <nav className="h-full scrollarea mb-4 overflow-y-auto overflow-x-hidden">
                 <div className="flex flex-col items-stretch gap-6 justify-between h-full">
                     <div className="flex flex-col gap-1 text-sm font-medium">
@@ -22,7 +22,7 @@ const Sidebar = () => {
                                     : "hover:bg-secondary/40 rounded-lg"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-2 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
                                 <HomeIcon size={16} />
                                 <div className="flex items-center gap-2 text-sm">Home</div>
                             </div>
@@ -35,7 +35,7 @@ const Sidebar = () => {
                                     : "hover:bg-secondary/40 rounded-lg"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-2 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
                                 <FavoriteIcon size={16} />
                                 <div className="flex items-center gap-2 text-sm justify-between w-full">
                                     <div>Favorites</div>
@@ -51,7 +51,7 @@ const Sidebar = () => {
                                     : "hover:bg-secondary/40 rounded-lg"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-2 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
                                 <Compass size={16} />
                                 <div className="flex items-center gap-2 text-sm">Discover</div>
                             </div>
@@ -64,7 +64,7 @@ const Sidebar = () => {
                                     : "hover:bg-secondary/40 rounded-lg"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-2 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
                                 <Settings size={16} />
                                 <div className="flex items-center gap-2 text-sm">Settings</div>
                             </div>
@@ -77,13 +77,13 @@ const Sidebar = () => {
                                     : "hover:bg-secondary/40 rounded-lg"
                             }
                         >
-                            <div className="flex gap-2 h-9 py-2 px-2 items-center">
+                            <div className="flex gap-2 h-9 py-2 px-3 items-center">
                                 <Info size={16} />
                                 <div className="flex items-center gap-2 text-sm">About</div>
                             </div>
                         </NavLink>
                     </div>
-                    <div className="opacity-20 px-2 flex justify-center">{/* <SidebarLogo height={136} /> */}</div>
+                    <div className="opacity-20 px-3 flex justify-center">{/* <SidebarLogo height={136} /> */}</div>
                     <Button variant={"outline"} className="gap-2">
                         <Download size={16} />
                         Export library

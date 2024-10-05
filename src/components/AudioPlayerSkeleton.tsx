@@ -1,6 +1,6 @@
 const AudioPlayerSkeleton = () => {
     return (
-        <div className="flex w-full h-full select-none items-center p-4 gap-4 sm:justify-between justify-start">
+        <div className="flex w-full h-full select-none items-center sm:px-6 px-4 p-4 gap-4 sm:justify-between justify-start">
             <div className="flex items-center justify-center">
                 <div className="rounded-full sm:h-10 sm:w-10 h-12 w-12 bg-input items-center justify-center text-muted" />
             </div>
