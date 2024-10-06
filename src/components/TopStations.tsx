@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Station } from "../utils/types";
+import { Station } from "@/utils/types";
 import { getTopStations } from "../services/radioAPI";
 import RadioStationGridItem from "./RadioStationGridItem";
 import Subtitlebar from "./ui snippets/Subtitlebar";
 import PaddedContainer from "./ui snippets/PaddedContainer";
 import ScrollButtons from "./ui snippets/ScrollButtons";
-import GridItemSkeleton from "./ui snippets/GridItemSkeleton";
+import CarouselContainer from "./ui snippets/CarouselContainer";
 
 const TopStations: React.FC = () => {
     const [topStations, setTopStations] = useState<Station[]>([]);
@@ -37,17 +37,11 @@ const TopStations: React.FC = () => {
             </div>
             {error ? <PaddedContainer>{error}</PaddedContainer> : ""}
 
-            <div className="pb-6 w-full">
-                <div
-                    ref={containerRef}
-                    className="flex sm:gap-3 gap-4 overflow-x-auto scrollarea sx pb-4 sm:px-0 px-4 snap-x snap-mandatory"
-                >
-                    {isLoading ? <GridItemSkeleton /> : ""}
-                    {topStations.map((station) => (
-                        <RadioStationGridItem key={station.stationuuid} station={station} />
-                    ))}
-                </div>
-            </div>
+            <CarouselContainer isLoading={isLoading} containerRef={containerRef}>
+                {topStations.map((station) => (
+                    <RadioStationGridItem key={station.stationuuid} station={station} />
+                ))}
+            </CarouselContainer>
         </div>
     );
 };

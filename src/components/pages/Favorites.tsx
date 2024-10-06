@@ -15,9 +15,11 @@ export const Favorites: React.FC = () => {
     return (
         <div className="w-full sm:pt-8 pt-2">
             <Subtitlebar>
-                Favorites
-                <div className="ml-2 text-muted-foreground font-medium sm:text-base text-sm inline-block">
-                    ({filteredFavorites.length})
+                <div className="flex items-center">
+                    <div>Favorites</div>
+                    <div className="ml-2 text-muted-foreground font-medium sm:text-base text-sm sm:mt-1 mt-0">
+                        ({filteredFavorites.length})
+                    </div>
                 </div>
             </Subtitlebar>
 

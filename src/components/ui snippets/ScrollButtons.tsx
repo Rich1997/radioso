@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeftCircle, ChevronRightCircle } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface ScrollButtonsProps {
     containerRef: React.RefObject<HTMLDivElement>;
-    contentLength: number; // New prop to track content changes
+    contentLength: number;
 }
 
 const ScrollButtons: React.FC<ScrollButtonsProps> = ({ containerRef, contentLength }) => {
@@ -26,7 +26,6 @@ const ScrollButtons: React.FC<ScrollButtonsProps> = ({ containerRef, contentLeng
         container.addEventListener("scroll", checkScroll);
         window.addEventListener("resize", checkScroll);
 
-        // Check scroll on mount and when content changes
         checkScroll();
 
         return () => {
@@ -35,7 +34,6 @@ const ScrollButtons: React.FC<ScrollButtonsProps> = ({ containerRef, contentLeng
         };
     }, [containerRef, checkScroll]);
 
-    // Re-check scroll when contentLength changes
     useEffect(() => {
         checkScroll();
     }, [contentLength, checkScroll]);
@@ -55,22 +53,22 @@ const ScrollButtons: React.FC<ScrollButtonsProps> = ({ containerRef, contentLeng
             <Button
                 id="buttonLeft"
                 size="oo"
-                variant="ghost"
+                variant="outline"
                 onClick={() => scroll("left")}
-                className={`${!canScrollLeft ? "text-muted-foreground" : ""}`}
                 disabled={!canScrollLeft}
+                className="h-8 w-8 rounded-full"
             >
-                <ChevronLeftCircle />
+                <ChevronLeft size={16} />
             </Button>
             <Button
                 id="buttonRight"
                 size="oo"
-                variant="ghost"
+                variant="outline"
                 onClick={() => scroll("right")}
-                className={`${!canScrollRight ? "text-muted-foreground" : ""}`}
                 disabled={!canScrollRight}
+                className="h-8 w-8 rounded-full"
             >
-                <ChevronRightCircle />
+                <ChevronRight size={16} />
             </Button>
         </div>
     );
