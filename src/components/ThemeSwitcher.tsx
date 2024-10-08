@@ -1,6 +1,7 @@
 import { Moon, Sun, Laptop } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 type Theme = "light" | "dark" | "system";
 
@@ -14,19 +15,19 @@ export default function ThemeSwitcher() {
         return null;
     }
 
-    const options: { value: Theme; icon: React.ReactNode }[] = [
-        { value: "dark", icon: <Moon size={14} /> },
-        { value: "light", icon: <Sun size={14} /> },
-        { value: "system", icon: <Laptop size={14} /> },
+    const options: { value: Theme; option: string; icon: React.ReactNode }[] = [
+        { value: "dark", option: "Dark", icon: <Moon size={14} /> },
+        { value: "light", option: "Light", icon: <Sun size={14} /> },
+        { value: "system", option: "System", icon: <Laptop size={14} /> },
     ];
 
     return (
         <div className="flex items-center justify-center h-8">
-            <div className="bg-background rounded-full flex border h-full w-full">
+            <div className="bg-background rounded-full border h-full w-full sm:flex hidden">
                 {options.map((option) => (
                     <button
                         key={option.value}
-                        onClick={() => setTheme(option.value.toLowerCase() as Theme)}
+                        onClick={() => setTheme(option.value as Theme)}
                         className={`p-2 rounded-full ${
                             theme === option.value
                                 ? "outline outline-1 outline-border text-foreground"
@@ -37,6 +38,29 @@ export default function ThemeSwitcher() {
                         {option.icon}
                     </button>
                 ))}
+            </div>
+            <div className="inline-flex sm:hidden h-9 w-9">
+                <select
+                    id="theme"
+                    className="absolute bg-background inset-0 w-full h-full opacity-0"
+                    value={theme}
+                    onChange={(e) => setTheme(e.target.value as Theme)}
+                >
+                    {options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.option}
+                        </option>
+                    ))}
+                </select>
+                <Button variant="outline" size="icon">
+                    {theme === "dark" ? (
+                        <Moon size={16} />
+                    ) : theme === "light" ? (
+                        <Sun size={16} />
+                    ) : (
+                        <Laptop size={16} />
+                    )}
+                </Button>
             </div>
         </div>
     );

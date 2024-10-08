@@ -22,7 +22,7 @@ export const Layout: React.FC = () => {
                 </div>
             </div>
             <footer className="sticky bottom-0 bg-muted z-30 w-full">
-                <div className="bg-gradient-to-t from-background to-transparent w-full h-8 -mt-8 relative sm:hidden block" />
+                <div className="bg-gradient-to-t from-background to-transparent w-full h-6 -mt-6 relative sm:hidden block" />
                 <div className="sm:h-[95px] h-[84px] sm:px-0 w-full">
                     <NowPlaying />
                 </div>
