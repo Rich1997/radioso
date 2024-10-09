@@ -39,10 +39,10 @@ export default function ThemeSwitcher() {
                     </button>
                 ))}
             </div>
-            <div className="inline-flex sm:hidden h-9 w-9">
+            <div className="inline-flex sm:hidden relative">
                 <select
                     id="theme"
-                    className="absolute bg-background inset-0 w-full h-full opacity-0"
+                    className="absolute bg-background inset-0 opacity-0"
                     value={theme}
                     onChange={(e) => setTheme(e.target.value as Theme)}
                 >
