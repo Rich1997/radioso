@@ -52,7 +52,7 @@ export default function ThemeSwitcher() {
                         </option>
                     ))}
                 </select>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" size="icon" className="rounded-full">
                     {theme === "dark" ? (
                         <Moon size={16} />
                     ) : theme === "light" ? (
