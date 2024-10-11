@@ -1,12 +1,15 @@
 import React, { useMemo } from "react";
 import RadioStation from "../RadioStation";
-import { useRadioContext } from "../../context/RadioContext";
 import GridContainer from "../ui snippets/GridContainer";
 import Subtitlebar from "../ui snippets/Subtitlebar";
 import PaddedContainer from "../ui snippets/PaddedContainer";
+import FavoritesImportExport from "../FavoritesExportImport";
+import { useFavoritesContext } from "@/context/FavoritesContext";
+import { Edit } from "lucide-react";
+import { Button } from "../ui/button";
 
 export const Favorites: React.FC = () => {
-    const { favorites } = useRadioContext();
+    const { favorites, isImporting } = useFavoritesContext();
 
     const filteredFavorites = useMemo(() => {
         return favorites.filter((station) => station.name.toLowerCase());
@@ -21,15 +24,30 @@ export const Favorites: React.FC = () => {
                         ({filteredFavorites.length})
                     </div>
                 </div>
+                <div className="flex items-center gap-4 text-muted-foreground">
+                    <Button variant="ghost_alt" size="oo">
+                        <div className="flex items-center gap-2">
+                            <Edit size={16} />
+                            Select
+                        </div>
+                    </Button>
+                    <FavoritesImportExport />
+                </div>
             </Subtitlebar>
 
-            <GridContainer>
-                {filteredFavorites.map((station) => {
-                    return <RadioStation key={station.stationuuid} station={station} />;
-                })}
-            </GridContainer>
+            {isImporting ? (
+                <PaddedContainer>Importing favorites...</PaddedContainer>
+            ) : (
+                <>
+                    <GridContainer>
+                        {filteredFavorites.map((station) => {
+                            return <RadioStation key={station.stationuuid} station={station} />;
+                        })}
+                    </GridContainer>
 
-            {filteredFavorites.length === 0 && <PaddedContainer>No favorite stations found.</PaddedContainer>}
+                    {filteredFavorites.length === 0 && <PaddedContainer>No favorite stations found.</PaddedContainer>}
+                </>
+            )}
         </div>
     );
 };

@@ -6,6 +6,7 @@ import { useRadioContext } from "../context/RadioContext";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Card } from "./ui/card";
 import AnimatedWave from "./ui snippets/AnimatedWave";
+import { useFavoritesContext } from "@/context/FavoritesContext";
 
 interface RadioStationProps {
     station: Station;
@@ -13,12 +14,11 @@ interface RadioStationProps {
 }
 
 export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = false }) => {
-    const { currentStation, isPlaying, playStation, toggleFavorite, favorites, pauseStation } = useRadioContext();
+    const { currentStation, isPlaying, playStation, pauseStation } = useRadioContext();
+    const { toggleFavorite, favorites } = useFavoritesContext();
 
-    // Check if this station is currently playing
     const isCurrentStationPlaying = currentStation?.stationuuid === station.stationuuid && isPlaying;
 
-    // Check if this station is a favorite
     const isFavorite = favorites.some((fav) => fav.stationuuid === station.stationuuid);
 
     const handlePlayPause = (e: React.MouseEvent) => {
@@ -26,9 +26,9 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
             return;
         }
         if (isCurrentStationPlaying) {
-            pauseStation(); // Pause the station if it's playing
+            pauseStation();
         } else {
-            playStation(station); // Play the station if it's not playing or a different station
+            playStation(station);
         }
     };
 

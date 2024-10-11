@@ -2,16 +2,16 @@ import { NavLink } from "react-router-dom";
 import HomeIcon from "./assets/icons/HomeIcon";
 import FavoriteIcon from "./assets/icons/FavoriteIcon";
 import { Download } from "lucide-react";
-import { useRadioContext } from "@/context/RadioContext";
 import { Button } from "./ui/button";
 import InfoIcon from "./assets/icons/InfoIcon";
 import ExploreIcon from "./assets/icons/ExploreIcon";
 import SettingsIcon from "./assets/icons/SettingsIcon";
 import { ListItem } from "@/utils/types";
+import { useFavoritesContext } from "@/context/FavoritesContext";
 // import SidebarLogo from "./assets/SidebarLogo";
 
 const Sidebar = () => {
-    const { favorites } = useRadioContext();
+    const { favorites } = useFavoritesContext();
 
     const listItems: ListItem[] = [
         {

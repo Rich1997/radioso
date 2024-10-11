@@ -5,12 +5,10 @@ import { handleImageError } from "@/lib/utils";
 interface RadioContextType {
     currentStation: Station | null;
     isPlaying: boolean;
-    favorites: Station[];
     recentlyPlayed: Station[];
     playStation: (station: Station) => void;
     pauseStation: () => void;
     setIsPlaying: (isPlaying: boolean) => void;
-    toggleFavorite: (station: Station) => void;
 }
 
 const RadioContext = createContext<RadioContextType | undefined>(undefined);
@@ -18,21 +16,10 @@ const RadioContext = createContext<RadioContextType | undefined>(undefined);
 export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [currentStation, setCurrentStation] = useState<Station | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
-    const [favorites, setFavorites] = useState<Station[]>([]);
     const [recentlyPlayed, setRecentlyPlayed] = useState<Station[]>([]);
 
     useEffect(() => {
-        const storedFavorites = localStorage.getItem("favorites");
         const storedRecentlyPlayed = localStorage.getItem("recentlyPlayed");
-
-        if (storedFavorites) {
-            try {
-                setFavorites(JSON.parse(storedFavorites) || []);
-            } catch (error) {
-                console.error("Error parsing favorites from localStorage", error);
-                setFavorites([]);
-            }
-        }
 
         if (storedRecentlyPlayed) {
             try {
@@ -43,10 +30,6 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             }
         }
     }, []);
-
-    useEffect(() => {
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-    }, [favorites]);
 
     useEffect(() => {
         localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
@@ -123,15 +106,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
 
     const pauseStation = () => {
-        setIsPlaying(false); // Pause the current station
-    };
-
-    const toggleFavorite = (station: Station) => {
-        if (favorites.some((fav) => fav.stationuuid === station.stationuuid)) {
-            setFavorites(favorites.filter((fav) => fav.stationuuid !== station.stationuuid));
-        } else {
-            setFavorites([...favorites, station]);
-        }
+        setIsPlaying(false);
     };
 
     return (
@@ -139,12 +114,10 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             value={{
                 currentStation,
                 isPlaying,
-                favorites,
                 recentlyPlayed,
                 playStation,
                 pauseStation,
                 setIsPlaying,
-                toggleFavorite,
             }}
         >
             {children}
