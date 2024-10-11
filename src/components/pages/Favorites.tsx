@@ -24,7 +24,7 @@ export const Favorites: React.FC = () => {
                         ({filteredFavorites.length})
                     </div>
                 </div>
-                <div className="flex items-center gap-4 text-muted-foreground">
+                <div className="flex items-center gap-4 text-muted-foreground justify-between sm:w-auto w-full sm:px-0 px-2 sm:pb-0 pb-2">
                     <Button variant="ghost_alt" size="oo">
                         <div className="flex items-center gap-2">
                             <Edit size={16} />
