@@ -16,6 +16,12 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --scrollbar-track: hsl(var(--background));
+    --scrollbar-thumb: hsl(var(--border));
+}
+
+* {
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
 html,
@@ -127,19 +133,6 @@ code {
     transition: scrollbar-color 0.3s ease;
 }
 
-.scrollarea::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-}
-
-.scrollarea::-webkit-scrollbar-thumb {
-    background-color: var(--scrollbar-thumb);
-}
-
 .scrollarea:hover {
     scrollbar-color: var(--scrollbar-thumb) transparent;
-}
-
-:root {
-    --scrollbar-track: hsl(var(--background));
-    --scrollbar-thumb: hsl(var(--border));
 }
