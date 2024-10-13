@@ -8,6 +8,7 @@ import ExploreIcon from "./assets/icons/ExploreIcon";
 import SettingsIcon from "./assets/icons/SettingsIcon";
 import { ListItem } from "@/utils/types";
 import { useFavoritesContext } from "@/context/FavoritesContext";
+import { ScrollArea } from "./ui/scroll-area";
 // import SidebarLogo from "./assets/SidebarLogo";
 
 const Sidebar = () => {
@@ -43,8 +44,8 @@ const Sidebar = () => {
     ];
 
     return (
-        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[232px] select-none px-3">
-            <nav className="h-full scrollarea mb-4 overflow-y-auto overflow-x-hidden">
+        <aside className="sticky top-[76px] h-[calc(100dvh-172px)] hidden shrink-0 sm:sticky sm:block py-8 border-r w-[232px] select-none">
+            <ScrollArea className="h-full mb-4 overflow-y-auto overflow-x-hidden px-3">
                 <div className="flex flex-col items-stretch gap-6 justify-between h-full">
                     <div className="flex flex-col gap-1 text-sm font-medium">
                         {listItems.map((item, index) => (
@@ -75,7 +76,7 @@ const Sidebar = () => {
                         Export library
                     </Button>
                 </div>
-            </nav>
+            </ScrollArea>
         </aside>
     );
 };

@@ -50,41 +50,6 @@ code {
     min-height: 100svh;
 }
 
-.scrollarea::-webkit-scrollbar {
-    width: 0px;
-}
-
-.scrollarea.sx::-webkit-scrollbar {
-    height: 12px;
-}
-
-.scrollarea::-webkit-scrollbar-track {
-    background: hsl(var(--background));
-}
-
-@media (min-width: 641px) {
-    .scrollarea:hover::-webkit-scrollbar-thumb,
-    .scrollarea.show-thumb::-webkit-scrollbar-thumb {
-        background: hsl(var(--border));
-        border-radius: var(--radius);
-        scrollbar-color: hsl(var(--border)) hsl(var(--background));
-        scrollbar-width: thin;
-    }
-}
-
-@media (max-width: 640px) {
-    .scrollarea::-webkit-scrollbar-thumb {
-        background: hsl(var(--border));
-        border-radius: var(--radius);
-        scrollbar-color: hsl(var(--border)) hsl(var(--background));
-        scrollbar-width: thin;
-    }
-
-    .scrollarea.sx::-webkit-scrollbar {
-        height: 0;
-    }
-}
-
 .slider {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -142,4 +107,39 @@ code {
 /* Utility classes for the animation */
 .animate-wave {
     animation: wave 1s infinite ease-in-out;
+}
+
+/* Utility classes for scrollbar */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.custom-scrollbar:hover {
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+}
+
+:root {
+    --scrollbar-thumb: hsl(var(--muted-foreground) / 0.3);
 }
