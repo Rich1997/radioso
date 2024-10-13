@@ -5,6 +5,7 @@ import Thumbnail from "./ui snippets/Thumbnail";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
 import { TriangleAlert } from "lucide-react";
 import Alert from "./Alert";
+import { ScrollArea } from "./ui/scroll-area";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -205,9 +206,9 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <Thumbnail size="200" imgSrc={thumb} stationName={stationName} />
                                     </div>
                                     <div className="flex flex-col items-center text-center">
-                                        <h3 className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 sm:max-h-12 overflow-auto scrollarea sm:max-w-xl max-w-xs">
+                                        <ScrollArea className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 h-10 sm:h-12 sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                             {stationName}
-                                        </h3>
+                                        </ScrollArea>
                                         <p className="text-muted-foreground sm:text-base text-sm">
                                             {stationCountry}
                                             {stationCountry && stationState ? ", " : ""}
