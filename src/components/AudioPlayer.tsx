@@ -206,7 +206,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <Thumbnail size="200" imgSrc={thumb} stationName={stationName} />
                                     </div>
                                     <div className="flex flex-col items-center text-center">
-                                        <ScrollArea className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 h-10 sm:h-12 sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
+                                        <ScrollArea className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                             {stationName}
                                         </ScrollArea>
                                         <p className="text-muted-foreground sm:text-base text-sm">
