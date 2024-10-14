@@ -18,3 +18,7 @@ export function concatenateFirstLetters(inputString: string) {
 export function handleImageError(channelName: string) {
     return "https://placehold.co/192?text=" + concatenateFirstLetters(channelName);
 }
+
+export function isMobileUserAgent() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}

@@ -16,12 +16,11 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    --scrollbar-track: hsl(var(--background));
     --scrollbar-thumb: hsl(var(--border));
 }
 
 * {
-    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-color: var(--scrollbar-thumb) transparent;
 }
 
 html,
@@ -101,11 +100,13 @@ code {
 }
 
 @media (max-width: 640px) {
+    .slider::-webkit-slider-thumb:hover,
     .slider::-webkit-slider-thumb:active {
         transform: scale(2);
         -webkit-transition: transform 0.3s ease-in-out;
     }
 
+    .slider::-moz-range-thumb:hover,
     .slider::-moz-range-thumb:active {
         transform: scale(2);
         transition: transform 0.3s ease-in-out;
