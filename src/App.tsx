@@ -4,13 +4,8 @@ import Layout from "./components/Layout";
 import Home from "./components/pages/Home";
 import Favorites from "./components/pages/Favorites";
 import SearchResults from "./components/pages/SearchResults";
-import { useTheme } from "./context/ThemeContext";
-import scrollbarThemeController from "./utils/ScrollbarColorController";
 
 const App: React.FC = () => {
-    const { theme } = useTheme();
-    scrollbarThemeController(theme);
-
     return (
         <Router>
             <Routes>
