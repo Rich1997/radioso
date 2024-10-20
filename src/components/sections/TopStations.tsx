@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Station } from "@/utils/types";
-import { getTopStations } from "../services/radioAPI";
-import RadioStationGridItem from "./RadioStationGridItem";
-import Subtitlebar from "./ui snippets/Subtitlebar";
-import PaddedContainer from "./ui snippets/PaddedContainer";
-import ScrollButtons from "./ui snippets/ScrollButtons";
-import CarouselContainer from "./ui snippets/CarouselContainer";
+import { getTopStations } from "../../services/radioAPI";
+import RadioStationGridItem from "../RadioStationGridItem";
+import Subtitlebar from "../ui snippets/Subtitlebar";
+import PaddedContainer from "../ui snippets/PaddedContainer";
+import ScrollButtons from "../ui snippets/ScrollButtons";
+import CarouselContainer from "../ui snippets/CarouselContainer";
 
 const TopStations: React.FC = () => {
     const [topStations, setTopStations] = useState<Station[]>([]);

@@ -53,9 +53,7 @@ export const RadioStationGridItem: React.FC<RadioStationGridItemProps> = ({ stat
                             {station.name}
                         </div>
                         <div className="line-clamp-2 text-muted-foreground text-xs" title={station.country}>
-                            {station.countrycode}
-                            {station.country && station.state ? ", " : ""}
-                            {station.state ?? station.state}
+                            {station.country || station.state || ""}
                         </div>
                     </div>
                     <div className="flex controls-area items-center">

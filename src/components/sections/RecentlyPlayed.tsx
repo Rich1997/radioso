@@ -1,8 +1,8 @@
 import React from "react";
-import { useRadioContext } from "../context/RadioContext";
-import RadioStation from "./RadioStation";
-import Subtitlebar from "./ui snippets/Subtitlebar";
-import GridContainer from "./ui snippets/GridContainer";
+import { useRadioContext } from "../../context/RadioContext";
+import RadioStation from "../RadioStation";
+import Subtitlebar from "../ui snippets/Subtitlebar";
+import GridContainer from "../ui snippets/GridContainer";
 
 type RecentlyPlayedProps = {
     items?: number;
