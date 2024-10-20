@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 
 const GridItemSkeleton = () => {
     return (
-        <Card className="flex items-start justify-center select-none sm:rounded-lg rounded-none gap-4 animate-pulse shrink-0 bg-background border-0 sm:px-0 px-2">
+        <Card className="flex items-start justify-center select-none sm:rounded-lg rounded-none gap-4 animate-pulse shrink-0 bg-background border-0 sm:px-0 px-2 sm:pt-0 pt-2">
             <div className="flex flex-col items-center gap-3 w-full">
                 <div>
                     <div className="sm:hidden block">
