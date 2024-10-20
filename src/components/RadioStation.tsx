@@ -34,11 +34,11 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
 
     return (
         <Card
-            className="flex items-center justify-between sm:p-2 px-4 py-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-background active:bg-muted sm:rounded-lg rounded-none gap-4 bg-background sm:border border-0"
+            className="flex items-center justify-between sm:p-2 px-4 py-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-background active:bg-muted sm:rounded-lg rounded-none gap-4 bg-background border-0 sm:-mx-2 mx-0"
             onClick={handlePlayPause}
             title={station.name}
         >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
                 <div className="relative">
                     <div className="sm:hidden block">
                         <Thumbnail size="48" imgSrc={station.favicon} stationName={station.name} />

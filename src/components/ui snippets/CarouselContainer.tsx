@@ -12,10 +12,10 @@ const CarouselContainer: React.FC<CarouselContainerProps> = ({ isLoading, childr
     const isMobile = isMobileUserAgent();
 
     return (
-        <div className="w-full sm:pt-0 pt-2 sm:pb-14 pb-6">
+        <div className="w-full pt-0 sm:pb-14 pb-6">
             <div
                 ref={containerRef}
-                className={`flex sm:gap-3 gap-4 overflow-x-auto pb-4 sm:px-0 px-4 snap-x snap-mandatory scrollarea ${
+                className={`flex sm:gap-4 gap-0 overflow-x-auto pb-4 sm:px-0 px-2 snap-x snap-mandatory scrollarea ${
                     isMobile ? "mobile" : ""
                 }`}
             >

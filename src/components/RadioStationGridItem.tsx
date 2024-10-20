@@ -31,7 +31,7 @@ export const RadioStationGridItem: React.FC<RadioStationGridItemProps> = ({ stat
 
     return (
         <Card
-            className="flex items-start justify-center sm:p-2 pt-0 pb-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-background active:bg-muted active:rounded-lg sm:rounded-lg rounded-none gap-4 bg-background sm:border border-0 sm:w-[196px] w-40 sm:snap-start snap-none"
+            className="flex items-start justify-center cursor-pointer select-none sm:active:bg-background active:bg-muted active:rounded-lg sm:rounded-lg rounded-none gap-4 bg-background border-0 sm:w-[196px] w-44 sm:snap-start snap-none sm:p-0 p-2 group"
             onClick={handlePlayPause}
             title={station.name}
         >
@@ -40,8 +40,8 @@ export const RadioStationGridItem: React.FC<RadioStationGridItemProps> = ({ stat
                     <div className="sm:hidden block">
                         <Thumbnail size="160" imgSrc={station.favicon} stationName={station.name} />
                     </div>
-                    <div className="sm:block hidden">
-                        <Thumbnail size="180" imgSrc={station.favicon} stationName={station.name} />
+                    <div className="sm:block hidden group-hover:opacity-80">
+                        <Thumbnail size="192" imgSrc={station.favicon} stationName={station.name} />
                     </div>
                     <div className="top-0 absolute bg-muted py-1 rounded-br-md rounded-tl-md">
                         {isCurrentStationPlaying ? <AnimatedWave /> : ""}

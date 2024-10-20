@@ -2,8 +2,8 @@ import { Card } from "../ui/card";
 
 const Skeleton = () => {
     return (
-        <Card className="flex items-center justify-between sm:p-2 py-2 px-4 select-none sm:rounded-lg rounded-none gap-4 animate-pulse sm:border border-0">
-            <div className="flex items-center gap-2 w-full">
+        <Card className="flex items-center justify-between sm:p-0 py-2 px-4 select-none sm:rounded-lg rounded-none gap-4 animate-pulse border-0 bg-background">
+            <div className="flex items-center gap-3 w-full">
                 <div>
                     <div className="sm:hidden block">
                         <div className="h-12 w-12 bg-muted rounded-lg" />
