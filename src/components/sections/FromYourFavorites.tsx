@@ -39,8 +39,11 @@ const FromYourFavorites: React.FC = () => {
                 <Subtitlebar>From your favorites</Subtitlebar>
                 <div className="flex items-center gap-6">
                     <Link to="/favorites" className="sm:pb-4 pb-2">
-                        <Button variant="outline" size="oo" className="h-8 px-4 rounded-full">
+                        <Button variant="outline" size="oo" className="h-8 px-4 rounded-full sm:block hidden">
                             View all
+                        </Button>
+                        <Button variant="ghost_alt" size="oo" className="sm:hidden block">
+                            View all →
                         </Button>
                     </Link>
                     <ScrollButtons containerRef={containerRef} contentLength={fromYourFavorites.length} />

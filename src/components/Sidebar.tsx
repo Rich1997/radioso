@@ -1,15 +1,12 @@
 import { NavLink } from "react-router-dom";
 import HomeIcon from "./assets/icons/HomeIcon";
 import FavoriteIcon from "./assets/icons/FavoriteIcon";
-import { Download } from "lucide-react";
-import { Button } from "./ui/button";
 import InfoIcon from "./assets/icons/InfoIcon";
 import ExploreIcon from "./assets/icons/ExploreIcon";
 import SettingsIcon from "./assets/icons/SettingsIcon";
 import { ListItem } from "@/utils/types";
 import { useFavoritesContext } from "@/context/FavoritesContext";
 import { ScrollArea } from "./ui/scroll-area";
-// import SidebarLogo from "./assets/SidebarLogo";
 
 const Sidebar = () => {
     const { favorites } = useFavoritesContext();
@@ -70,11 +67,6 @@ const Sidebar = () => {
                             </NavLink>
                         ))}
                     </div>
-                    <div className="opacity-20 px-3 flex justify-center">{/* <SidebarLogo height={136} /> */}</div>
-                    <Button variant={"outline"} className="gap-2">
-                        <Download size={16} />
-                        Export library
-                    </Button>
                 </div>
             </ScrollArea>
         </aside>
