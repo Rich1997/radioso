@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+<p align="center">
+  <br>
+  <img width="400" src="./public/logo.png" alt="radioso logo">
+  <br>
+  <br>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align='center'>radioso</h1>
 
-Currently, two official plugins are available:
+<p align='center'>
+Open source internet radio.
+<br>
+<br>
+Live site 📡 <a href="https://radioso.netlify.app">https://radioso.netlify.app</a>
+<br>
+<br>
+<a href="https://app.netlify.com/sites/radioso/deploys"><img src="https://api.netlify.com/api/v1/badges/f665675c-491f-43d3-8d53-f11489320340/deploy-status" alt="Netlify Status"></a>&nbsp
+<a href="https://github.com/Rich1997/radioso/commits/master/"><img src="https://img.shields.io/github/commit-activity/w/Rich1997/radioso
+" alt="weekly commit activity"></a>
+<br><br>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Available Features
 
-## Expanding the ESLint configuration
+-   Search and add stations
+-   Add station to favorites
+-   Import and export favorites
+-   Support for dark and light mode
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features Roadmap
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+-   [ ] Show details for radio station
+-   [ ] Search and filter favorites
+-   [ ] UI theming support
+-   [ ] Save preferences
+-   [ ] Import/export preferences
+-   [ ] Recommendation system based on genres selected by user
+-   [ ] Support for custom lists
+-   [ ] Import/export lists
+-   [ ] Consolidate library (including favorites and lists)
