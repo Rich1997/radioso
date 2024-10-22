@@ -45,7 +45,7 @@ const SearchResults: React.FC = () => {
 
     return (
         <div className="w-full">
-            <div className="sticky sm:top-[76px] top-[90px] bg-background z-10 sm:pt-8 pt-2">
+            <div className="sticky sm:top-[75px] top-[90px] bg-background z-10 sm:pt-8 pt-2 sm:-mx-4 sm:px-4 -mx-0">
                 <Link to="/" className="text-sm font-normal text-muted-foreground hover:text-foreground sm:px-0 px-4">
                     ← Go back home
                 </Link>

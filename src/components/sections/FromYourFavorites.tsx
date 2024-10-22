@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Station } from "@/utils/types";
 import RadioStationGridItem from "../RadioStationGridItem";
 import Subtitlebar from "../ui snippets/Subtitlebar";
-import PaddedContainer from "../ui snippets/PaddedContainer";
 import ScrollButtons from "../ui snippets/ScrollButtons";
 import CarouselContainer from "../ui snippets/CarouselContainer";
 import { useFavoritesContext } from "@/context/FavoritesContext";
@@ -11,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const FromYourFavorites: React.FC = () => {
     const [fromYourFavorites, setFromYourFavorites] = useState<Station[]>([]);
-    const [error, setError] = useState<string | null>(null);
+    const [isEmpty, setIsEmpty] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState(true);
     const containerRef = useRef<HTMLDivElement>(null);
     const { favorites } = useFavoritesContext();
@@ -25,13 +24,21 @@ const FromYourFavorites: React.FC = () => {
         if (favorites.length > 0) {
             const stations = favorites.slice(0, 18);
             setFromYourFavorites(stations);
-            setError(null);
+            setIsEmpty(false);
         } else {
             setFromYourFavorites([]);
-            setError("No favorites yet. Add some stations to your favorites list.");
+            setIsEmpty(true);
         }
         setIsLoading(false);
     };
+
+    if (!isLoading && isEmpty) {
+        return null;
+    }
+
+    if (isLoading && isEmpty) {
+        return null;
+    }
 
     return (
         <div className="flex-1">
@@ -49,8 +56,6 @@ const FromYourFavorites: React.FC = () => {
                     <ScrollButtons containerRef={containerRef} contentLength={fromYourFavorites.length} />
                 </div>
             </div>
-            {error ? <PaddedContainer>{error}</PaddedContainer> : ""}
-
             <CarouselContainer isLoading={isLoading} containerRef={containerRef}>
                 {fromYourFavorites.map((station) => (
                     <RadioStationGridItem key={station.stationuuid} station={station} />

@@ -148,7 +148,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     </div>
                                     <div className="sm:block hidden">
                                         <Thumbnail
-                                            key={`mobile-${stationName}`}
+                                            key={stationName}
                                             size="64"
                                             imgSrc={thumb}
                                             stationName={stationName}

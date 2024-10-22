@@ -6,7 +6,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 const Topbar = () => {
     return (
-        <div className="flex sm:gap-6 gap-4 bg-background w-full justify-between sm:items-center sm:px-6 px-4 sm:py-4 pt-6 pb-4 items-center sm:h-[75px] h-[90px]">
+        <div className="flex sm:gap-6 gap-4 bg-background w-full justify-between sm:items-center sm:px-6 px-4 sm:py-4 pt-6 pb-4 items-center sm:h-[75px] h-[90px] sm:border-b border-b-none">
             <Link to="/">
                 <div className="hidden sm:block min-w-[208px]">
                     <Logo height={24} primaryColor="hsl(var(--primary))" secondaryColor="hsl(var(--secondary))" />

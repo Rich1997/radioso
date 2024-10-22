@@ -22,7 +22,7 @@ export const NowPlaying: React.FC = () => {
     };
 
     return (
-        <div className="flex items-center text-muted-foreground h-full sm:px-6 px-4 p-4">
+        <div className="flex items-center text-muted-foreground h-full sm:px-6 sm:py-3 px-4 p-4">
             <AudioPlayer
                 audioUrl={currentStation.url}
                 thumb={currentStation.favicon}

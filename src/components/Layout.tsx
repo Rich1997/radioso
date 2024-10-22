@@ -8,12 +8,11 @@ import BottomNav from "./BottomNav";
 export const Layout: React.FC = () => {
     return (
         <div className="relative flex min-h-patch flex-col bg-background">
-            <div className="flex flex-1 flex-col">
+            <div className="flex flex-1 flex-col overflow-y-auto">
                 <div className="sticky top-0 z-10 w-full">
                     <Topbar />
                     <div className="bg-gradient-to-b from-background to-transparent w-full h-5 -mb-5 relative sm:hidden block" />
                 </div>
-                <div className="bg-border sticky top-[75px] h-[1px] z-20 sm:block hidden" />
                 <div className="flex gap-6 flex-1 sm:pr-6 pr-0">
                     <Sidebar />
                     <div className="sm:max-w-[calc(100%-256px)] max-w-full mx-auto sm:w-[1240px] w-full">
