@@ -15,8 +15,7 @@ Live site 📡 <a href="https://radioso.netlify.app">https://radioso.netlify.app
 <br>
 <br>
 <a href="https://app.netlify.com/sites/radioso/deploys"><img src="https://api.netlify.com/api/v1/badges/f665675c-491f-43d3-8d53-f11489320340/deploy-status" alt="Netlify Status"></a>&nbsp
-<a href="https://github.com/Rich1997/radioso/commits/master/"><img src="https://img.shields.io/github/commit-activity/w/Rich1997/radioso
-" alt="weekly commit activity"></a>
+<a href="https://github.com/Rich1997/radioso/commits/master/"><img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/w/Rich1997/radioso"></a>
 <br><br>
 </p>
 
