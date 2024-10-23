@@ -2,6 +2,10 @@ import { Station } from "../utils/types";
 
 const BASE_URL = "https://de1.api.radio-browser.info/json";
 
+export interface CurrentSong {
+    name: string;
+}
+
 export const searchStations = async (searchTerm: string): Promise<Station[]> => {
     try {
         const response = await fetch(`${BASE_URL}/stations/byname/${encodeURIComponent(searchTerm)}`);
@@ -82,5 +86,29 @@ export const getTopStations = async (limit: number = 10): Promise<Station[]> => 
     } catch (error) {
         console.error("Error fetching top stations:", error);
         throw error;
+    }
+};
+
+export const getCurrentSong = async (stationUrl: string): Promise<CurrentSong | null> => {
+    try {
+        const response = await fetch("/.netlify/functions/getCurrentSong", {
+            method: "POST",
+            body: JSON.stringify({ stationUrl }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch current song");
+        }
+
+        const data = await response.json();
+
+        if (data.currentSong) {
+            return { name: data.currentSong };
+        }
+
+        return null;
+    } catch (error) {
+        console.error("Error fetching current song:", error);
+        return null;
     }
 };

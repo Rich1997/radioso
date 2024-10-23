@@ -19,15 +19,12 @@ Live site 📡 <a href="https://radioso.netlify.app">https://radioso.netlify.app
 <br><br>
 </p>
 
-## Available Features
-
--   Search and add stations
--   Add station to favorites
--   Import and export favorites
--   Support for dark and light mode
-
 ## Features Roadmap
 
+-   [x] Search and add stations
+-   [x] Add station to favorites
+-   [x] Import and export favorites
+-   [x] Support for dark and light mode
 -   [ ] Show details for radio station
 -   [ ] Search and filter favorites
 -   [ ] UI theming support
@@ -37,3 +34,7 @@ Live site 📡 <a href="https://radioso.netlify.app">https://radioso.netlify.app
 -   [ ] Support for custom lists
 -   [ ] Import/export lists
 -   [ ] Consolidate library (including favorites and lists)
+-   [ ] Progressive Web App (PWA) Integration
+        <br><br>
+-   [x] _[Optional]_ Retrieve song information from stream
+-   [ ] _[Optional]_ Support for playback of HLS streams on desktop

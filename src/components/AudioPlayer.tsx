@@ -6,6 +6,7 @@ import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
 import { TriangleAlert } from "lucide-react";
 import Alert from "./Alert";
 import { ScrollArea } from "./ui/scroll-area";
+import { useRadioContext } from "@/context/RadioContext";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -38,6 +39,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     });
     const [error, setError] = useState<string | null>(null);
     const [showAlert, setShowAlert] = useState(false);
+    const { currentSong } = useRadioContext();
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -158,11 +160,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <div className="font-semibold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
                                             {stationName}
                                         </div>
-                                        <div className="sm:text-sm text-xs text-muted-foreground line-clamp-1 text-left">
-                                            {stationCountry}
-                                            {stationCountry && stationState ? ", " : ""}
-                                            {stationState}
-                                        </div>
+                                        {currentSong ? (
+                                            <p className="text-muted-foreground line-clamp-1 max-w-md text-ellipsis">
+                                                {currentSong ? currentSong.name : ""}
+                                            </p>
+                                        ) : (
+                                            <div className="sm:text-sm text-xs text-muted-foreground line-clamp-1 text-left">
+                                                {stationCountry}
+                                                {stationCountry && stationState ? ", " : ""}
+                                                {stationState}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="sm:flex hidden items-center gap-2 controls-area">
@@ -209,11 +217,17 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <ScrollArea className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                             {stationName}
                                         </ScrollArea>
-                                        <p className="text-muted-foreground sm:text-base text-sm">
-                                            {stationCountry}
-                                            {stationCountry && stationState ? ", " : ""}
-                                            {stationState}
-                                        </p>
+                                        {currentSong ? (
+                                            <ScrollArea className="select-text text-muted-foreground max-h-5 h-fit sm:max-h-6 overflow-auto sm:max-w-xl max-w-xs">
+                                                {currentSong ? currentSong.name : ""}
+                                            </ScrollArea>
+                                        ) : (
+                                            <p className="text-muted-foreground sm:text-base text-sm">
+                                                {stationCountry}
+                                                {stationCountry && stationState ? ", " : ""}
+                                                {stationState}
+                                            </p>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center w-2/3 gap-10">

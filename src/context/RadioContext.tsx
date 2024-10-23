@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { Station } from "../utils/types";
 import { handleImageError } from "@/lib/utils";
+import { CurrentSong, getCurrentSong } from "@/services/radioAPI";
 
 interface RadioContextType {
     currentStation: Station | null;
@@ -9,6 +10,8 @@ interface RadioContextType {
     playStation: (station: Station) => void;
     pauseStation: () => void;
     setIsPlaying: (isPlaying: boolean) => void;
+    currentSong: CurrentSong | null;
+    setCurrentSong: (song: CurrentSong | null) => void;
 }
 
 const RadioContext = createContext<RadioContextType | undefined>(undefined);
@@ -17,6 +20,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const [currentStation, setCurrentStation] = useState<Station | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [recentlyPlayed, setRecentlyPlayed] = useState<Station[]>([]);
+    const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
 
     useEffect(() => {
         const storedRecentlyPlayed = localStorage.getItem("recentlyPlayed");
@@ -30,6 +34,25 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             }
         }
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
+    }, [recentlyPlayed]);
+
+    useEffect(() => {
+        if (currentStation) {
+            setCurrentSong(null);
+            const fetchCurrentSong = async () => {
+                const song = await getCurrentSong(currentStation.url);
+                setCurrentSong(song);
+            };
+
+            fetchCurrentSong();
+            const interval = setInterval(fetchCurrentSong, 30000);
+
+            return () => clearInterval(interval);
+        }
+    }, [currentStation]);
 
     useEffect(() => {
         localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
@@ -79,20 +102,20 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 img.onload = () => {
                     navigator.mediaSession.metadata = new MediaMetadata({
                         title: currentStation.name,
-                        artist: currentStation.country,
+                        artist: currentSong ? `${currentSong.name}` : currentStation.country,
                         artwork: artwork,
                     });
                 };
                 img.onerror = () => {
                     navigator.mediaSession.metadata = new MediaMetadata({
                         title: currentStation.name,
-                        artist: currentStation.country,
+                        artist: currentSong ? `${currentSong.name}` : currentStation.country,
                         artwork: artwork.map((item) => ({ ...item, src: fallbackImage })),
                     });
                 };
             }
         }
-    }, [currentStation, isPlaying]);
+    }, [currentStation, isPlaying, currentSong]);
 
     const playStation = (station: Station) => {
         setCurrentStation(station);
@@ -118,6 +141,8 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 playStation,
                 pauseStation,
                 setIsPlaying,
+                currentSong,
+                setCurrentSong,
             }}
         >
             {children}
