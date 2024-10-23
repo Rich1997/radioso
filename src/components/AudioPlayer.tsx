@@ -3,7 +3,7 @@ import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
 import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
-import { TriangleAlert } from "lucide-react";
+import { Loader2, TriangleAlert } from "lucide-react";
 import Alert from "./Alert";
 import { ScrollArea } from "./ui/scroll-area";
 import { useRadioContext } from "@/context/RadioContext";
@@ -40,6 +40,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     const [error, setError] = useState<string | null>(null);
     const [showAlert, setShowAlert] = useState(false);
     const { currentSong } = useRadioContext();
+    const { isLoading, setIsLoading } = useRadioContext();
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -47,11 +48,16 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             audio.src = audioUrl;
             audio.load();
             if (isPlaying) {
-                audio.play().catch((error) => {
-                    console.error("Error playing audio:", error);
-                    setError("Station could not be played :-(");
-                    onPlayPause();
-                });
+                audio
+                    .play()
+                    .catch((error) => {
+                        console.error("Error playing audio:", error);
+                        setError("Station could not be played :-(");
+                        onPlayPause();
+                    })
+                    .finally(() => {
+                        setIsLoading(false);
+                    });
             }
         }
     }, [audioUrl]);
@@ -105,12 +111,16 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         [onPlayPause]
     );
 
-    const renderPlayPauseButton = (size: number) =>
-        isPlaying ? (
+    const renderPlayPauseButton = (size: number) => {
+        if (isLoading) {
+            return <Loader2 size={size} className="text-primary animate-spin" />;
+        }
+        return isPlaying ? (
             <FaCirclePause size={size} className="text-primary" />
         ) : (
             <FaCirclePlay size={size} className="text-primary" />
         );
+    };
 
     return (
         <div className="relative h-full w-full">
@@ -221,7 +231,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         </ScrollArea>
                                         <div className="sm:text-base text-sm text-muted-foreground">
                                             {currentSong ? (
-                                                <ScrollArea className="leading-5 sm:leading-6 max-h-5 h-fit sm:max-h-6 overflow-auto sm:max-w-xl max-w-xs">
+                                                <ScrollArea className="leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                                     {currentSong ? currentSong.name : ""}
                                                 </ScrollArea>
                                             ) : (

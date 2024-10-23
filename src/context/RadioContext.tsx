@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { Station } from "../utils/types";
 import { handleImageError } from "@/lib/utils";
 import { CurrentSong, getCurrentSong } from "@/services/radioAPI";
@@ -12,6 +12,8 @@ interface RadioContextType {
     setIsPlaying: (isPlaying: boolean) => void;
     currentSong: CurrentSong | null;
     setCurrentSong: (song: CurrentSong | null) => void;
+    isLoading: boolean;
+    setIsLoading: (isLoading: boolean) => void;
 }
 
 const RadioContext = createContext<RadioContextType | undefined>(undefined);
@@ -21,6 +23,8 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const [isPlaying, setIsPlaying] = useState(false);
     const [recentlyPlayed, setRecentlyPlayed] = useState<Station[]>([]);
     const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
+    const latestStationUrl = useRef<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const storedRecentlyPlayed = localStorage.getItem("recentlyPlayed");
@@ -41,10 +45,18 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     useEffect(() => {
         if (currentStation) {
+            latestStationUrl.current = currentStation.url;
             setCurrentSong(null);
             const fetchCurrentSong = async () => {
-                const song = await getCurrentSong(currentStation.url);
-                setCurrentSong(song);
+                if (currentStation.url !== latestStationUrl.current) return;
+                try {
+                    const song = await getCurrentSong(currentStation.url);
+                    if (currentStation.url === latestStationUrl.current) {
+                        setCurrentSong(song);
+                    }
+                } catch (error) {
+                    console.error("Error fetching current song:", error);
+                }
             };
 
             fetchCurrentSong();
@@ -118,6 +130,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, [currentStation, isPlaying, currentSong]);
 
     const playStation = (station: Station) => {
+        setIsLoading(true);
         setCurrentStation(station);
         setIsPlaying(true);
 
@@ -130,6 +143,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     const pauseStation = () => {
         setIsPlaying(false);
+        setIsLoading(false);
     };
 
     return (
@@ -143,6 +157,8 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 setIsPlaying,
                 currentSong,
                 setCurrentSong,
+                isLoading,
+                setIsLoading,
             }}
         >
             {children}
