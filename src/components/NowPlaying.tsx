@@ -29,7 +29,7 @@ export const NowPlaying: React.FC = () => {
                 isPlaying={isPlaying}
                 onPlayPause={handlePlayPause}
                 stationName={currentStation.name}
-                stationCountry={currentStation.country}
+                stationCountry={currentStation.countrycode}
                 stationState={currentStation.state}
             />
         </div>

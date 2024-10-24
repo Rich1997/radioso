@@ -7,6 +7,7 @@ import Thumbnail from "./ui snippets/Thumbnail";
 import { Card } from "./ui/card";
 import AnimatedWave from "./ui snippets/AnimatedWave";
 import { useFavoritesContext } from "@/context/FavoritesContext";
+import { getCountryName } from "@/lib/utils";
 
 interface RadioStationProps {
     station: Station;
@@ -39,6 +40,8 @@ export const RadioStation: React.FC<RadioStationProps> = ({
         }
     };
 
+    const country = getCountryName(station.countrycode);
+
     return (
         <Card
             className="flex items-center justify-between sm:p-2 px-4 py-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-background active:bg-muted sm:rounded-lg rounded-none gap-4 bg-background border-0 sm:-mx-2 mx-0"
@@ -60,8 +63,8 @@ export const RadioStation: React.FC<RadioStationProps> = ({
                     </div>
                     <div className="flex flex-col gap-y-1">
                         <div className="line-clamp-1 text-muted-foreground text-xs">
-                            {station.country}
-                            {station.country && station.state ? ", " : ""}
+                            {country}
+                            {country && station.state ? ", " : ""}
                             {station.state ?? station.state}
                         </div>
                         <div className="flex gap-1">

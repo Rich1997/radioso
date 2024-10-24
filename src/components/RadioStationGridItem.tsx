@@ -6,6 +6,7 @@ import { useRadioContext } from "../context/RadioContext";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Card } from "./ui/card";
 import AnimatedWave from "./ui snippets/AnimatedWave";
+import { getCountryName } from "@/lib/utils";
 
 interface RadioStationGridItemProps {
     station: Station;
@@ -28,6 +29,8 @@ export const RadioStationGridItem: React.FC<RadioStationGridItemProps> = ({ stat
             playStation(station);
         }
     };
+
+    const country = getCountryName(station.countrycode);
 
     return (
         <Card
@@ -52,8 +55,8 @@ export const RadioStationGridItem: React.FC<RadioStationGridItemProps> = ({ stat
                         <div className="font-semibold sm:break-words break-words max-w-lg line-clamp-2 text-foreground leading-tight">
                             {station.name}
                         </div>
-                        <div className="line-clamp-2 text-muted-foreground text-xs" title={station.country}>
-                            {station.country || station.state || ""}
+                        <div className="line-clamp-2 text-muted-foreground text-xs" title={country}>
+                            {country || station.state || ""}
                         </div>
                     </div>
                     <div className="flex controls-area items-center">

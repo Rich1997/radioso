@@ -7,6 +7,7 @@ import { Loader2, TriangleAlert } from "lucide-react";
 import Alert from "./Alert";
 import { ScrollArea } from "./ui/scroll-area";
 import { useRadioContext } from "@/context/RadioContext";
+import { getCountryName } from "@/lib/utils";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -122,6 +123,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         );
     };
 
+    const country = getCountryName(stationCountry);
+
     return (
         <div className="relative h-full w-full">
             <audio ref={audioRef} />
@@ -181,8 +184,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                                 </div>
                                             ) : (
                                                 <div className="line-clamp-1 text-left">
-                                                    {stationCountry}
-                                                    {stationCountry && stationState ? ", " : ""}
+                                                    {country}
+                                                    {country && stationState ? ", " : ""}
                                                     {stationState}
                                                 </div>
                                             )}
@@ -244,8 +247,8 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                                 </ScrollArea>
                                             ) : (
                                                 <div>
-                                                    {stationCountry}
-                                                    {stationCountry && stationState ? ", " : ""}
+                                                    {country}
+                                                    {country && stationState ? ", " : ""}
                                                     {stationState}
                                                 </div>
                                             )}
