@@ -144,7 +144,9 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }, [currentStation, isPlaying, currentSong]);
 
     const playStation = (station: Station) => {
-        setIsLoading(true);
+        if (currentStation?.stationuuid !== station.stationuuid) {
+            setIsLoading(true);
+        }
         setCurrentStation(station);
         setIsPlaying(true);
 
@@ -157,7 +159,6 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     const pauseStation = () => {
         setIsPlaying(false);
-        setIsLoading(false);
     };
 
     return (
