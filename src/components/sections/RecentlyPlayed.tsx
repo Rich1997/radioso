@@ -17,7 +17,7 @@ const RecentlyPlayed: React.FC<RecentlyPlayedProps> = ({ items = 5 }) => {
     }
 
     return (
-        <div className="flex-1">
+        <div>
             <Subtitlebar>Recently Played</Subtitlebar>
             <GridContainer>
                 {firstNStations.map((station) => (

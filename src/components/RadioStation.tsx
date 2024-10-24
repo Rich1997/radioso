@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart, MoreVertical } from "lucide-react";
+import { Heart, MoreVertical, MousePointer2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext";
@@ -11,9 +11,16 @@ import { useFavoritesContext } from "@/context/FavoritesContext";
 interface RadioStationProps {
     station: Station;
     favIcon?: boolean;
+    showClickCount?: boolean;
+    showBitrate?: boolean;
 }
 
-export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = false }) => {
+export const RadioStation: React.FC<RadioStationProps> = ({
+    station,
+    favIcon = false,
+    showClickCount = false,
+    showBitrate = false,
+}) => {
     const { currentStation, isPlaying, playStation, pauseStation } = useRadioContext();
     const { toggleFavorite, favorites } = useFavoritesContext();
 
@@ -51,12 +58,29 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                     <div className="font-semibold sm:break-words break-all max-w-lg line-clamp-1 text-foreground leading-tight">
                         {station.name}
                     </div>
-                    <div className="line-clamp-1 text-muted-foreground text-xs">
-                        {station.country}
-                        {station.country && station.state ? ", " : ""}
-                        {station.state ?? station.state}
+                    <div className="flex flex-col gap-y-1">
+                        <div className="line-clamp-1 text-muted-foreground text-xs">
+                            {station.country}
+                            {station.country && station.state ? ", " : ""}
+                            {station.state ?? station.state}
+                        </div>
+                        <div className="flex gap-1">
+                            <div
+                                className={`${
+                                    showClickCount ? "flex" : "hidden"
+                                } bg-secondary text-secondary-foreground h-3 px-1.5 items-center text-xs w-fit gap-0.5 rounded-[2px]`}
+                            >
+                                <MousePointer2 size={14} /> {station.clickcount}
+                            </div>
+                            <div
+                                className={`${
+                                    showBitrate ? "flex" : "hidden"
+                                } bg-secondary text-secondary-foreground h-3 px-1.5 items-center text-xs w-fit gap-0.5 rounded-[2px]`}
+                            >
+                                {station.bitrate && station.bitrate + " kbps"}
+                            </div>
+                        </div>
                     </div>
-                    <div>{station.clickcount}</div>
                 </div>
             </div>
             <div className="flex controls-area items-center">

@@ -63,7 +63,13 @@ const SearchResults: React.FC = () => {
                 {results.length > 0 && (
                     <GridContainer>
                         {results.map((station) => (
-                            <RadioStation key={station.stationuuid} station={station} favIcon={true} />
+                            <RadioStation
+                                key={station.stationuuid}
+                                station={station}
+                                favIcon={true}
+                                showClickCount={true}
+                                showBitrate={true}
+                            />
                         ))}
                     </GridContainer>
                 )}

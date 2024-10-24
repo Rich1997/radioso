@@ -30,7 +30,7 @@ const TopStations: React.FC = () => {
     };
 
     return (
-        <div className="flex-1">
+        <div>
             <div className="flex items-center justify-between">
                 <Subtitlebar>Top Stations</Subtitlebar>
                 <ScrollButtons containerRef={containerRef} contentLength={topStations.length} />

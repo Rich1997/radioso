@@ -41,7 +41,7 @@ const FromYourFavorites: React.FC = () => {
     }
 
     return (
-        <div className="flex-1">
+        <div>
             <div className="flex items-center justify-between sm:pr-0 pr-4 gap-4">
                 <Subtitlebar>From your favorites</Subtitlebar>
                 <div className="flex items-center gap-6">
