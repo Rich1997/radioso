@@ -39,7 +39,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     });
     const [error, setError] = useState<string | null>(null);
     const [showAlert, setShowAlert] = useState(false);
-    const { currentSong } = useRadioContext();
+    const { currentSong, stationInfo } = useRadioContext();
     const { isLoading, setIsLoading } = useRadioContext();
 
     useEffect(() => {
@@ -175,6 +175,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                                 <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
                                                     {currentSong ? currentSong.name : ""}
                                                 </div>
+                                            ) : stationInfo ? (
+                                                <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
+                                                    {stationInfo}
+                                                </div>
                                             ) : (
                                                 <div className="line-clamp-1 text-left">
                                                     {stationCountry}
@@ -233,6 +237,10 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                             {currentSong ? (
                                                 <ScrollArea className="leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                                     {currentSong ? currentSong.name : ""}
+                                                </ScrollArea>
+                                            ) : stationInfo ? (
+                                                <ScrollArea className="leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
+                                                    {stationInfo}
                                                 </ScrollArea>
                                             ) : (
                                                 <div>

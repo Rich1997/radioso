@@ -6,6 +6,11 @@ export interface CurrentSong {
     name: string;
 }
 
+export interface CurrentSongResult {
+    song: CurrentSong | null;
+    stationInfo: string | null;
+}
+
 export const searchStations = async (searchTerm: string): Promise<Station[]> => {
     try {
         const response = await fetch(`${BASE_URL}/stations/byname/${encodeURIComponent(searchTerm)}`);
@@ -89,26 +94,30 @@ export const getTopStations = async (limit: number = 10): Promise<Station[]> => 
     }
 };
 
-export const getCurrentSong = async (stationUrl: string): Promise<CurrentSong | null> => {
+export const getCurrentSong = async (stationUrl: string): Promise<CurrentSongResult> => {
     try {
         const response = await fetch("/.netlify/functions/getCurrentSong", {
             method: "POST",
             body: JSON.stringify({ stationUrl }),
         });
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch current song");
+        if (response.ok) {
+            const data = await response.json();
+            if (data.currentSong) {
+                return { song: { name: data.currentSong }, stationInfo: null };
+            } else if (data.stationInfo) {
+                console.log("Station info:", data.stationInfo);
+                return { song: null, stationInfo: data.stationInfo };
+            } else {
+                console.log("No song or station information available");
+                return { song: null, stationInfo: null };
+            }
+        } else {
+            console.error("Error fetching song information");
+            return { song: null, stationInfo: null };
         }
-
-        const data = await response.json();
-
-        if (data.currentSong) {
-            return { name: data.currentSong };
-        }
-
-        return null;
     } catch (error) {
         console.error("Error fetching current song:", error);
-        return null;
+        return { song: null, stationInfo: null };
     }
 };

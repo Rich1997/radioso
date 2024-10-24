@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useRef } from "react";
 import { Station } from "../utils/types";
 import { handleImageError } from "@/lib/utils";
-import { CurrentSong, getCurrentSong } from "@/services/radioAPI";
+import { getCurrentSong } from "@/services/radioAPI";
 
 interface RadioContextType {
     currentStation: Station | null;
@@ -10,8 +10,8 @@ interface RadioContextType {
     playStation: (station: Station) => void;
     pauseStation: () => void;
     setIsPlaying: (isPlaying: boolean) => void;
-    currentSong: CurrentSong | null;
-    setCurrentSong: (song: CurrentSong | null) => void;
+    currentSong: { name: string } | null;
+    stationInfo: string | null;
     isLoading: boolean;
     setIsLoading: (isLoading: boolean) => void;
 }
@@ -22,7 +22,8 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const [currentStation, setCurrentStation] = useState<Station | null>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [recentlyPlayed, setRecentlyPlayed] = useState<Station[]>([]);
-    const [currentSong, setCurrentSong] = useState<CurrentSong | null>(null);
+    const [currentSong, setCurrentSong] = useState<{ name: string } | null>(null);
+    const [stationInfo, setStationInfo] = useState<string | null>(null);
     const latestStationUrl = useRef<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -47,12 +48,23 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         if (currentStation) {
             latestStationUrl.current = currentStation.url;
             setCurrentSong(null);
+            setStationInfo(null);
+
             const fetchCurrentSong = async () => {
                 if (currentStation.url !== latestStationUrl.current) return;
                 try {
-                    const song = await getCurrentSong(currentStation.url);
+                    const result = await getCurrentSong(currentStation.url);
                     if (currentStation.url === latestStationUrl.current) {
-                        setCurrentSong(song);
+                        if (result.song) {
+                            setCurrentSong(result.song);
+                            setStationInfo(null);
+                        } else if (result.stationInfo) {
+                            setCurrentSong(null);
+                            setStationInfo(result.stationInfo);
+                        } else {
+                            setCurrentSong(null);
+                            setStationInfo(null);
+                        }
                     }
                 } catch (error) {
                     console.error("Error fetching current song:", error);
@@ -62,7 +74,9 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             fetchCurrentSong();
             const interval = setInterval(fetchCurrentSong, 30000);
 
-            return () => clearInterval(interval);
+            return () => {
+                clearInterval(interval);
+            };
         }
     }, [currentStation]);
 
@@ -156,7 +170,7 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 pauseStation,
                 setIsPlaying,
                 currentSong,
-                setCurrentSong,
+                stationInfo,
                 isLoading,
                 setIsLoading,
             }}

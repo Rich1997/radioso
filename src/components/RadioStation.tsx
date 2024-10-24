@@ -56,6 +56,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({ station, favIcon = f
                         {station.country && station.state ? ", " : ""}
                         {station.state ?? station.state}
                     </div>
+                    <div>{station.clickcount}</div>
                 </div>
             </div>
             <div className="flex controls-area items-center">
