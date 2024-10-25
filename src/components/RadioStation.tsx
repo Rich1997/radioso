@@ -61,8 +61,8 @@ export const RadioStation: React.FC<RadioStationProps> = ({
                     <div className="font-semibold sm:break-words break-all max-w-lg line-clamp-1 text-foreground leading-tight">
                         {station.name}
                     </div>
-                    <div className="flex flex-col gap-y-1">
-                        <div className="line-clamp-1 text-muted-foreground text-xs">
+                    <div className={`flex flex-col ${showClickCount || showBitrate ? "gap-y-1" : ""}`}>
+                        <div className="line-clamp-1 text-muted-foreground">
                             {country}
                             {country && station.state ? ", " : ""}
                             {station.state ?? station.state}

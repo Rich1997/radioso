@@ -60,7 +60,7 @@ const Sidebar = () => {
                                         <div>{item.icon(isActive)}</div>
                                         <div className="flex items-center gap-2 text-sm justify-between w-full">
                                             <div>{item.label}</div>
-                                            <div>{item.count ?? item.count}</div>
+                                            <div className="text-muted-foreground">{item.count ?? item.count}</div>
                                         </div>
                                     </div>
                                 )}

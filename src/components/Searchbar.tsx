@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FaSearch } from "react-icons/fa";
+import SearchIcon from "./assets/icons/SearchIcon";
 
 interface SearchProps {
     onSearch: (term: string) => void;
@@ -22,9 +22,14 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
     };
 
     return (
-        <div className="flex gap-3 sm:bg-muted/40 bg-muted border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:rounded-lg rounded-full min-w-[230px] w-full md:w-[300px]">
-            <Button onClick={handleSearch} variant="ghost" size="oo" className="sm:pl-3 pl-4">
-                <FaSearch />
+        <div className="flex gap-3 sm:bg-muted/40 bg-muted border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:rounded-lg rounded-full min-w-[230px] w-full md:w-[300px] group">
+            <Button
+                onClick={handleSearch}
+                variant="ghost_alt"
+                size="oo"
+                className="sm:pl-3 pl-4 group-hover:text-foreground"
+            >
+                <SearchIcon size={14} />
             </Button>
             <Input
                 type="search"

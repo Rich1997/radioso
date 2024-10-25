@@ -1,6 +1,4 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { FaCirclePause, FaCirclePlay } from "react-icons/fa6";
-import { HiVolumeOff, HiVolumeUp } from "react-icons/hi";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
 import { Loader2, TriangleAlert } from "lucide-react";
@@ -8,6 +6,10 @@ import Alert from "./Alert";
 import { ScrollArea } from "./ui/scroll-area";
 import { useRadioContext } from "@/context/RadioContext";
 import { getCountryName } from "@/lib/utils";
+import PlayCircleIcon from "./assets/icons/PlayCircleIcon";
+import PauseCircleIcon from "./assets/icons/PauseCircleIcon";
+import VolumeUpIcon from "./assets/icons/VolumeUpIcon";
+import VolumeOffIcon from "./assets/icons/VolumeOffIcon";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -117,9 +119,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
             return <Loader2 size={size} className="text-primary animate-spin" />;
         }
         return isPlaying ? (
-            <FaCirclePause size={size} className="text-primary" />
+            <div className="text-primary">
+                <PauseCircleIcon size={size} />
+            </div>
         ) : (
-            <FaCirclePlay size={size} className="text-primary" />
+            <div className="text-primary">
+                <PlayCircleIcon size={size} />
+            </div>
         );
     };
 
@@ -173,7 +179,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         <div className="font-semibold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
                                             {stationName}
                                         </div>
-                                        <div className="sm:text-sm text-xs text-muted-foreground">
+                                        <div className="sm:text-base text-sm text-muted-foreground">
                                             {currentSong ? (
                                                 <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
                                                     {currentSong ? currentSong.name : ""}
@@ -200,7 +206,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         }}
                                         className="text-muted-foreground"
                                     >
-                                        {isMuted ? <HiVolumeOff size={24} /> : <HiVolumeUp size={24} />}
+                                        {isMuted ? <VolumeOffIcon size={24} /> : <VolumeUpIcon size={24} />}
                                     </button>
                                     <input
                                         className="slider"
@@ -273,7 +279,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                                 toggleMute();
                                             }}
                                         >
-                                            {isMuted ? <HiVolumeOff size={20} /> : <HiVolumeUp size={20} />}
+                                            {isMuted ? <VolumeOffIcon size={20} /> : <VolumeUpIcon size={20} />}
                                         </button>
                                         <input
                                             className="slider flex-1"

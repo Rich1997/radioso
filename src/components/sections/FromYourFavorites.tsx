@@ -7,6 +7,7 @@ import CarouselContainer from "../ui snippets/CarouselContainer";
 import { useFavoritesContext } from "@/context/FavoritesContext";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import ChevronRightIcon from "../assets/icons/ChevronRightIcon";
 
 const FromYourFavorites: React.FC = () => {
     const [fromYourFavorites, setFromYourFavorites] = useState<Station[]>([]);
@@ -49,8 +50,8 @@ const FromYourFavorites: React.FC = () => {
                         <Button variant="outline" size="oo" className="h-8 px-4 rounded-full sm:block hidden">
                             View all
                         </Button>
-                        <Button variant="ghost_alt" size="oo" className="sm:hidden block">
-                            View all →
+                        <Button variant="ghost_alt" size="oo" className="sm:hidden block -mr-2">
+                            <ChevronRightIcon />
                         </Button>
                     </Link>
                     <ScrollButtons containerRef={containerRef} contentLength={fromYourFavorites.length} />
