@@ -19,6 +19,7 @@ type AudioPlayerProps = {
     stationName: string;
     stationCountry: string;
     stationState: string;
+    stationHomepage?: string;
     tags?: string;
 };
 
@@ -30,6 +31,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     stationName,
     stationCountry,
     stationState,
+    stationHomepage,
     tags,
 }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -176,24 +178,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                         />
                                     </div>
                                     <div className="flex flex-col items-start">
-                                        <div className="font-semibold text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
+                                        <div className="font-medium text-ellipsis line-clamp-1 break-all max-w-md sm:text-base text-sm text-left">
                                             {stationName}
                                         </div>
-                                        <div className="sm:text-base text-sm text-muted-foreground">
+                                        <div className="sm:text-sm text-xs text-muted-foreground">
                                             {currentSong ? (
                                                 <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
-                                                    {currentSong ? currentSong.name : ""}
+                                                    {currentSong.name}
                                                 </div>
                                             ) : stationInfo ? (
                                                 <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
                                                     {stationInfo}
                                                 </div>
-                                            ) : (
+                                            ) : country || stationState ? (
                                                 <div className="line-clamp-1 text-left">
                                                     {country}
                                                     {country && stationState ? ", " : ""}
                                                     {stationState}
                                                 </div>
+                                            ) : stationHomepage ? (
+                                                <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
+                                                    {stationHomepage}
+                                                </div>
+                                            ) : (
+                                                ""
                                             )}
                                         </div>
                                     </div>
@@ -238,7 +246,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     <div className="sm:hidden block">
                                         <Thumbnail size="200" imgSrc={thumb} stationName={stationName} />
                                     </div>
-                                    <div className="flex flex-col items-center text-center">
+                                    <div className="flex flex-col items-center text-center gap-y-1">
                                         <ScrollArea className="sm:text-xl text-base font-semibold leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                             {stationName}
                                         </ScrollArea>
@@ -251,12 +259,18 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                                 <ScrollArea className="leading-5 sm:leading-6 max-h-10 h-fit sm:max-h-12 overflow-auto sm:max-w-xl max-w-xs">
                                                     {stationInfo}
                                                 </ScrollArea>
-                                            ) : (
-                                                <div>
+                                            ) : country || stationState ? (
+                                                <div className="line-clamp-1 text-left">
                                                     {country}
                                                     {country && stationState ? ", " : ""}
                                                     {stationState}
                                                 </div>
+                                            ) : stationHomepage ? (
+                                                <div className="line-clamp-1 max-w-sm text-ellipsis text-left">
+                                                    {stationHomepage}
+                                                </div>
+                                            ) : (
+                                                ""
                                             )}
                                         </div>
                                     </div>

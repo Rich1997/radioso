@@ -50,7 +50,7 @@ const FromYourFavorites: React.FC = () => {
                         <Button variant="outline" size="oo" className="h-8 px-4 rounded-full sm:block hidden">
                             View all
                         </Button>
-                        <Button variant="ghost_alt" size="oo" className="sm:hidden block -mr-2">
+                        <Button variant="ghost_alt" size="oo" className="sm:hidden block">
                             <ChevronRightIcon />
                         </Button>
                     </Link>

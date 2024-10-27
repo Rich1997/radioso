@@ -57,16 +57,12 @@ export const RadioStation: React.FC<RadioStationProps> = ({
                         <Thumbnail size="56" imgSrc={station.favicon} stationName={station.name} />
                     </div>
                 </div>
-                <div className="text-sm">
-                    <div className="font-semibold sm:break-words break-all max-w-lg line-clamp-1 text-foreground leading-tight">
+                <div className={`text-sm ${country ? "space-y-0.5" : ""}`}>
+                    <div className="font-medium sm:break-words break-all max-w-lg line-clamp-1 text-foreground leading-tight">
                         {station.name}
                     </div>
                     <div className={`flex flex-col ${showClickCount || showBitrate ? "gap-y-1" : ""}`}>
-                        <div className="line-clamp-1 text-muted-foreground">
-                            {country}
-                            {country && station.state ? ", " : ""}
-                            {station.state ?? station.state}
-                        </div>
+                        <div className="line-clamp-1 text-muted-foreground text-xs">{country}</div>
                         <div className="flex gap-1">
                             <div
                                 className={`${
