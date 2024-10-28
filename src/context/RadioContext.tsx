@@ -27,6 +27,48 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     const latestStationUrl = useRef<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
+    const setArtistInfo = (songInfo: { name: string } | null, station: Station) => {
+        if (songInfo?.name) return songInfo.name;
+        return station.country || station.state || station.homepage || "";
+    };
+
+    const updateMediaSessionMetadata = (station: Station, songInfo: { name: string } | null) => {
+        if (!("mediaSession" in navigator)) return;
+
+        const fallbackImage = handleImageError(station.name);
+        const artwork = [
+            { src: station.favicon, sizes: "96x96", type: "image/png" },
+            { src: station.favicon, sizes: "128x128", type: "image/png" },
+            { src: station.favicon, sizes: "192x192", type: "image/png" },
+            { src: station.favicon, sizes: "256x256", type: "image/png" },
+            { src: station.favicon, sizes: "384x384", type: "image/png" },
+            { src: station.favicon, sizes: "512x512", type: "image/png" },
+        ];
+
+        const img = new Image();
+        img.src = station.favicon;
+
+        img.onload = () => {
+            if (navigator.mediaSession) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: station.name,
+                    artist: setArtistInfo(songInfo, station),
+                    artwork: artwork,
+                });
+            }
+        };
+
+        img.onerror = () => {
+            if (navigator.mediaSession) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: station.name,
+                    artist: setArtistInfo(songInfo, station),
+                    artwork: artwork.map((item) => ({ ...item, src: fallbackImage })),
+                });
+            }
+        };
+    };
+
     useEffect(() => {
         const storedRecentlyPlayed = localStorage.getItem("recentlyPlayed");
 
@@ -47,27 +89,33 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     useEffect(() => {
         if (currentStation) {
             latestStationUrl.current = currentStation.url;
+            updateMediaSessionMetadata(currentStation, null);
             setCurrentSong(null);
             setStationInfo(null);
 
             const fetchCurrentSong = async () => {
                 if (currentStation.url !== latestStationUrl.current) return;
+
                 try {
                     const result = await getCurrentSong(currentStation.url);
                     if (currentStation.url === latestStationUrl.current) {
                         if (result.song) {
                             setCurrentSong(result.song);
                             setStationInfo(null);
+                            updateMediaSessionMetadata(currentStation, result.song);
                         } else if (result.stationInfo) {
                             setCurrentSong(null);
                             setStationInfo(result.stationInfo);
+                            updateMediaSessionMetadata(currentStation, null);
                         } else {
                             setCurrentSong(null);
                             setStationInfo(null);
+                            updateMediaSessionMetadata(currentStation, null);
                         }
                     }
                 } catch (error) {
                     console.error("Error fetching current song:", error);
+                    updateMediaSessionMetadata(currentStation, null);
                 }
             };
 
@@ -80,11 +128,6 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         }
     }, [currentStation]);
 
-    useEffect(() => {
-        localStorage.setItem("recentlyPlayed", JSON.stringify(recentlyPlayed));
-    }, [recentlyPlayed]);
-
-    // Initialize Media Session API
     useEffect(() => {
         if ("mediaSession" in navigator) {
             navigator.mediaSession.setActionHandler("play", () => {
@@ -103,49 +146,18 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                 setIsPlaying(false);
             });
 
-            // navigator.mediaSession.setActionHandler("previoustrack", () => {
-            //     // Handle previous track functionality
-            // });
-
-            // navigator.mediaSession.setActionHandler("nexttrack", () => {
-            //     // Handle next track functionality
-            // });
-
-            if (currentStation) {
-                const fallbackImage = handleImageError(currentStation.name);
-
-                const artwork = [
-                    { src: currentStation.favicon, sizes: "96x96", type: "image/png" },
-                    { src: currentStation.favicon, sizes: "128x128", type: "image/png" },
-                    { src: currentStation.favicon, sizes: "192x192", type: "image/png" },
-                    { src: currentStation.favicon, sizes: "256x256", type: "image/png" },
-                    { src: currentStation.favicon, sizes: "384x384", type: "image/png" },
-                    { src: currentStation.favicon, sizes: "512x512", type: "image/png" },
-                ];
-
-                const img = new Image();
-                img.src = currentStation.favicon;
-                img.onload = () => {
-                    navigator.mediaSession.metadata = new MediaMetadata({
-                        title: currentStation.name,
-                        artist: currentSong ? `${currentSong.name}` : currentStation.country,
-                        artwork: artwork,
-                    });
-                };
-                img.onerror = () => {
-                    navigator.mediaSession.metadata = new MediaMetadata({
-                        title: currentStation.name,
-                        artist: currentSong ? `${currentSong.name}` : currentStation.country,
-                        artwork: artwork.map((item) => ({ ...item, src: fallbackImage })),
-                    });
-                };
-            }
+            return () => {
+                navigator.mediaSession.setActionHandler("play", null);
+                navigator.mediaSession.setActionHandler("pause", null);
+                navigator.mediaSession.setActionHandler("stop", null);
+            };
         }
-    }, [currentStation, isPlaying, currentSong]);
+    }, [currentStation, isPlaying]);
 
     const playStation = (station: Station) => {
         if (currentStation?.stationuuid !== station.stationuuid) {
             setIsLoading(true);
+            updateMediaSessionMetadata(station, null);
         }
         setCurrentStation(station);
         setIsPlaying(true);
