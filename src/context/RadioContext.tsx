@@ -162,6 +162,8 @@ export const RadioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         setCurrentStation(station);
         setIsPlaying(true);
 
+        if (currentStation?.url_resolved == station.url_resolved) setIsLoading(false);
+
         const updatedRecentlyPlayed = [
             station,
             ...recentlyPlayed.filter((s) => s.stationuuid !== station.stationuuid),

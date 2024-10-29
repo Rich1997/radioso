@@ -20,6 +20,7 @@ type AudioPlayerProps = {
     stationCountry: string;
     stationState: string;
     stationHomepage?: string;
+    stationUuid?: string;
     tags?: string;
 };
 
@@ -32,6 +33,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     stationCountry,
     stationState,
     stationHomepage,
+    stationUuid,
     tags,
 }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
@@ -163,7 +165,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                 <div className="flex sm:gap-4 gap-3 items-center">
                                     <div className="sm:hidden block">
                                         <Thumbnail
-                                            key={`mobile-${stationName}`}
+                                            key={`mobile-${stationUuid}`}
                                             size="56"
                                             imgSrc={thumb}
                                             stationName={stationName}
@@ -171,7 +173,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                     </div>
                                     <div className="sm:block hidden">
                                         <Thumbnail
-                                            key={stationName}
+                                            key={stationUuid}
                                             size="64"
                                             imgSrc={thumb}
                                             stationName={stationName}

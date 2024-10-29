@@ -22,7 +22,7 @@ export const Searchbar: React.FC<SearchProps> = ({ onSearch, placeholder = "Ente
     };
 
     return (
-        <div className="flex gap-3 sm:bg-muted/40 bg-muted border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:rounded-lg rounded-full min-w-[230px] w-full md:w-[300px] group">
+        <div className="flex gap-3 sm:bg-muted/40 bg-muted border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:rounded-lg rounded-full md:w-[300px] w-full group">
             <Button
                 onClick={handleSearch}
                 variant="ghost_alt"

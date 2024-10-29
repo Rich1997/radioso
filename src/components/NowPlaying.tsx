@@ -32,6 +32,7 @@ export const NowPlaying: React.FC = () => {
                 stationCountry={currentStation.countrycode}
                 stationState={currentStation.state}
                 stationHomepage={currentStation.homepage}
+                stationUuid={currentStation.stationuuid}
             />
         </div>
     );
