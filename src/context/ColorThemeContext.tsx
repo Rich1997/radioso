@@ -23,11 +23,10 @@ export const ColorThemeProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     useLayoutEffect(() => {
         const root = window.document.body;
-        const themesToRemove = colors.map((color) => "theme-" + color.colorName);
 
         localStorage.setItem("colorTheme", colorTheme);
 
-        root.classList.remove(...themesToRemove);
+        root.classList.remove("theme-default", "theme-blue", "theme-gold");
 
         root.classList.add("theme-" + colorTheme);
     }, [colorTheme]);
