@@ -11,4 +11,4 @@ export const colors = [
         colorName: "gold",
         colorAlias: "Gold",
     },
-];
+] as const;

@@ -1,6 +1,7 @@
+import { colors } from "@/utils/constants";
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type ColorTheme = "default" | "dark-blue" | "pastel";
+export type ColorTheme = (typeof colors)[number]["colorName"];
 
 interface ColorThemeContextProps {
     colorTheme: ColorTheme;
@@ -22,14 +23,11 @@ export const ColorThemeProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
     useEffect(() => {
         const root = window.document.body;
+        const themesToRemove = colors.map((color) => "theme-" + color.colorName);
 
         localStorage.setItem("colorTheme", colorTheme);
 
-        root.classList.forEach((className) => {
-            if (className.startsWith("theme-")) {
-                root.classList.remove(className);
-            }
-        });
+        root.classList.remove(...themesToRemove);
 
         root.classList.add("theme-" + colorTheme);
     }, [colorTheme]);
