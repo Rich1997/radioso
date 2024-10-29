@@ -45,7 +45,7 @@ const BottomNav = () => {
                 </div>
             </NavLink>
             <NavLink
-                to="#"
+                to="/settings"
                 className={({ isActive }) =>
                     isActive ? "w-14 flex items-center justify-center" : "w-14 flex items-center justify-center"
                 }

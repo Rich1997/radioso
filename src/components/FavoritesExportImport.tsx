@@ -14,6 +14,11 @@ const FavoritesImportExport: React.FC = () => {
     const [importedStations, setImportedStations] = useState<Station[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    const options = [
+        { value: "append", label: "Add new stations only" },
+        { value: "overwrite", label: "Overwrite existing list" },
+    ];
+
     useEffect(() => {
         if (!isImporting) {
             clearImport();
@@ -142,10 +147,9 @@ const FavoritesImportExport: React.FC = () => {
                             <StyledSelect
                                 value={importMode}
                                 onChange={(e) => setImportMode(e.target.value as "overwrite" | "append")}
-                                options={[
-                                    { value: "append", label: "Add new stations only" },
-                                    { value: "overwrite", label: "Overwrite existing list" },
-                                ]}
+                                options={options}
+                                optionValueKey="value"
+                                optionLabelKey="label"
                             />
                             <Select
                                 value={importMode}

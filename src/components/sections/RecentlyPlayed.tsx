@@ -18,7 +18,7 @@ const RecentlyPlayed: React.FC<RecentlyPlayedProps> = ({ items = 5 }) => {
 
     return (
         <div>
-            <Subtitlebar>Recently Played</Subtitlebar>
+            <Subtitlebar>Recently played</Subtitlebar>
             <GridContainer>
                 {firstNStations.map((station) => (
                     <RadioStation key={station.stationuuid} station={station} favIcon={true} />

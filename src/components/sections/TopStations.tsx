@@ -32,7 +32,7 @@ const TopStations: React.FC = () => {
     return (
         <div>
             <div className="flex items-center justify-between">
-                <Subtitlebar>Top Stations</Subtitlebar>
+                <Subtitlebar>Top stations</Subtitlebar>
                 <ScrollButtons containerRef={containerRef} contentLength={topStations.length} />
             </div>
             {error ? <PaddedContainer>{error}</PaddedContainer> : ""}

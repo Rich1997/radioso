@@ -1,13 +1,21 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
 
-interface StyledSelectProps {
+interface StyledSelectProps<T> {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    options: { value: string; label: string }[];
+    options: T[];
+    optionValueKey: keyof T;
+    optionLabelKey: keyof T;
 }
 
-export default function StyledSelect({ value, onChange, options }: StyledSelectProps) {
+export default function StyledSelect<T>({
+    value,
+    onChange,
+    options,
+    optionValueKey,
+    optionLabelKey,
+}: StyledSelectProps<T>) {
     return (
         <div className="relative sm:hidden flex">
             <select
@@ -16,8 +24,8 @@ export default function StyledSelect({ value, onChange, options }: StyledSelectP
                 className="w-full h-10 px-3 py-2 text-sm bg-background border border-input rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring appearance-none cursor-pointer"
             >
                 {options.map((option) => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
+                    <option key={String(option[optionValueKey])} value={String(option[optionValueKey])}>
+                        {String(option[optionLabelKey])}
                     </option>
                 ))}
             </select>
