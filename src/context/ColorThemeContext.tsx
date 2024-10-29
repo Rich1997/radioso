@@ -1,5 +1,5 @@
 import { colors } from "@/utils/constants";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useLayoutEffect } from "react";
 
 export type ColorTheme = (typeof colors)[number]["colorName"];
 
@@ -21,7 +21,7 @@ export const ColorThemeProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         localStorage.setItem("colorTheme", theme);
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const root = window.document.body;
         const themesToRemove = colors.map((color) => "theme-" + color.colorName);
 
