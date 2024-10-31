@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import Thumbnail from "./ui snippets/Thumbnail";
 import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle } from "./ui/drawer";
-import { Loader2, TriangleAlert } from "lucide-react";
+import { TriangleAlert } from "lucide-react";
 import Alert from "./Alert";
 import { ScrollArea } from "./ui/scroll-area";
 import { useRadioContext } from "@/context/RadioContext";
