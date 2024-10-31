@@ -6,10 +6,9 @@ import Alert from "./Alert";
 import { ScrollArea } from "./ui/scroll-area";
 import { useRadioContext } from "@/context/RadioContext";
 import { getCountryName } from "@/lib/utils";
-import PlayCircleIcon from "./assets/icons/PlayCircleIcon";
-import PauseCircleIcon from "./assets/icons/PauseCircleIcon";
 import VolumeUpIcon from "./assets/icons/VolumeUpIcon";
 import VolumeOffIcon from "./assets/icons/VolumeOffIcon";
+import PlayPauseButton from "./ui snippets/PlayPauseButton";
 
 type AudioPlayerProps = {
     audioUrl: string;
@@ -118,21 +117,6 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         [onPlayPause]
     );
 
-    const renderPlayPauseButton = (size: number) => {
-        if (isLoading) {
-            return <Loader2 size={size} className="text-primary animate-spin" />;
-        }
-        return isPlaying ? (
-            <div className="text-primary">
-                <PauseCircleIcon size={size} />
-            </div>
-        ) : (
-            <div className="text-primary">
-                <PlayCircleIcon size={size} />
-            </div>
-        );
-    };
-
     const country = getCountryName(stationCountry);
 
     return (
@@ -156,11 +140,14 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                     >
                         <div className="flex items-center">
                             <div className="flex gap-4 items-center sm:justify-between justify-start flex-1">
-                                <div className="h-12 sm:h-10">
-                                    <button className="controls-area" onClick={handlePlayPause}>
-                                        <div className="sm:hidden block">{renderPlayPauseButton(48)}</div>
-                                        <div className="sm:block hidden">{renderPlayPauseButton(40)}</div>
-                                    </button>
+                                <div className="flex items-center">
+                                    <PlayPauseButton
+                                        size={48}
+                                        className="sm:scale-[0.8333] transform-gpu"
+                                        isLoading={isLoading}
+                                        isPlaying={isPlaying}
+                                        onPlayPause={handlePlayPause}
+                                    />
                                 </div>
                                 <div className="flex sm:gap-4 gap-3 items-center">
                                     <div className="sm:hidden block">
@@ -279,13 +266,12 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
                                 </div>
                                 <div className="flex flex-col items-center w-2/3 gap-10">
                                     <div className="h-16 flex justify-center items-center gap-12">
-                                        <button
-                                            onClick={onPlayPause}
-                                            className="text-4xl"
-                                            aria-label="play/pause button"
-                                        >
-                                            {renderPlayPauseButton(64)}
-                                        </button>
+                                        <PlayPauseButton
+                                            size={64}
+                                            isLoading={isLoading}
+                                            isPlaying={isPlaying}
+                                            onPlayPause={handlePlayPause}
+                                        />
                                     </div>
                                     <div className="flex items-center justify-center w-full sm:w-2/3 lg:w-1/3 h-6 gap-2">
                                         <button

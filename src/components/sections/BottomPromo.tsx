@@ -11,7 +11,7 @@ const BottomPromo: React.FC<BottomPromoProps> = ({ show = false }) => {
             }`}
         >
             <div className="h-full sm:block hidden">
-                <Logo height={72} />
+                <Logo height={64} />
             </div>
             <div className="sm:hidden block">
                 <MobileLogo height={72} />

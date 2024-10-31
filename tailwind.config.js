@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
+import fluid, { extract } from "fluid-tailwind";
+
 export default {
     darkMode: ["class"],
     content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+    extract,
     theme: {
         extend: {
             borderRadius: {
@@ -55,4 +58,5 @@ export default {
         },
     },
     plugins: [require("tailwindcss-animate")],
+    fluid,
 };
