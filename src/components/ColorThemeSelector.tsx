@@ -1,5 +1,5 @@
 import { ColorTheme, useColorTheme } from "@/context/ColorThemeContext";
-import { colors } from "@/utils/constants";
+import { colorThemes } from "@/utils/constants";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import StyledSelect from "./ui snippets/StyledSelect";
@@ -19,9 +19,13 @@ const ColorThemeSelector = () => {
                     <SelectValue placeholder={capitalizeFirstLetter(colorTheme)} />
                 </SelectTrigger>
                 <SelectContent>
-                    {colors.map((color, colorID) => (
-                        <SelectItem value={color.colorName} key={colorID} className="cursor-pointer justify-between">
-                            {color.colorAlias}
+                    {colorThemes.map((colorTheme, colorThemeID) => (
+                        <SelectItem
+                            value={colorTheme.colorThemeName}
+                            key={colorThemeID}
+                            className="cursor-pointer justify-between"
+                        >
+                            {colorTheme.colorThemeAlias}
                         </SelectItem>
                     ))}
                 </SelectContent>
@@ -31,9 +35,9 @@ const ColorThemeSelector = () => {
                 onChange={(e) => {
                     setColorTheme(e.target.value as ColorTheme);
                 }}
-                options={colors}
-                optionValueKey="colorName"
-                optionLabelKey="colorAlias"
+                options={colorThemes}
+                optionValueKey="colorThemeName"
+                optionLabelKey="colorThemeAlias"
             />
         </>
     );

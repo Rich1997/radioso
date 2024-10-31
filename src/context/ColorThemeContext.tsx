@@ -1,7 +1,7 @@
-import { colors } from "@/utils/constants";
+import { colorThemes } from "@/utils/constants";
 import React, { createContext, useContext, useState, useLayoutEffect } from "react";
 
-export type ColorTheme = (typeof colors)[number]["colorName"];
+export type ColorTheme = (typeof colorThemes)[number]["colorThemeName"];
 
 interface ColorThemeContextProps {
     colorTheme: ColorTheme;
@@ -26,7 +26,7 @@ export const ColorThemeProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
         localStorage.setItem("colorTheme", colorTheme);
 
-        root.classList.remove("theme-default", "theme-blue", "theme-gold");
+        root.classList.remove("theme-default", "theme-blue", "theme-gold", "theme-orange", "theme-halloween");
 
         root.classList.add("theme-" + colorTheme);
     }, [colorTheme]);

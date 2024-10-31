@@ -173,6 +173,52 @@
         --chart-5: 340 75% 55%;
         --scrollbar-thumb: hsl(var(--border));
     }
+
+    .theme-halloween {
+        --background: 32 57% 95%;
+        --foreground: 272 25% 18%;
+        --card: 32 57% 90%;
+        --card-foreground: 272 25% 18%;
+        --popover: 32 57% 95%;
+        --popover-foreground: 272 25% 18%;
+        --primary: 24 90% 50%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 272 50% 50%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 32 57% 85%;
+        --muted-foreground: 272 25% 40%;
+        --accent: 272 50% 50%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 85% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 32 57% 80%;
+        --input: 32 57% 80%;
+        --ring: 24 90% 50%;
+        --scrollbar-thumb: hsl(var(--border));
+    }
+
+    .dark .theme-halloween {
+        --background: 272 25% 18%;
+        --foreground: 32 57% 95%;
+        --card: 272 25% 23%;
+        --card-foreground: 32 57% 95%;
+        --popover: 272 25% 18%;
+        --popover-foreground: 32 57% 95%;
+        --primary: 24 90% 50%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 272 50% 50%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 272 25% 28%;
+        --muted-foreground: 32 57% 80%;
+        --accent: 272 50% 50%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 85% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 272 25% 30%;
+        --input: 272 25% 30%;
+        --ring: 24 90% 50%;
+        --scrollbar-thumb: hsl(var(--border));
+    }
 }
 
 @layer base {
