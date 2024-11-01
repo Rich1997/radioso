@@ -7,7 +7,7 @@ import BottomNav from "./BottomNav";
 
 export const Layout: React.FC = () => {
     return (
-        <div className="relative flex min-h-patch flex-col bg-background selection:bg-primary selection:text-primary-foreground">
+        <div className="relative flex min-h-patch flex-col bg-background">
             <div className="flex flex-1 flex-col overflow-y-auto">
                 <div className="sticky top-0 z-10 w-full">
                     <Topbar />

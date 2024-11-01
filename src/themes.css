@@ -29,7 +29,6 @@
         --chart-3: 30 37% 24%;
         --chart-4: 30 74% 66%;
         --chart-5: 30 87% 67%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .dark {
@@ -57,7 +56,6 @@
         --chart-3: 30 80% 55%;
         --chart-4: 30 65% 60%;
         --chart-5: 30 75% 55%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .theme-gold {
@@ -86,7 +84,6 @@
         --chart-3: 44 37% 24%;
         --chart-4: 44 74% 66%;
         --chart-5: 44 87% 67%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .dark .theme-gold {
@@ -114,7 +111,6 @@
         --chart-3: 44 80% 55%;
         --chart-4: 44 65% 60%;
         --chart-5: 44 75% 55%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .theme-blue {
@@ -143,7 +139,6 @@
         --chart-3: 197 37% 24%;
         --chart-4: 43 74% 66%;
         --chart-5: 27 87% 67%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .dark .theme-blue {
@@ -171,7 +166,6 @@
         --chart-3: 30 80% 55%;
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .theme-halloween {
@@ -194,7 +188,6 @@
         --border: 32 57% 80%;
         --input: 32 57% 80%;
         --ring: 24 90% 50%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 
     .dark .theme-halloween {
@@ -217,7 +210,6 @@
         --border: 272 25% 30%;
         --input: 272 25% 30%;
         --ring: 24 90% 50%;
-        --scrollbar-thumb: hsl(var(--border));
     }
 }
 
