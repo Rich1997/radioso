@@ -1,6 +1,6 @@
 <p align="center">
   <br>
-  <img width="400" src="./public/logo.png" alt="radioso logo">
+  <img width="400" src="./public/logo_halloween.png" alt="radioso logo">
   <br>
   <br>
 </p>
@@ -27,7 +27,7 @@ Live site 📡 <a href="https://radioso.netlify.app">https://radioso.netlify.app
 -   [x] Support for dark and light mode
 -   [ ] Show details for radio station
 -   [ ] Search and filter favorites
--   [ ] UI theming support
+-   [ ] UI theming support **[WIP]**
 -   [ ] Save preferences
 -   [ ] Import/export preferences
 -   [ ] Recommendation system based on genres selected by user
