@@ -8,7 +8,7 @@ import BottomNav from "./BottomNav";
 export const Layout: React.FC = () => {
     return (
         <div className="relative flex min-h-patch flex-col bg-background">
-            <div className="flex flex-1 flex-col overflow-y-auto">
+            <div className="flex flex-1 flex-col overflow-y-auto" style={{ scrollbarGutter: "stable" }}>
                 <div className="sticky top-0 z-10 w-full">
                     <Topbar />
                     <div className="bg-gradient-to-b from-background to-transparent w-full h-5 -mb-5 relative sm:hidden block" />

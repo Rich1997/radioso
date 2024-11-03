@@ -45,8 +45,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     });
     const [error, setError] = useState<string | null>(null);
     const [showAlert, setShowAlert] = useState(false);
-    const { currentSong, stationInfo } = useRadioContext();
-    const { isLoading, setIsLoading } = useRadioContext();
+    const { currentSong, stationInfo, isLoading, setIsLoading } = useRadioContext();
 
     useEffect(() => {
         const audio = audioRef.current;

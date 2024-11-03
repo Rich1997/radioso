@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart, MoreVertical, MousePointer2 } from "lucide-react";
+import { Heart, Loader2, MoreVertical, MousePointer2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Station } from "../utils/types";
 import { useRadioContext } from "../context/RadioContext";
@@ -8,6 +8,8 @@ import { Card } from "./ui/card";
 import AnimatedWave from "./ui snippets/AnimatedWave";
 import { useFavoritesContext } from "@/context/FavoritesContext";
 import { getCountryName } from "@/lib/utils";
+import PlayCircleIcon from "./assets/icons/PlayCircleIcon";
+import PauseCircleIcon from "./assets/icons/PauseCircleIcon";
 
 interface RadioStationProps {
     station: Station;
@@ -22,10 +24,11 @@ export const RadioStation: React.FC<RadioStationProps> = ({
     showClickCount = false,
     showBitrate = false,
 }) => {
-    const { currentStation, isPlaying, playStation, pauseStation } = useRadioContext();
+    const { currentStation, isPlaying, playStation, pauseStation, isLoading } = useRadioContext();
     const { toggleFavorite, favorites } = useFavoritesContext();
 
     const isCurrentStationPlaying = currentStation?.stationuuid === station.stationuuid && isPlaying;
+    const isCurrentStation = currentStation?.stationuuid === station.stationuuid;
 
     const isFavorite = favorites.some((fav) => fav.stationuuid === station.stationuuid);
 
@@ -44,7 +47,7 @@ export const RadioStation: React.FC<RadioStationProps> = ({
 
     return (
         <Card
-            className="flex items-center justify-between sm:p-2 px-4 py-2 cursor-pointer select-none sm:hover:bg-muted hover:bg-background active:bg-muted sm:rounded-lg rounded-none gap-4 bg-background border-0 sm:-mx-2 mx-0"
+            className="flex items-center justify-between sm:p-2 px-4 py-2 cursor-pointer select-none sm:active:bg-background active:bg-muted sm:rounded-lg rounded-none gap-4 bg-background border-0 sm:-mx-2 mx-0 group"
             onClick={handlePlayPause}
             title={station.name}
         >
@@ -55,6 +58,14 @@ export const RadioStation: React.FC<RadioStationProps> = ({
                     </div>
                     <div className="sm:block hidden">
                         <Thumbnail size="56" imgSrc={station.favicon} stationName={station.name} />
+                    </div>
+                    <div className="sm:group-hover:block hidden">
+                        <div className="absolute top-0 h-full w-full bg-muted rounded-md" />
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full text-secondary">
+                            {isCurrentStation && isLoading && <Loader2 size={20} className="animate-spin" />}
+                            {!isLoading && (isCurrentStationPlaying ? <PauseCircleIcon /> : <PlayCircleIcon />)}
+                            {isLoading && !isCurrentStation && <PlayCircleIcon />}
+                        </div>
                     </div>
                 </div>
                 <div className={`text-sm ${country ? "space-y-0.5" : ""}`}>
